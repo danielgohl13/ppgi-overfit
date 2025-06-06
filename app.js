@@ -25,47 +25,203 @@ async function loadQuestions() {
         // Lista de arquivos de questões
         const questionFiles = [
             'questions/20162.js',
-            'questions/20171.js'
+            'questions/20171.js',
+            'questions/20172.js',
+            'questions/20181.js',
+            'questions/20182.js'
         ];
 
-        // Carregar cada arquivo de questões
+        // Função para processar o conteúdo de um arquivo
+        const processFileContent = (text, file) => {
+            // Tenta fazer o parse direto primeiro (pode falhar para arquivos muito grandes)
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.log(`Tentando método alternativo para ${file}...`);
+                
+                // Remove BOM se existir
+                let cleanText = text.trim();
+                if (cleanText.charCodeAt(0) === 0xFEFF) {
+                    cleanText = cleanText.slice(1);
+                }
+                
+                // Normaliza quebras de linha
+                cleanText = cleanText
+                    .replace(/\r\n/g, '\n')
+                    .replace(/\r/g, '\n');
+                
+                // Tenta extrair o JSON usando uma abordagem mais tolerante
+                try {
+                    // Se começa com [ e termina com ], é um array JSON
+                    if (cleanText.startsWith('[') && cleanText.endsWith(']')) {
+                        // Usa um parser JSON mais tolerante
+                        const json5 = JSON5 || window.JSON5; // Tenta usar JSON5 se disponível
+                        if (json5) {
+                            return json5.parse(cleanText);
+                        }
+                        
+                        // Se não tiver JSON5, tenta o parse normal novamente
+                        return JSON.parse(cleanText);
+                    }
+                    
+                    // Tenta extrair o JSON usando regex
+                    const jsonMatch = cleanText.match(/\[\s*\{.*\}\s*\]/s);
+                    if (jsonMatch) {
+                        try {
+                            return JSON.parse(jsonMatch[0]);
+                        } catch (e) {
+                            console.warn('Falha ao fazer parse do JSON extraído:', e);
+                        }
+                    }
+                    
+                    // Se não conseguir extrair, tenta processar como módulo
+                    if (cleanText.includes('bancoDeQuestoes_PPGI')) {
+                        try {
+                            const script = document.createElement('script');
+                            script.type = 'text/javascript';
+                            script.text = cleanText + '; window._tempQuestions = bancoDeQuestoes_PPGI;';
+                            document.head.appendChild(script);
+                            
+                            const questions = window._tempQuestions || [];
+                            delete window._tempQuestions;
+                            document.head.removeChild(script);
+                            
+                            return Array.isArray(questions) ? questions : [];
+                        } catch (e) {
+                            console.warn(`Falha no método com variável global para ${file}:`, e);
+                        }
+                    }
+                    
+                    // Se o arquivo for muito grande, tenta processar em pedaços
+                    if (cleanText.length > 1024 * 1024) { // 1MB
+                        console.log(`Arquivo grande (${(cleanText.length / (1024*1024)).toFixed(2)} MB), processando em partes...`);
+                        
+                        // Tenta encontrar os limites dos objetos JSON
+                        const jsonObjects = [];
+                        let start = cleanText.indexOf('{');
+                        let depth = 0;
+                        let inString = false;
+                        let escape = false;
+                        
+                        for (let i = start; i < cleanText.length; i++) {
+                            const char = cleanText[i];
+                            
+                            if (escape) {
+                                escape = false;
+                                continue;
+                            }
+                            
+                            if (char === '\\' && inString) {
+                                escape = true;
+                                continue;
+                            }
+                            
+                            if (char === '"' && (i === 0 || cleanText[i-1] !== '\\')) {
+                                inString = !inString;
+                            }
+                            
+                            if (!inString) {
+                                if (char === '{') depth++;
+                                if (char === '}') {
+                                    depth--;
+                                    if (depth === 0) {
+                                        const jsonStr = cleanText.substring(start, i + 1);
+                                        try {
+                                            const obj = JSON.parse(jsonStr);
+                                            jsonObjects.push(obj);
+                                        } catch (e) {
+                                            console.warn('Erro ao processar objeto JSON parcial:', e);
+                                        }
+                                        start = cleanText.indexOf('{', i + 1);
+                                        if (start === -1) break;
+                                        i = start - 1;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Se encontrou objetos, retorna como array
+                        if (jsonObjects.length > 0) {
+                            console.log(`Encontrados ${jsonObjects.length} objetos JSON no arquivo`);
+                            return jsonObjects;
+                        }
+                    }
+                    
+                    // Se chegou aqui, não conseguiu processar
+                    console.warn(`Formato não reconhecido para o arquivo ${file}`);
+                    return [];
+                    
+                } catch (innerError) {
+                    console.error(`Erro ao processar o conteúdo do arquivo ${file}:`, innerError);
+                    return [];
+                }
+            }
+        };
+
+        // Carrega cada arquivo de questões
         const questionPromises = questionFiles.map(file => {
             return fetch(file)
-                .then(response => response.text())
-                .then(text => {
-                    try {
-                        // Criar um script temporário para extrair a variável bancoDeQuestoes_PPGI
-                        const script = document.createElement('script');
-                        script.type = 'text/javascript';
-                        script.text = text + '; window._tempQuestions = bancoDeQuestoes_PPGI;';
-                        document.head.appendChild(script);
-                        
-                        // Obter as questões da variável global temporária
-                        const questions = window._tempQuestions;
-                        
-                        // Limpar a variável global e remover o script
-                        delete window._tempQuestions;
-                        document.head.removeChild(script);
-                        
-                        return Array.isArray(questions) ? questions : [];
-                    } catch (e) {
-                        console.error('Erro ao analisar o arquivo:', file, e);
-                        return [];
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP ${response.status}: ${response.statusText}`);
                     }
+                    return response.text();
                 })
+                .then(text => processFileContent(text, file))
                 .catch(error => {
-                    console.error('Erro ao carregar o arquivo:', file, error);
+                    console.error(`Erro ao carregar o arquivo ${file}:`, error);
                     return [];
                 });
         });
 
-        // Aguardar todos os arquivos serem carregados
+        // Aguarda todos os arquivos serem carregados
         const questionArrays = await Promise.all(questionPromises);
         
         // Juntar todas as questões em um único array
         questions = questionArrays.flat();
         
-        console.log('Questões carregadas:', questions);
+        // Log detalhado para depuração
+        console.log('=== RESUMO DO CARREGAMENTO ===');
+        console.log('Total de questões carregadas:', questions.length);
+        
+        // Mostra quantas questões foram carregadas de cada arquivo
+        questionFiles.forEach((file, index) => {
+            const count = questionArrays[index]?.length || 0;
+            console.log(`- ${file}: ${count} questões`);
+        });
+        
+        // Agrupa por ano
+        const porAno = questions.reduce((acc, q) => {
+            const ano = q.ano_prova || 'Sem ano';
+            if (!acc[ano]) acc[ano] = [];
+            acc[ano].push(q);
+            return acc;
+        }, {});
+        
+        console.log('\nQuestões por ano:');
+        Object.entries(porAno)
+            .sort(([a], [b]) => a - b)
+            .forEach(([ano, quests]) => {
+                console.log(`- ${ano}: ${quests.length} questões`);
+                
+                // Se houver anos sem questões, mostra um aviso
+                if (quests.length === 0) {
+                    console.warn(`  AVISO: Nenhuma questão carregada para o ano ${ano}`);
+                }
+            });
+            
+        // Verifica se todas as questões têm os campos obrigatórios
+        const problemas = [];
+        questions.forEach((q, i) => {
+            if (!q.id_questao) problemas.push(`Questão ${i+1}: Sem ID`);
+            if (!q.ano_prova) problemas.push(`Questão ${i+1} (${q.id_questao || 'sem ID'}): Sem ano`);
+            if (!q.enunciado) problemas.push(`Questão ${i+1} (${q.id_questao || 'sem ID'}): Sem enunciado`);
+        });
+        
+        if (problemas.length > 0) {
+            console.warn('\nProblemas encontrados nas questões:');
+            problemas.forEach(p => console.warn(`- ${p}`));
+        }
         
         // Inicializar as questões filtradas
         filteredQuestions = [...questions];
