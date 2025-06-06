@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Questões - PPGI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        select, button {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .question-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e2f3ff;
+            border-radius: 4px;
+            display: none;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .filter-group label {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+            }
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Banco de Questões - PPGI</h1>
+    
+    <div class="filters">
+        <div class="filter-group">
+            <label for="yearFilter">Ano:</label>
+            <select id="yearFilter">
+                <option value="">Todos os anos</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="areaFilter">Área:</label>
+            <select id="areaFilter">
+                <option value="">Todas as áreas</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="subareaFilter">Subárea:</label>
+            <select id="subareaFilter">
+                <option value="">Todas as subáreas</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div>
+            <button id="prevBtn" disabled>Anterior</button>
+            <button id="nextBtn">Próxima</button>
+        </div>
+        <div>
+            <button id="showAnswerBtn">Mostrar Resposta</button>
+            <button id="randomBtn">Questão Aleatória</button>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question-text" id="questionText">Carregando questões...</div>
+        <div class="options" id="optionsContainer"></div>
+        <div class="explanation" id="explanation"></div>
+    </div>
+
+    <div class="stats">
+        <p>Total de questões: <span id="totalQuestions">0</span></p>
+        <p>Questão <span id="currentQuestion">0</span> de <span id="totalQuestionsDisplay">0</span></p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
