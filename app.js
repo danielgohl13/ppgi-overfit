@@ -361,7 +361,14 @@ function updateQuestion() {
     
     // Processar o texto da questão com Markdown
     const processedQuestion = question.enunciado ? marked.parse(question.enunciado) : '';
-    questionText.innerHTML = processedQuestion;
+    
+    // Adicionar o ano da prova
+    const yearBadge = question.ano_prova ? 
+        `<div style="margin-bottom: 15px; color: #666; font-size: 0.9em;">
+            <strong>Ano da Prova:</strong> ${question.ano_prova}
+        </div>` : '';
+    
+    questionText.innerHTML = `${yearBadge}${processedQuestion}`;
     
     // Limpar opções anteriores
     optionsContainer.innerHTML = '';
