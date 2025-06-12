@@ -28,7 +28,19 @@ async function loadQuestions() {
             'questions/20171.js',
             'questions/20172.js',
             'questions/20181.js',
-            'questions/20182.js'
+            'questions/20182.js',
+            'questions/20191.js',
+            'questions/20192.js',
+            'questions/20201.js',
+            'questions/20202.js',
+            'questions/20211.js',
+            'questions/20212.js',
+            'questions/20221.js',
+            'questions/20222.js',
+            'questions/20231.js',
+            'questions/20232.js',
+            'questions/20241.js',
+            'questions/20242.js'   
         ];
 
         // Função para processar o conteúdo de um arquivo
@@ -338,8 +350,18 @@ function updateQuestion() {
     
     const question = filteredQuestions[currentQuestionIndex];
     
-    // Exibir o texto da questão
-    questionText.innerHTML = question.enunciado;
+    // Configuração do marked.js
+    marked.setOptions({
+        breaks: true,          // Quebras de linha se tornam <br>
+        gfm: true,            // Suporte a GitHub Flavored Markdown
+        smartLists: true,     // Listas mais inteligentes
+        smartypants: true,    // Aspas e travessões inteligentes
+        xhtml: true           // Fechar tags XHTML
+    });
+    
+    // Processar o texto da questão com Markdown
+    const processedQuestion = question.enunciado ? marked.parse(question.enunciado) : '';
+    questionText.innerHTML = processedQuestion;
     
     // Limpar opções anteriores
     optionsContainer.innerHTML = '';
@@ -349,7 +371,15 @@ function updateQuestion() {
         question.opcoes.forEach((option, index) => {
             const optionElement = document.createElement('div');
             optionElement.className = 'option';
-            optionElement.innerHTML = `<strong>${option.letra})</strong> ${option.texto}`;
+            
+            // Processar o texto da opção com Markdown
+            const optionText = option.texto ? marked.parse(option.texto) : '';
+            optionElement.innerHTML = `
+                <div class="markdown-body" style="margin: 0;">
+                    <strong>${option.letra})</strong> ${optionText}
+                </div>
+            `;
+            
             optionElement.dataset.index = index;
             optionElement.addEventListener('click', () => selectOption(optionElement, option.correta));
             optionsContainer.appendChild(optionElement);
@@ -396,8 +426,16 @@ function selectOption(optionElement, isCorrect) {
 
 // Mostrar a resposta correta
 function showAnswer() {
+    if (filteredQuestions.length === 0) return;
+    
     const question = filteredQuestions[currentQuestionIndex];
-    if (!question || !question.opcoes) return;
+    
+    // Processar a explicação com Markdown, se existir
+    if (question.explicacao) {
+        const processedExplanation = marked.parse(question.explicacao);
+        explanation.innerHTML = `<div class="markdown-body">${processedExplanation}</div>`;
+        explanation.style.display = 'block';
+    }
     
     const correctOption = question.opcoes.find(opt => opt.correta);
     if (!correctOption) return;
@@ -408,12 +446,6 @@ function showAnswer() {
             opt.classList.add('correct');
         }
     });
-    
-    // Mostrar a explicação se disponível
-    if (question.explicacao_geral) {
-        explanation.innerHTML = question.explicacao_geral;
-        explanation.style.display = 'block';
-    }
 }
 
 // Atualizar estatísticas

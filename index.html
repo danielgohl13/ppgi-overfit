@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banco de Questões - PPGI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #f8f9fa;
+            --surface-color: #ffffff;
+            --text-color: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --border-color: #dfe2e5;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+            --code-bg: #f6f8fa;
+            --code-color: #24292e;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -12,11 +29,14 @@
             margin: 0 auto;
             padding: 20px;
             color: #333;
+            background-color: #fff;
         }
         h1 {
-            color: #2c3e50;
+            color: var(--primary-color);
             text-align: center;
             margin-bottom: 30px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
         }
         .controls {
             display: flex;
@@ -24,93 +44,252 @@
             margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 10px;
+            background-color: var(--surface-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         select, button {
-            padding: 8px 15px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
             cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+        select {
+            background-color: var(--surface-color);
         }
         button {
-            background-color: #3498db;
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            transition: background-color 0.3s;
+            font-weight: 500;
         }
-        button:hover {
+        button:hover:not(:disabled) {
             background-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         button:disabled {
-            background-color: #95a5a6;
+            background-color: #bdc3c7;
             cursor: not-allowed;
+            opacity: 0.7;
         }
         .question-container {
-            background-color: white;
+            background-color: var(--surface-color);
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary-color);
         }
         .question-text {
             font-size: 1.1em;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            line-height: 1.7;
         }
         .options {
-            margin-bottom: 20px;
+            margin: 30px 0;
         }
         .option {
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 4px;
+            margin: 12px 0;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            background-color: var(--surface-color);
         }
         .option:hover {
-            background-color: #f8f9fa;
+            background-color: #f1f5f9;
+            border-color: var(--secondary-color);
         }
         .option.correct {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
+            background-color: #e8f5e9;
+            border-color: var(--success-color);
         }
         .option.incorrect {
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
+            background-color: #ffebee;
+            border-color: var(--error-color);
         }
         .explanation {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e2f3ff;
-            border-radius: 4px;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
             display: none;
+            font-size: 0.95em;
+            line-height: 1.6;
         }
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
         }
         .filters {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
+            background-color: var(--surface-color);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .filter-group {
             display: flex;
             flex-direction: column;
+            flex: 1;
+            min-width: 180px;
         }
         .filter-group label {
-            font-size: 0.9em;
-            margin-bottom: 5px;
-            color: #555;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
-        @media (max-width: 600px) {
-            .controls {
+        .stats {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .markdown-body pre {
+            background-color: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            border: 1px solid #e1e4e8;
+        }
+        .markdown-body code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 85%;
+            background-color: rgba(175, 184, 193, 0.2);
+            border-radius: 6px;
+            padding: 0.2em 0.4em;
+            color: #24292e;
+        }
+        .markdown-body pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        .markdown-body h1, 
+        .markdown-body h2, 
+        .markdown-body h3, 
+        .markdown-body h4, 
+        .markdown-body h5, 
+        .markdown-body h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #24292e;
+        }
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        .markdown-body h3 { font-size: 1.25em; }
+        .markdown-body h4 { font-size: 1em; }
+        .markdown-body h5 { font-size: 0.875em; }
+        .markdown-body h6 { font-size: 0.85em; color: #6a737d; }
+        .markdown-body a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .markdown-body a:hover {
+            text-decoration: underline;
+        }
+        .markdown-body blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 0 0 16px 0;
+        }
+        .markdown-body img {
+            max-width: 100%;
+            box-sizing: content-box;
+            background-color: #fff;
+        }
+        .markdown-body table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+            display: block;
+            overflow-x: auto;
+            background-color: #ffffff;
+            border: none;
+        }
+        .markdown-body th, .markdown-body td {
+            border: none;
+            padding: 8px 12px;
+            background-color: #ffffff;
+        }
+        .markdown-body th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .markdown-body tr {
+            background-color: #ffffff;
+            border: none;
+        }
+        .markdown-body tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        .markdown-body tr:hover {
+            background-color: #f0f2f5;
+        }
+        .markdown-body tr:not(:last-child) td {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .markdown-body ul, .markdown-body ol {
+            padding-left: 2em;
+        }
+        .markdown-body li {
+            margin-bottom: 0.5em;
+        }
+        .markdown-body li > p {
+            margin-top: 16px;
+        }
+        .markdown-body li + li {
+            margin-top: 0.25em;
+        }
+        .markdown-body hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+        @media (max-width: 768px) {
+            .controls, .filters {
                 flex-direction: column;
+                gap: 10px;
             }
-            .filters {
-                flex-direction: column;
+            .filter-group {
+                min-width: 100%;
+            }
+            .question-container {
+                padding: 15px;
             }
         }
     </style>
@@ -151,7 +330,7 @@
     </div>
 
     <div class="question-container">
-        <div class="question-text" id="questionText">Carregando questões...</div>
+        <div class="question-text markdown-body" id="questionText">Carregando questões...</div>
         <div class="options" id="optionsContainer"></div>
         <div class="explanation" id="explanation"></div>
     </div>
@@ -162,6 +341,7 @@
     </div>
 
     <script src="https://unpkg.com/json5@2.2.3/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
