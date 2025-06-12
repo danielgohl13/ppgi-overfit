@@ -438,12 +438,18 @@ function showAnswer() {
     const question = filteredQuestions[currentQuestionIndex];
     
     // Processar a explicação com Markdown, se existir
-    if (question.explicacao) {
-        const processedExplanation = marked.parse(question.explicacao);
-        explanation.innerHTML = `<div class="markdown-body">${processedExplanation}</div>`;
+    if (question.explicacao_geral) {
+        const processedExplanation = marked.parse(question.explicacao_geral);
+        explanation.innerHTML = `
+            <div class="markdown-body" style="padding: 15px; background-color: #f8f9fa; border-radius: 5px; margin-top: 15px;">
+                <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 8px;">Explicação:</h4>
+                <div>${processedExplanation}</div>
+            </div>
+        `;
         explanation.style.display = 'block';
     }
     
+    // Destacar a opção correta
     const correctOption = question.opcoes.find(opt => opt.correta);
     if (!correctOption) return;
     
