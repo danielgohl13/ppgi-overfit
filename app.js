@@ -35,10 +35,9 @@ async function loadQuestions() {
             'questions/20202.js',
             'questions/20211.js',
             'questions/20212.js',
-            'questions/20221.js',
+            'questions/20220.js',
             'questions/20222.js',
-            'questions/20231.js',
-            'questions/20232.js',
+            'questions/20230.js',
             'questions/20241.js',
             'questions/20242.js'   
         ];
