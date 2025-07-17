@@ -2,6 +2,29 @@
  * Arquivo principal da aplicação
  */
 
+// Configurar o Marked para reconhecer corretamente os blocos de código Mermaid
+if (window.marked) {
+    marked.setOptions({
+        highlight: function(code, lang) {
+            if (lang === 'mermaid') {
+                return code; // Não modificar o código Mermaid, será processado posteriormente
+            }
+            return code; // Retornar o código sem modificações para outras linguagens
+        },
+        langPrefix: 'language-' // Adicionar o prefixo 'language-' às classes de linguagem
+    });
+}
+
+// Inicializar Mermaid
+if (window.mermaid) {
+    mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        securityLevel: 'loose' // Permite renderizar diagramas de qualquer fonte
+    });
+    console.log("Mermaid inicializado");
+}
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     // Carregar preferência de tema

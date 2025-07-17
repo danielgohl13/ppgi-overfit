@@ -27,9 +27,20 @@ function renderLatex(element) {
  */
 function toggleTheme() {
     const isDarkMode = document.body.getAttribute('data-theme') === 'dark';
-    document.body.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+    const newTheme = isDarkMode ? 'light' : 'dark';
+    document.body.setAttribute('data-theme', newTheme);
     document.getElementById('themeToggle').textContent = isDarkMode ? '☀️' : '🌙';
     localStorage.setItem('darkMode', !isDarkMode);
+    
+    // Atualizar o tema do Mermaid
+    if (window.mermaid) {
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: newTheme === 'dark' ? 'dark' : 'default',
+            securityLevel: 'loose'
+        });
+        console.log(`Tema do Mermaid atualizado para: ${newTheme === 'dark' ? 'dark' : 'default'}`);
+    }
 }
 
 /**
@@ -131,4 +142,210 @@ function goToRandomQuestion() {
     } while (randomIndex === currentQuestionIndex);
     
     showQuestion(randomIndex);
+}
+
+/**
+ * Renderiza um bloco de código Mermaid específico
+ * @param {HTMLElement} block - Bloco de código a ser renderizado
+ * @param {number} index - Índice para gerar um ID único
+ */
+function renderMermaidBlock(block, index) {
+    const id = 'mermaid-diagram-' + index;
+    const content = block.textContent.trim();
+    
+    // Criar um div para o diagrama
+    const diagramDiv = document.createElement('div');
+    diagramDiv.className = 'mermaid-diagram';
+    diagramDiv.id = id;
+    
+    // Substituir o bloco de código pelo div
+    const preElement = block.parentNode;
+    preElement.parentNode.insertBefore(diagramDiv, preElement);
+    preElement.style.display = 'none';
+    
+    // Renderizar o diagrama
+    try {
+        mermaid.render(id, content)
+            .then(result => {
+                diagramDiv.innerHTML = result.svg;
+            })
+            .catch(error => {
+                console.error('Erro ao renderizar Mermaid:', error);
+                diagramDiv.innerHTML = '<p class="error">Erro ao renderizar diagrama</p><pre>' + content + '</pre>';
+                preElement.style.display = 'block'; // Mostrar o código original em caso de erro
+            });
+    } catch (error) {
+        console.error('Erro ao renderizar Mermaid:', error);
+        diagramDiv.innerHTML = '<p class="error">Erro ao renderizar diagrama</p><pre>' + content + '</pre>';
+        preElement.style.display = 'block'; // Mostrar o código original em caso de erro
+    }
+}
+
+/**
+ * Renderiza diagramas Mermaid em um elemento
+ * @param {HTMLElement} element - Elemento onde renderizar os diagramas Mermaid
+ */
+function renderMermaid(element) {
+    if (!window.mermaid) {
+        console.warn("mermaid não está disponível");
+        return;
+    }
+    
+    console.log("Renderizando diagramas Mermaid...");
+    
+    // Inicializar Mermaid com o tema apropriado
+    mermaid.initialize({ 
+        startOnLoad: false,
+        theme: document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+        securityLevel: 'loose' // Permite renderizar diagramas de qualquer fonte
+    });
+    
+    // Encontrar todos os blocos de código com a classe language-mermaid
+    const mermaidCodeBlocks = element.querySelectorAll('code.language-mermaid');
+    console.log(`Encontrados ${mermaidCodeBlocks.length} blocos de código com classe language-mermaid`);
+    
+    // Processar cada bloco de código com a classe language-mermaid
+    mermaidCodeBlocks.forEach((block, index) => {
+        console.log(`Processando bloco de código Mermaid #${index}`);
+        renderMermaidBlock(block, index);
+    });
+    
+    // Encontrar blocos de código que começam com "mermaid" ou têm sintaxe de diagrama Mermaid
+    const allCodeBlocks = element.querySelectorAll('pre > code:not(.language-mermaid)');
+    console.log(`Encontrados ${allCodeBlocks.length} outros blocos de código para verificar`);
+    
+    allCodeBlocks.forEach((block, index) => {
+        const content = block.textContent.trim();
+        
+        // Verificar se o conteúdo parece ser um diagrama Mermaid
+        if (content.startsWith('graph ') || 
+            content.startsWith('flowchart ') || 
+            content.startsWith('sequenceDiagram') || 
+            content.startsWith('classDiagram') || 
+            content.startsWith('stateDiagram') || 
+            content.startsWith('gantt') || 
+            content.startsWith('pie') || 
+            content.startsWith('mermaid')) {
+            
+            console.log(`Bloco de código #${index} identificado como Mermaid`);
+            // Marcar como Mermaid e renderizar
+            block.classList.add('language-mermaid');
+            renderMermaidBlock(block, mermaidCodeBlocks.length + index);
+        }
+    });
+    
+    // Encontrar divs com a classe mermaid
+    const mermaidDivs = element.querySelectorAll('div.mermaid');
+    console.log(`Encontrados ${mermaidDivs.length} divs com classe mermaid`);
+    
+    mermaidDivs.forEach((div, index) => {
+        console.log(`Processando div mermaid #${index}`);
+        const content = div.textContent.trim();
+        const id = 'mermaid-diagram-div-' + index;
+        
+        try {
+            mermaid.render(id, content)
+                .then(result => {
+                    div.innerHTML = result.svg;
+                })
+                .catch(error => {
+                    console.error('Erro ao renderizar Mermaid (div):', error);
+                    div.innerHTML = '<p class="error">Erro ao renderizar diagrama</p><pre>' + content + '</pre>';
+                });
+        } catch (error) {
+            console.error('Erro ao renderizar Mermaid (div):', error);
+            div.innerHTML = '<p class="error">Erro ao renderizar diagrama</p><pre>' + content + '</pre>';
+        }
+    });
+    
+    // Verificar se há blocos de código Mermaid que não foram detectados
+    // Isso é útil para o formato específico usado no JSON
+    const htmlContent = element.innerHTML;
+    if (htmlContent.includes('```mermaid') || htmlContent.includes('`mermaid')) {
+        console.log("Detectado código Mermaid em formato de texto. Tentando processar...");
+        
+        // Criar um elemento temporário para manipular o HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        
+        // Substituir blocos de código Mermaid em formato de texto por divs mermaid
+        const regex = /```mermaid\s*([\s\S]*?)```/g;
+        let match;
+        let count = 0;
+        
+        // Substituir no HTML original
+        const newHtml = htmlContent.replace(regex, function(match, p1) {
+            const id = 'mermaid-inline-' + count++;
+            console.log(`Substituindo bloco de código Mermaid inline #${count-1}`);
+            
+            // Criar um div para o diagrama
+            const diagramDiv = document.createElement('div');
+            diagramDiv.className = 'mermaid-diagram';
+            diagramDiv.id = id;
+            
+            // Renderizar o diagrama
+            try {
+                mermaid.render(id, p1.trim())
+                    .then(result => {
+                        // Encontrar o div criado e substituir pelo SVG
+                        const targetDiv = document.getElementById(id);
+                        if (targetDiv) {
+                            targetDiv.innerHTML = result.svg;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao renderizar Mermaid inline:', error);
+                        const targetDiv = document.getElementById(id);
+                        if (targetDiv) {
+                            targetDiv.innerHTML = '<p class="error">Erro ao renderizar diagrama</p><pre>' + p1.trim() + '</pre>';
+                        }
+                    });
+            } catch (error) {
+                console.error('Erro ao renderizar Mermaid inline:', error);
+                return '<div id="' + id + '" class="mermaid-diagram"><p class="error">Erro ao renderizar diagrama</p><pre>' + p1.trim() + '</pre></div>';
+            }
+            
+            return '<div id="' + id + '" class="mermaid-diagram">Carregando diagrama...</div>';
+        });
+        
+        if (count > 0) {
+            console.log(`Substituídos ${count} blocos de código Mermaid inline`);
+            element.innerHTML = newHtml;
+        }
+    }
+}
+
+/**
+ * Processa o Markdown e renderiza LaTeX e Mermaid
+ * @param {string} markdown - Texto em Markdown para processar
+ * @returns {string} - HTML processado
+ */
+function processMarkdown(markdown) {
+    console.log("Processando Markdown com blocos Mermaid");
+    
+    // Extrair blocos de código Mermaid antes do processamento Markdown
+    const mermaidBlocks = [];
+    const placeholders = [];
+    
+    // Substituir blocos de código Mermaid por placeholders únicos
+    let processedMarkdown = markdown.replace(/```mermaid\s*([\s\S]*?)```/g, function(match, code) {
+        const placeholder = `MERMAID_PLACEHOLDER_${mermaidBlocks.length}`;
+        mermaidBlocks.push(code.trim());
+        placeholders.push(placeholder);
+        return placeholder;
+    });
+    
+    // Renderizar o Markdown
+    let html = marked.parse(processedMarkdown);
+    
+    // Substituir os placeholders por divs Mermaid
+    mermaidBlocks.forEach((code, index) => {
+        const placeholder = placeholders[index];
+        const mermaidDiv = `<div class="mermaid">${code}</div>`;
+        html = html.replace(placeholder, mermaidDiv);
+    });
+    
+    console.log(`Processados ${mermaidBlocks.length} blocos Mermaid`);
+    
+    return html;
 }

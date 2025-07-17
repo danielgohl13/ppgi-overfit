@@ -120,12 +120,37 @@ function showQuestion(index) {
     
     const question = filteredQuestions[index];
     
+    // Criar informações do cabeçalho da questão
+    let questionHeader = '';
+    
+    // Adicionar ano da prova
+    if (question.ano_prova) {
+        questionHeader += `<div class="question-meta">`;
+        questionHeader += `<span class="question-year">Prova ${question.ano_prova}</span>`;
+        
+        // Adicionar áreas
+        if (question.area && Array.isArray(question.area) && question.area.length > 0) {
+            const areas = question.area.map(area => {
+                if (area.subarea) {
+                    return `${area.nome} - ${area.subarea}`;
+                }
+                return area.nome;
+            }).join(' • ');
+            questionHeader += ` <span class="question-separator">•</span> <span class="question-areas">${areas}</span>`;
+        }
+        
+        questionHeader += `</div>`;
+    }
+    
     // Atualizar texto da questão
     const questionText = document.getElementById('questionText');
-    questionText.innerHTML = marked.parse(question.enunciado);
+    questionText.innerHTML = questionHeader + processMarkdown(question.enunciado);
     
     // Renderizar LaTeX na questão
     renderLatex(questionText);
+    
+    // Renderizar diagramas Mermaid na questão
+    renderMermaid(questionText);
     
     // Limpar opções anteriores
     const optionsContainer = document.getElementById('optionsContainer');
@@ -238,8 +263,9 @@ function showAnswer() {
     // Mostrar a explicação
     if (question.explicacao_geral) {
         const explanation = document.getElementById('explanation');
-        explanation.innerHTML = marked.parse(question.explicacao_geral);
+        explanation.innerHTML = processMarkdown(question.explicacao_geral);
         renderLatex(explanation);
+        renderMermaid(explanation);
         explanation.style.display = 'block';
     }
 }
