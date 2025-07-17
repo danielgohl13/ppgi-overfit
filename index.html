@@ -6,9 +6,10 @@
     <title>Banco de Questões - PPGI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
     <!-- KaTeX for LaTeX support -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <style>
         :root {
+            /* Tema claro (padrão) */
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
@@ -22,6 +23,27 @@
             --error-color: #e74c3c;
             --code-bg: #f6f8fa;
             --code-color: #24292e;
+            --shadow-color: rgba(0,0,0,0.1);
+            --explanation-bg: #f8fafc;
+        }
+        
+        /* Tema escuro */
+        [data-theme="dark"] {
+            --primary-color: #ecf0f1;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #ecf0f1;
+            --text-secondary: #bdc3c7;
+            --border-color: #2d3436;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+            --code-bg: #2d3436;
+            --code-color: #ecf0f1;
+            --shadow-color: rgba(0,0,0,0.3);
+            --explanation-bg: #2d3436;
         }
 
         body {
@@ -30,9 +52,11 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+        
         h1 {
             color: var(--primary-color);
             text-align: center;
@@ -40,6 +64,29 @@
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
         }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            padding: 5px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--border-color);
+        }
+        
         .controls {
             display: flex;
             justify-content: space-between;
@@ -49,8 +96,9 @@
             background-color: var(--surface-color);
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px var(--shadow-color);
         }
+        
         select, button {
             padding: 10px 15px;
             border-radius: 6px;
@@ -61,41 +109,49 @@
             transition: all 0.2s ease;
             font-size: 0.95em;
         }
+        
         select {
             background-color: var(--surface-color);
         }
+        
         button {
             background-color: var(--secondary-color);
             color: white;
             border: none;
             font-weight: 500;
         }
+        
         button:hover:not(:disabled) {
             background-color: #2980b9;
             transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px var(--shadow-color);
         }
+        
         button:disabled {
             background-color: #bdc3c7;
             cursor: not-allowed;
             opacity: 0.7;
         }
+        
         .question-container {
             background-color: var(--surface-color);
             border-radius: 8px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px var(--shadow-color);
             border-left: 4px solid var(--secondary-color);
         }
+        
         .question-text {
             font-size: 1.1em;
             margin-bottom: 25px;
             line-height: 1.7;
         }
+        
         .options {
             margin: 30px 0;
         }
+        
         .option {
             margin: 12px 0;
             padding: 15px;
@@ -105,28 +161,37 @@
             transition: all 0.2s ease;
             background-color: var(--surface-color);
         }
+        
         .option:hover {
-            background-color: #f1f5f9;
+            background-color: rgba(52, 152, 219, 0.1);
             border-color: var(--secondary-color);
         }
+        
         .option.correct {
-            background-color: #e8f5e9;
+            background-color: rgba(46, 204, 113, 0.2);
             border-color: var(--success-color);
         }
+        
         .option.incorrect {
-            background-color: #ffebee;
+            background-color: rgba(231, 76, 60, 0.2);
             border-color: var(--error-color);
         }
+        
+        .option .markdown-body {
+            background-color: transparent;
+        }
+        
         .explanation {
             margin-top: 25px;
             padding: 20px;
-            background-color: #f8fafc;
+            background-color: var(--explanation-bg);
             border-radius: 6px;
             border-left: 4px solid var(--secondary-color);
             display: none;
             font-size: 0.95em;
             line-height: 1.6;
         }
+        
         .navigation {
             display: flex;
             justify-content: space-between;
@@ -134,6 +199,7 @@
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
         }
+        
         .filters {
             margin-bottom: 25px;
             display: flex;
@@ -142,61 +208,83 @@
             background-color: var(--surface-color);
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px var(--shadow-color);
         }
+        
         .filter-group {
             display: flex;
             flex-direction: column;
             flex: 1;
             min-width: 180px;
         }
+        
         .filter-group label {
             font-size: 0.85em;
             margin-bottom: 6px;
             color: var(--text-secondary);
             font-weight: 500;
         }
+        
         .stats {
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.9em;
             margin-top: 20px;
         }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
         .markdown-body {
             box-sizing: border-box;
             min-width: 200px;
             max-width: 100%;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-color);
+            background-color: transparent;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
             line-height: 1.6;
         }
-        .option .markdown-body {
-            background-color: transparent;
-        }
+        
         .markdown-body pre {
-            background-color: #f6f8fa;
+            background-color: var(--code-bg);
             border-radius: 6px;
             padding: 16px;
             overflow: auto;
-            border: 1px solid #e1e4e8;
+            border: 1px solid var(--border-color);
         }
+        
         .markdown-body code {
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
             font-size: 85%;
-            background-color: rgba(175, 184, 193, 0.2);
+            background-color: var(--code-bg);
             border-radius: 6px;
             padding: 0.2em 0.4em;
-            color: #24292e;
+            color: var(--code-color);
         }
+        
         .markdown-body pre code {
             background: transparent;
             padding: 0;
             color: inherit;
         }
+        
         .markdown-body h1, 
         .markdown-body h2, 
         .markdown-body h3, 
@@ -207,100 +295,193 @@
             margin-bottom: 16px;
             font-weight: 600;
             line-height: 1.25;
-            color: #24292e;
+            color: var(--text-color);
         }
-        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
         .markdown-body h3 { font-size: 1.25em; }
         .markdown-body h4 { font-size: 1em; }
         .markdown-body h5 { font-size: 0.875em; }
-        .markdown-body h6 { font-size: 0.85em; color: #6a737d; }
+        .markdown-body h6 { font-size: 0.85em; color: var(--text-secondary); }
+        
         .markdown-body a {
-            color: #0366d6;
+            color: var(--secondary-color);
             text-decoration: none;
         }
+        
         .markdown-body a:hover {
             text-decoration: underline;
         }
+        
         .markdown-body blockquote {
             padding: 0 1em;
-            color: #6a737d;
-            border-left: 0.25em solid #dfe2e5;
+            color: var(--text-secondary);
+            border-left: 0.25em solid var(--border-color);
             margin: 0 0 16px 0;
         }
+        
         .markdown-body img {
             max-width: 100%;
             box-sizing: content-box;
-            background-color: #fff;
+            background-color: var(--surface-color);
         }
+        
         .markdown-body table {
             border-collapse: collapse;
             width: 100%;
             margin: 1em 0;
             display: block;
             overflow-x: auto;
-            background-color: #ffffff;
+            background-color: var(--surface-color);
             border: none;
         }
+        
         .markdown-body th, .markdown-body td {
             border: none;
             padding: 8px 12px;
-            background-color: #ffffff;
+            background-color: var(--surface-color);
         }
+        
         .markdown-body th {
-            background-color: #f6f8fa;
+            background-color: var(--code-bg);
             font-weight: 600;
             text-align: left;
-            border-bottom: 1px solid #e1e4e8;
+            border-bottom: 1px solid var(--border-color);
         }
+        
         .markdown-body tr {
-            background-color: #ffffff;
+            background-color: var(--surface-color);
             border: none;
         }
+        
         .markdown-body tr:nth-child(2n) {
-            background-color: #f6f8fa;
+            background-color: var(--code-bg);
         }
+        
         .markdown-body tr:hover {
-            background-color: #f0f2f5;
+            background-color: rgba(0, 0, 0, 0.05);
         }
+        
         .markdown-body tr:not(:last-child) td {
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border-color);
         }
+        
         .markdown-body ul, .markdown-body ol {
             padding-left: 2em;
         }
+        
         .markdown-body li {
             margin-bottom: 0.5em;
         }
+        
         .markdown-body li > p {
             margin-top: 16px;
         }
+        
         .markdown-body li + li {
             margin-top: 0.25em;
         }
+        
         .markdown-body hr {
             height: 0.25em;
             padding: 0;
             margin: 24px 0;
-            background-color: #e1e4e8;
+            background-color: var(--border-color);
             border: 0;
         }
+        
+        /* Melhorias para mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
             .controls, .filters {
                 flex-direction: column;
                 gap: 10px;
             }
+            
             .filter-group {
                 min-width: 100%;
             }
+            
             .question-container {
                 padding: 15px;
+            }
+            
+            .option {
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .controls button {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .theme-toggle {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        /* Botão flutuante para mobile */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .mobile-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Banco de Questões - PPGI</h1>
+    <div class="header-container">
+        <h1>Banco de Questões - PPGI</h1>
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
+    </div>
     
     <div class="filters">
         <div class="filter-group">
@@ -333,6 +514,14 @@
             <button id="randomBtn">Questão Aleatória</button>
         </div>
     </div>
+    
+    <!-- Indicador de progresso -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+    </div>
+    <div class="stats">
+        <p>Questão <span id="currentQuestion">0</span> de <span id="totalQuestionsDisplay">0</span> (<span id="progressPercent">0%</span>)</p>
+    </div>
 
     <div class="question-container">
         <div class="question-text markdown-body" id="questionText">Carregando questões...</div>
@@ -341,14 +530,670 @@
     </div>
 
     <div class="stats">
-        <p>Total de questões: <span id="totalQuestions">0</span></p>
-        <p>Questão <span id="currentQuestion">0</span> de <span id="totalQuestionsDisplay">0</span></p>
+        <p>Total de questões no banco: <span id="totalQuestions">0</span></p>
+    </div>
+    
+    <!-- Botões de navegação para mobile -->
+    <div class="mobile-nav">
+        <button id="prevBtnMobile" class="mobile-nav-btn" disabled>◀</button>
+        <button id="nextBtnMobile" class="mobile-nav-btn">▶</button>
     </div>
 
     <script src="https://unpkg.com/json5@2.2.3/dist/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnHTckqz2Cf0Ic" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIaxZyZ4ptPRtkFkFzUZ9Yf5xV5zFm6l5U8Rz" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <script>
+    // Variáveis globais
+    let questions = [];
+    let filteredQuestions = [];
+    let currentQuestionIndex = 0;
+    let selectedOption = null;
+    let isDarkMode = false;
+
+    // Função para alternar entre tema claro e escuro
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        document.getElementById('themeToggle').textContent = isDarkMode ? '🌙' : '☀️';
+        
+        // Salvar preferência no localStorage
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    // Função para renderizar LaTeX em um elemento
+    function renderLatex(element) {
+        if (window.renderMathInElement) {
+            console.log("Renderizando LaTeX em:", element);
+            renderMathInElement(element, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                    { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+            });
+        } else {
+            console.warn("renderMathInElement não está disponível");
+        }
+    }
+
+    // Função para atualizar a barra de progresso
+    function updateProgressBar() {
+        if (filteredQuestions.length === 0) return;
+        
+        const progress = ((currentQuestionIndex + 1) / filteredQuestions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+        document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+    }
+
+    // Elementos do DOM
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const explanation = document.getElementById('explanation');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtnMobile = document.getElementById('prevBtnMobile');
+    const nextBtnMobile = document.getElementById('nextBtnMobile');
+    const showAnswerBtn = document.getElementById('showAnswerBtn');
+    const randomBtn = document.getElementById('randomBtn');
+    const yearFilter = document.getElementById('yearFilter');
+    const areaFilter = document.getElementById('areaFilter');
+    const subareaFilter = document.getElementById('subareaFilter');
+    const totalQuestionsSpan = document.getElementById('totalQuestions');
+    const currentQuestionSpan = document.getElementById('currentQuestion');
+    const totalQuestionsDisplay = document.getElementById('totalQuestionsDisplay');
+    const themeToggle = document.getElementById('themeToggle');
+
+    // Carregar as questões
+    async function loadQuestions() {
+        try {
+            // Lista de arquivos de questões
+            const questionFiles = [
+                'questions/20162.js',
+                'questions/20171.js',
+                'questions/20172.js',
+                'questions/20181.js',
+                'questions/20182.js',
+                'questions/20191.js',
+                'questions/20192.js',
+                'questions/20201.js',
+                'questions/20202.js',
+                'questions/20211.js',
+                'questions/20212.js',
+                'questions/20220.js',
+                'questions/20222.js',
+                'questions/20230.js',
+                'questions/20241.js',
+                'questions/20242.js'   
+            ];
+
+            // Função para processar o conteúdo de um arquivo
+            const processFileContent = (text, file) => {
+                // Tenta fazer o parse direto primeiro (pode falhar para arquivos muito grandes)
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.log(`Tentando método alternativo para ${file}...`);
+                    
+                    // Remove BOM se existir
+                    let cleanText = text.trim();
+                    if (cleanText.charCodeAt(0) === 0xFEFF) {
+                        cleanText = cleanText.slice(1);
+                    }
+                    
+                    // Normaliza quebras de linha
+                    cleanText = cleanText
+                        .replace(/\r\n/g, '\n')
+                        .replace(/\r/g, '\n');
+                    
+                    // Tenta extrair o JSON usando uma abordagem mais tolerante
+                    try {
+                        // Se começa com [ e termina com ], é um array JSON
+                        if (cleanText.startsWith('[') && cleanText.endsWith(']')) {
+                            // Usa um parser JSON mais tolerante
+                            const json5 = JSON5 || window.JSON5; // Tenta usar JSON5 se disponível
+                            if (json5) {
+                                return json5.parse(cleanText);
+                            }
+                            
+                            // Se não tiver JSON5, tenta o parse normal novamente
+                            return JSON.parse(cleanText);
+                        }
+                        
+                        // Tenta extrair o JSON usando regex
+                        const jsonMatch = cleanText.match(/\[\s*\{.*\}\s*\]/s);
+                        if (jsonMatch) {
+                            try {
+                                return JSON.parse(jsonMatch[0]);
+                            } catch (e) {
+                                console.warn('Falha ao fazer parse do JSON extraído:', e);
+                            }
+                        }
+                        
+                        // Se não conseguir extrair, tenta processar como módulo
+                        if (cleanText.includes('bancoDeQuestoes_PPGI')) {
+                            try {
+                                const script = document.createElement('script');
+                                script.type = 'text/javascript';
+                                script.text = cleanText + '; window._tempQuestions = bancoDeQuestoes_PPGI;';
+                                document.head.appendChild(script);
+                                
+                                const questions = window._tempQuestions || [];
+                                delete window._tempQuestions;
+                                document.head.removeChild(script);
+                                
+                                return Array.isArray(questions) ? questions : [];
+                            } catch (e) {
+                                console.warn(`Falha no método com variável global para ${file}:`, e);
+                            }
+                        }
+                        
+                        // Se o arquivo for muito grande, tenta processar em pedaços
+                        if (cleanText.length > 1024 * 1024) { // 1MB
+                            console.log(`Arquivo grande (${(cleanText.length / (1024*1024)).toFixed(2)} MB), processando em partes...`);
+                            
+                            // Tenta encontrar os limites dos objetos JSON
+                            const jsonObjects = [];
+                            let start = cleanText.indexOf('{');
+                            let depth = 0;
+                            let inString = false;
+                            let escape = false;
+                            
+                            for (let i = start; i < cleanText.length; i++) {
+                                const char = cleanText[i];
+                                
+                                if (escape) {
+                                    escape = false;
+                                    continue;
+                                }
+                                
+                                if (char === '\\' && inString) {
+                                    escape = true;
+                                    continue;
+                                }
+                                
+                                if (char === '"' && (i === 0 || cleanText[i-1] !== '\\')) {
+                                    inString = !inString;
+                                }
+                                
+                                if (!inString) {
+                                    if (char === '{') depth++;
+                                    if (char === '}') {
+                                        depth--;
+                                        if (depth === 0) {
+                                            const jsonStr = cleanText.substring(start, i + 1);
+                                            try {
+                                                const obj = JSON.parse(jsonStr);
+                                                jsonObjects.push(obj);
+                                            } catch (e) {
+                                                console.warn('Erro ao processar objeto JSON parcial:', e);
+                                            }
+                                            start = cleanText.indexOf('{', i + 1);
+                                            if (start === -1) break;
+                                            i = start - 1;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            // Se encontrou objetos, retorna como array
+                            if (jsonObjects.length > 0) {
+                                console.log(`Encontrados ${jsonObjects.length} objetos JSON no arquivo`);
+                                return jsonObjects;
+                            }
+                        }
+                        
+                        // Se chegou aqui, não conseguiu processar
+                        console.warn(`Formato não reconhecido para o arquivo ${file}`);
+                        return [];
+                        
+                    } catch (innerError) {
+                        console.error(`Erro ao processar o conteúdo do arquivo ${file}:`, innerError);
+                        return [];
+                    }
+                }
+            };
+
+            // Carrega cada arquivo de questões
+            const questionPromises = questionFiles.map(file => {
+                return fetch(file)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erro HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        return response.text();
+                    })
+                    .then(text => processFileContent(text, file))
+                    .catch(error => {
+                        console.error(`Erro ao carregar o arquivo ${file}:`, error);
+                        return [];
+                    });
+            });
+
+            // Aguarda todos os arquivos serem carregados
+            const questionArrays = await Promise.all(questionPromises);
+            
+            // Juntar todas as questões em um único array
+            questions = questionArrays.flat();
+            
+            // Log detalhado para depuração
+            console.log('=== RESUMO DO CARREGAMENTO ===');
+            console.log('Total de questões carregadas:', questions.length);
+            
+            // Mostra quantas questões foram carregadas de cada arquivo
+            questionFiles.forEach((file, index) => {
+                const count = questionArrays[index]?.length || 0;
+                console.log(`- ${file}: ${count} questões`);
+            });
+            
+            // Agrupa por ano
+            const porAno = questions.reduce((acc, q) => {
+                const ano = q.ano_prova || 'Sem ano';
+                if (!acc[ano]) acc[ano] = [];
+                acc[ano].push(q);
+                return acc;
+            }, {});
+            
+            console.log('\nQuestões por ano:');
+            Object.entries(porAno)
+                .sort(([a], [b]) => a - b)
+                .forEach(([ano, quests]) => {
+                    console.log(`- ${ano}: ${quests.length} questões`);
+                    
+                    // Se houver anos sem questões, mostra um aviso
+                    if (quests.length === 0) {
+                        console.warn(`  AVISO: Nenhuma questão carregada para o ano ${ano}`);
+                    }
+                });
+                
+            // Verifica se todas as questões têm os campos obrigatórios
+            const problemas = [];
+            questions.forEach((q, i) => {
+                if (!q.id_questao) problemas.push(`Questão ${i+1}: Sem ID`);
+                if (!q.ano_prova) problemas.push(`Questão ${i+1} (${q.id_questao || 'sem ID'}): Sem ano`);
+                if (!q.enunciado) problemas.push(`Questão ${i+1} (${q.id_questao || 'sem ID'}): Sem enunciado`);
+            });
+            
+            if (problemas.length > 0) {
+                console.warn('\nProblemas encontrados nas questões:');
+                problemas.forEach(p => console.warn(`- ${p}`));
+            }
+            
+            // Inicializar as questões filtradas
+            filteredQuestions = [...questions];
+            
+            // Atualizar a interface
+            updateFilters();
+            updateQuestion();
+            updateStats();
+            
+        } catch (error) {
+            console.error('Erro ao carregar as questões:', error);
+            questionText.textContent = 'Erro ao carregar as questões. Por favor, verifique o console para mais detalhes.';
+        }
+    }
+
+    // Atualizar os filtros disponíveis
+    function updateFilters() {
+        // Limpar filtros existentes
+        yearFilter.innerHTML = '<option value="">Todos os anos</option>';
+        areaFilter.innerHTML = '<option value="">Todas as áreas</option>';
+        subareaFilter.innerHTML = '<option value="">Todas as subáreas</option>';
+        
+        // Coletar valores únicos para cada filtro
+        const years = new Set();
+        const areas = new Set();
+        const subareas = new Set();
+        
+        questions.forEach(question => {
+            years.add(question.ano_prova);
+            
+            if (question.area && question.area.length > 0) {
+                question.area.forEach(area => {
+                    areas.add(area.nome);
+                    if (area.subarea) {
+                        subareas.add(area.subarea);
+                    }
+                });
+            }
+        });
+        
+        // Preencher o seletor de anos
+        Array.from(years).sort((a, b) => b - a).forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearFilter.appendChild(option);
+        });
+        
+        // Preencher o seletor de áreas
+        Array.from(areas).sort().forEach(area => {
+            const option = document.createElement('option');
+            option.value = area;
+            option.textContent = area;
+            areaFilter.appendChild(option);
+        });
+        
+        // Preencher o seletor de subáreas
+        Array.from(subareas).sort().forEach(subarea => {
+            const option = document.createElement('option');
+            option.value = subarea;
+            option.textContent = subarea;
+            subareaFilter.appendChild(option);
+        });
+    }
+
+    // Filtrar questões com base nos filtros selecionados
+    function filterQuestions() {
+        const selectedYear = yearFilter.value;
+        const selectedArea = areaFilter.value;
+        const selectedSubarea = subareaFilter.value;
+        
+        filteredQuestions = questions.filter(question => {
+            // Filtrar por ano
+            if (selectedYear && question.ano_prova != selectedYear) {
+                return false;
+            }
+            
+            // Filtrar por área e subárea
+            if (selectedArea || selectedSubarea) {
+                if (!question.area || question.area.length === 0) {
+                    return false;
+                }
+                
+                const areaMatch = question.area.some(area => {
+                    const areaMatches = !selectedArea || area.nome === selectedArea;
+                    const subareaMatches = !selectedSubarea || area.subarea === selectedSubarea;
+                    return areaMatches && subareaMatches;
+                });
+                
+                if (!areaMatch) {
+                    return false;
+                }
+            }
+            
+            return true;
+        });
+        
+        // Resetar o índice da questão atual
+        currentQuestionIndex = 0;
+        
+        // Atualizar a interface
+        updateQuestion();
+        updateStats();
+        updateProgressBar();
+    }
+
+    // Atualizar a exibição da questão atual
+    function updateQuestion() {
+        if (filteredQuestions.length === 0) {
+            questionText.textContent = 'Nenhuma questão encontrada com os filtros selecionados.';
+            optionsContainer.innerHTML = '';
+            explanation.style.display = 'none';
+            return;
+        }
+        
+        const question = filteredQuestions[currentQuestionIndex];
+        
+        // Configuração do marked.js
+        marked.setOptions({
+            breaks: true,          // Quebras de linha se tornam <br>
+            gfm: true,            // Suporte a GitHub Flavored Markdown
+            smartLists: true,     // Listas mais inteligentes
+            smartypants: true,    // Aspas e travessões inteligentes
+            xhtml: true           // Fechar tags XHTML
+        });
+        
+        // Processar o texto da questão com Markdown
+        const processedQuestion = question.enunciado ? marked.parse(question.enunciado) : '';
+        
+        // Adicionar o ano da prova
+        const yearBadge = question.ano_prova ? 
+            `<div style="margin-bottom: 15px; color: var(--text-secondary); font-size: 0.9em;">
+                <strong>Ano da Prova:</strong> ${question.ano_prova}
+            </div>` : '';
+        
+        questionText.innerHTML = `${yearBadge}<div class="markdown-body">${processedQuestion}</div>`;
+        
+        // Limpar opções anteriores
+        optionsContainer.innerHTML = '';
+        
+        // Adicionar as opções de resposta
+        if (question.opcoes && question.opcoes.length > 0) {
+            question.opcoes.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option fade-in';
+                
+                // Processar o texto da opção com Markdown
+                const optionText = option.texto ? marked.parse(option.texto) : '';
+                optionElement.innerHTML = `
+                    <div class="markdown-body" style="margin: 0;">
+                        <strong>${option.letra})</strong> ${optionText}
+                    </div>
+                `;
+                
+                optionElement.dataset.index = index;
+                optionElement.addEventListener('click', () => selectOption(optionElement, option.correta));
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+        
+        // Esconder a explicação
+        explanation.style.display = 'none';
+        
+        // Atualizar estado dos botões de navegação
+        prevBtn.disabled = currentQuestionIndex === 0;
+        nextBtn.disabled = currentQuestionIndex === filteredQuestions.length - 1;
+        prevBtnMobile.disabled = currentQuestionIndex === 0;
+        nextBtnMobile.disabled = currentQuestionIndex === filteredQuestions.length - 1;
+        
+        // Atualizar contador de questões
+        currentQuestionSpan.textContent = currentQuestionIndex + 1;
+        totalQuestionsDisplay.textContent = filteredQuestions.length;
+        
+        // Atualizar barra de progresso
+        updateProgressBar();
+        
+        // Renderizar LaTeX no enunciado da questão
+        renderLatex(questionText);
+        
+        // Adicionar classe de animação
+        questionText.classList.add('fade-in');
+        setTimeout(() => {
+            questionText.classList.remove('fade-in');
+        }, 300);
+    }
+
+    // Selecionar uma opção de resposta
+    function selectOption(optionElement, isCorrect) {
+        // Remover seleção anterior
+        const options = document.querySelectorAll('.option');
+        options.forEach(opt => {
+            opt.classList.remove('selected', 'correct', 'incorrect');
+            opt.style.cursor = 'default';
+        });
+        
+        // Marcar a opção selecionada
+        optionElement.classList.add('selected');
+        optionElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+        
+        // Mostrar a explicação se disponível
+        const question = filteredQuestions[currentQuestionIndex];
+        if (question.explicacao_geral) {
+            // Processar a explicação com Markdown
+            marked.setOptions({
+                breaks: true,          // Quebras de linha se tornam <br>
+                gfm: true,            // Suporte a GitHub Flavored Markdown
+                smartLists: true,     // Listas mais inteligentes
+                smartypants: true,    // Aspas e travessões inteligentes
+                xhtml: true,          // Fechar tags XHTML
+                katex: true
+            });
+            
+            const processedExplanation = marked.parse(question.explicacao_geral);
+            explanation.innerHTML = `
+                <div class="markdown-body" style="padding: 15px; background-color: var(--explanation-bg); border-radius: 5px; margin-top: 15px;">
+                    <h4 style="margin-top: 0; color: var(--primary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Explicação:</h4>
+                    <div class="explanation-content">${processedExplanation}</div>
+                </div>
+            `;
+            
+            // Renderizar equações LaTeX após a inserção no DOM
+            renderLatex(explanation);
+            
+            explanation.style.display = 'block';
+            explanation.classList.add('fade-in');
+            setTimeout(() => {
+                explanation.classList.remove('fade-in');
+            }, 300);
+        }
+        
+        // Desabilitar o clique nas opções após a seleção
+        options.forEach(opt => {
+            opt.style.pointerEvents = 'none';
+        });
+    }
+
+    // Mostrar a resposta correta
+    function showAnswer() {
+        if (filteredQuestions.length === 0) return;
+        
+        const question = filteredQuestions[currentQuestionIndex];
+        
+        // Processar a explicação com Markdown, se existir
+        if (question.explicacao_geral) {
+            // Configuração do marked.js para a explicação
+            marked.setOptions({
+                breaks: true,          // Quebras de linha se tornam <br>
+                gfm: true,            // Suporte a GitHub Flavored Markdown
+                smartLists: true,     // Listas mais inteligentes
+                smartypants: true,    // Aspas e travessões inteligentes
+                xhtml: true,          // Fechar tags XHTML
+                katex: true
+            });
+            
+            const processedExplanation = marked.parse(question.explicacao_geral);
+            explanation.innerHTML = `
+                <div class="markdown-body" style="padding: 15px; background-color: var(--explanation-bg); border-radius: 5px; margin-top: 15px;">
+                    <h4 style="margin-top: 0; color: var(--primary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Explicação:</h4>
+                    <div class="explanation-content">${processedExplanation}</div>
+                </div>
+            `;
+            
+            // Renderizar equações LaTeX após a inserção no DOM
+            renderLatex(explanation);
+            
+            explanation.style.display = 'block';
+            explanation.classList.add('fade-in');
+            setTimeout(() => {
+                explanation.classList.remove('fade-in');
+            }, 300);
+        }
+        
+        // Destacar a opção correta
+        const correctOption = question.opcoes.find(opt => opt.correta);
+        if (!correctOption) return;
+        
+        const options = document.querySelectorAll('.option');
+        options.forEach(opt => {
+            if (opt.textContent.trim().startsWith(correctOption.letra + ')')) {
+                opt.classList.add('correct');
+            }
+        });
+    }
+
+    // Atualizar estatísticas
+    function updateStats() {
+        totalQuestionsSpan.textContent = questions.length;
+        totalQuestionsDisplay.textContent = filteredQuestions.length;
+    }
+
+    // Navegar para a questão anterior
+    function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            updateQuestion();
+        }
+    }
+
+    // Navegar para a próxima questão
+    function nextQuestion() {
+        if (currentQuestionIndex < filteredQuestions.length - 1) {
+            currentQuestionIndex++;
+            updateQuestion();
+        }
+    }
+
+    // Ir para uma questão aleatória
+    function randomQuestion() {
+        if (filteredQuestions.length === 0) return;
+        
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * filteredQuestions.length);
+        } while (filteredQuestions.length > 1 && newIndex === currentQuestionIndex);
+        
+        currentQuestionIndex = newIndex;
+        updateQuestion();
+    }
+
+    // Inicializar tema
+    function initTheme() {
+        // Verificar preferência salva
+        const savedTheme = localStorage.getItem('darkMode');
+        if (savedTheme === 'true') {
+            isDarkMode = true;
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌙';
+        }
+        
+        // Verificar preferência do sistema
+        if (savedTheme === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            isDarkMode = true;
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌙';
+        }
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        initTheme();
+        loadQuestions();
+    });
+    
+    prevBtn.addEventListener('click', prevQuestion);
+    nextBtn.addEventListener('click', nextQuestion);
+    prevBtnMobile.addEventListener('click', prevQuestion);
+    nextBtnMobile.addEventListener('click', nextQuestion);
+    showAnswerBtn.addEventListener('click', showAnswer);
+    randomBtn.addEventListener('click', randomQuestion);
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    yearFilter.addEventListener('change', filterQuestions);
+    areaFilter.addEventListener('change', () => {
+        subareaFilter.value = ''; // Resetar subárea ao mudar a área
+        filterQuestions();
+    });
+    subareaFilter.addEventListener('change', filterQuestions);
+
+    // Navegação por teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevQuestion();
+        } else if (e.key === 'ArrowRight') {
+            nextQuestion();
+        } else if (e.key === ' ') {
+            e.preventDefault();
+            showAnswer();
+        } else if (e.key === 'r' || e.key === 'R') {
+            randomQuestion();
+        } else if (e.key === 't' || e.key === 'T') {
+            toggleTheme();
+        }
+    });
+    </script>
 </body>
 </html>
