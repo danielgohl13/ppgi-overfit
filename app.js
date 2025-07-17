@@ -367,7 +367,7 @@ function updateQuestion() {
             <strong>Ano da Prova:</strong> ${question.ano_prova}
         </div>` : '';
     
-    questionText.innerHTML = `${yearBadge}${processedQuestion}`;
+    questionText.innerHTML = `${yearBadge}<div class="markdown-body">${processedQuestion}</div>`;
     
     // Limpar opções anteriores
     optionsContainer.innerHTML = '';
@@ -420,7 +420,37 @@ function selectOption(optionElement, isCorrect) {
     // Mostrar a explicação se disponível
     const question = filteredQuestions[currentQuestionIndex];
     if (question.explicacao_geral) {
-        explanation.innerHTML = question.explicacao_geral;
+        // Processar a explicação com Markdown
+        marked.setOptions({
+            breaks: true,          // Quebras de linha se tornam <br>
+            gfm: true,            // Suporte a GitHub Flavored Markdown
+            smartLists: true,     // Listas mais inteligentes
+            smartypants: true,    // Aspas e travessões inteligentes
+            xhtml: true,          // Fechar tags XHTML
+            katex: true
+        });
+        
+        const processedExplanation = marked.parse(question.explicacao_geral);
+        explanation.innerHTML = `
+            <div class="markdown-body" style="padding: 15px; background-color: #f8f9fa; border-radius: 5px; margin-top: 15px;">
+                <h4 style="margin-top: 0; color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 8px;">Explicação:</h4>
+                <div class="explanation-content">${processedExplanation}</div>
+            </div>
+        `;
+        
+        // Renderizar equações LaTeX após a inserção no DOM
+        if (window.renderMathInElement) {
+            renderMathInElement(explanation, {
+                delimiters: [
+                    {left: '$', right: '$', display: true},
+                    {left: '$$', right: '$$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false
+            });
+        }
+        
         explanation.style.display = 'block';
     }
     
