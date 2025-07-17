@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const MIME_TYPES = {
     '.html': 'text/html',
     '.js': 'text/javascript',
@@ -26,9 +26,9 @@ const server = http.createServer((req, res) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
     
     // Tratar requisição raiz
-    let filePath = '.' + req.url;
-    if (filePath === './') {
-        filePath = './index.html';
+    let filePath = './public' + req.url;
+    if (filePath === './public/') {
+        filePath = './public/index.html';
     }
     
     // Obter a extensão do arquivo

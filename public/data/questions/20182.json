@@ -1,0 +1,84 @@
+[
+    {
+      "id_questao": "2018_2_q1",
+      "prova_referencia": "2018-2.pdf",
+      "numero_questao": 1,
+      "ano_prova": 2018,
+      "area": [
+        {
+          "nome": "Hashing",
+          "subarea": "Funções Hash"
+        }
+      ],
+      "enunciado": "Considere um arquivo sequencial com 10.000 registros, cujas chaves identificadoras são números inteiros de até 8 dígitos. Para criar um índice tipo hashing para esse arquivo, contendo endereços de 0 até 11.999, a mais adequada definição para uma função de hashing f(x) onde x é uma chave e (a mod b) é o resto da divisão de a por b, seria:",
+      "opcoes": [
+        {
+          "letra": "a",
+          "texto": "$f=x$ mod $1000+12$",
+          "correta": false
+        },
+        {
+          "letra": "b",
+          "texto": "$f=x$ mod 12000",
+          "correta": true
+        },
+        {
+          "letra": "c",
+          "texto": "$f=x/10000$",
+          "correta": false
+        },
+        {
+          "letra": "d",
+          "texto": "$f=x/11999$",
+          "correta": false
+        },
+        {
+          "letra": "e",
+          "texto": "f = (x-11999)/10000",
+          "correta": false
+        }
+      ],
+      "explicacao_geral": "O objetivo de uma função de hashing é mapear chaves para endereços dentro de uma tabela hash. A tabela deve ter endereços de 0 a 11.999, o que significa um tamanho total de 12.000 posições. A função de hash modular é comumente usada para mapear chaves inteiras para um intervalo de endereços.\n\nA função hash deve produzir valores dentro do intervalo $[0, M-1]$, onde M é o tamanho da tabela hash. Neste caso, M = 12.000. A operação \"mod\" (módulo) é ideal para isso, pois `x mod M` sempre resultará em um valor entre `0` e `M-1` (inclusive).\n\n* **(a) $f=x$ mod $1000+12$**: O resultado estaria no intervalo $[12, 1011]$, que não cobre o intervalo total de 0 a 11.999. Incorreto.\n* **(b) $f=x$ mod 12000**: Esta função produzirá um resultado no intervalo $[0, 11999]$ para qualquer valor inteiro de x. Isso corresponde exatamente ao intervalo de endereços da tabela. Correto.\n* **(c) $f=x/10000$**: A divisão inteira `x/10000` resultaria em um pequeno número de valores, não adequado para espalhar chaves em 12.000 posições. Incorreto.\n* **(d) $f=x/11999$**: Similarmente, a divisão inteira resultaria em um pequeno número de valores. Incorreto.\n* **(e) f = (x-11999)/10000**: Esta função também produziria um pequeno número de valores, e o intervalo resultante não seria o desejado. Incorreto."
+    },
+    {
+      "id_questao": "2018_2_q2",
+      "prova_referencia": "2018-2.pdf",
+      "numero_questao": 2,
+      "ano_prova": 2018,
+      "area": [
+        {
+          "nome": "Estruturas de Dados",
+          "subarea": "Árvores"
+        }
+      ],
+      "enunciado": "Considere as seguintes afirmações sobre árvores binárias de busca (ABB):\n\nI. Uma árvore binária de busca é uma árvore binária em que, para cada nó, todos os elementos na subárvore esquerda são menores que o elemento no nó, e todos os elementos na subárvore direita são maiores que o elemento no nó.\nII. A inserção de um novo elemento em uma árvore binária de busca sempre ocorre em um nó folha.\nIII. A remoção de um elemento de uma árvore binária de busca pode exigir a reorganização da árvore para manter a propriedade de busca.\nIV. O percurso em ordem simétrica (in-order) de uma árvore binária de busca sempre produz uma sequência ordenada dos elementos.\n\nEstão corretas:",
+      "opcoes": [
+        {
+          "letra": "a",
+          "texto": "Apenas I e II.",
+          "correta": false
+        },
+        {
+          "letra": "b",
+          "texto": "Apenas I, II e III.",
+          "correta": false
+        },
+        {
+          "letra": "c",
+          "texto": "Apenas I, III e IV.",
+          "correta": true
+        },
+        {
+          "letra": "d",
+          "texto": "Apenas II, III e IV.",
+          "correta": false
+        },
+        {
+          "letra": "e",
+          "texto": "I, II, III e IV.",
+          "correta": false
+        }
+      ],
+      "explicacao_geral": "Vamos analisar cada afirmação:\n\n**I. Uma árvore binária de busca é uma árvore binária em que, para cada nó, todos os elementos na subárvore esquerda são menores que o elemento no nó, e todos os elementos na subárvore direita são maiores que o elemento no nó.**\n- Esta é a definição correta de uma árvore binária de busca. A propriedade de ordenação é o que caracteriza uma ABB. **Verdadeira**.\n\n**II. A inserção de um novo elemento em uma árvore binária de busca sempre ocorre em um nó folha.**\n- Esta afirmação é verdadeira no sentido de que um novo elemento é sempre inserido como uma folha (um nó sem filhos). No entanto, o local de inserção não é necessariamente um nó que já era folha antes da inserção. A inserção ocorre após percorrer a árvore até encontrar o local apropriado, que será sempre uma posição vazia (null). **Falsa**.\n\n**III. A remoção de um elemento de uma árvore binária de busca pode exigir a reorganização da árvore para manter a propriedade de busca.**\n- Quando removemos um nó com dois filhos, precisamos substituí-lo por seu sucessor in-order (o menor elemento da subárvore direita) ou predecessor in-order (o maior elemento da subárvore esquerda), o que envolve reorganização. **Verdadeira**.\n\n**IV. O percurso em ordem simétrica (in-order) de uma árvore binária de busca sempre produz uma sequência ordenada dos elementos.**\n- Esta é uma propriedade fundamental das ABBs. O percurso in-order (esquerda-raiz-direita) visita os nós em ordem crescente de valores. **Verdadeira**.\n\nPortanto, as afirmações I, III e IV estão corretas."
+    }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "id_questao": "2017_1_q1",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 1,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores"
+      }
+    ],
+    "enunciado": "Avaliando as seguintes sentenças a respeito de estrutura de dados:\n\nI. A diferença entre árvore binária de busca e árvores AVL é o fato de que a segunda pode se reconfigurar dinamicamente, com o intuito de manter um bom nível de balanceamento. \nII. Uma pilha garante que o último elemento inserido seja localizado no seu topo.  Porém, do ponto de vista conceitual, qualquer elemento da pilha pode ser removido, ainda que não esteja no seu topo. \nIII. Do ponto de vista conceitual, não há diferença alguma entre uma estrutura de array e uma lista encadeada. \nIV. Tabelas hash são estruturas de dados indicadas para armazenar grande volume de dados.  Apesar dessas estruturas permitirem acesso indexado, mais de um elemento pode ter o mesmo índice.  Elementos com o mesmo índice podem ser armazenados em uma mesma lista encadeada. \n\nÉ CORRETO afirmar que: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "apenas I e IV são verdadeiras.",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "apenas I é verdadeira.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "apenas III e IV são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "apenas II e III são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "apenas I, II e IV são verdadeiras.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise das Afirmações:**\n\n* **I. A diferença entre árvore binária de busca e árvores AVL é o fato de que a segunda pode se reconfigurar dinamicamente, com o intuito de manter um bom nível de balanceamento.** \n    * **Verdadeira.** Árvores AVL são árvores binárias de busca auto-balanceadas, o que significa que elas realizam rotações para manter a altura balanceada e, consequentemente, um bom desempenho para operações de busca, inserção e remoção. Árvores binárias de busca simples não possuem esse mecanismo de auto-balanceamento. \n\n* **II. Uma pilha garante que o último elemento inserido seja localizado no seu topo.  Porém, do ponto de vista conceitual, qualquer elemento da pilha pode ser removido, ainda que não esteja no seu topo.** \n    * **Falsa.** Uma pilha (Stack) segue o princípio LIFO (Last-In, First-Out), onde o último elemento inserido é o primeiro a ser removido, e a remoção ocorre *apenas* no topo. Do ponto de vista conceitual, não é permitido remover qualquer elemento, apenas o do topo. \n\n* **III. Do ponto de vista conceitual, não há diferença alguma entre uma estrutura de array e uma lista encadeada.** \n    * **Falsa.** Conceitualmente, arrays e listas encadeadas são estruturas de dados muito diferentes. Arrays armazenam elementos em posições de memória contíguas e têm acesso direto por índice (O(1)). Listas encadeadas armazenam elementos de forma não contígua, com cada nó contendo um ponteiro para o próximo elemento, e o acesso é sequencial (O(N)).\n\n* **IV. Tabelas hash são estruturas de dados indicadas para armazenar grande volume de dados.  Apesar dessas estruturas permitirem acesso indexado, mais de um elemento pode ter o mesmo índice.  Elementos com o mesmo índice podem ser armazenados em uma mesma lista encadeada.** \n    * **Verdadeira.** Tabelas hash são eficientes para grandes volumes de dados. A colisão (mais de um elemento com o mesmo índice hash) é um problema comum, e o encadeamento (chaining) é uma técnica de resolução de colisões que utiliza listas encadeadas para armazenar múltiplos elementos que mapeiam para o mesmo índice. \n\n**Conclusão:** Apenas as afirmações I e IV são verdadeiras."
+  },
+  {
+    "id_questao": "2017_1_q2",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 2,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": "Heapsort"
+      }
+    ],
+    "enunciado": "Marque a alternativa CORRETA.  Qual dos algoritmos abaixo apresenta o menor custo (em termos de número comparações entre elementos) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado.  Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Heapsort",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "Quicksort",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Inserção",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Seleção",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das anteriores porque todos apresentam custo igual",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio e Análise de Complexidade (Pior Caso para Comparações):**\n\nVamos analisar a complexidade de tempo de pior caso para o número de comparações de cada algoritmo listado, para um vetor muito grande ($N > 1$ milhão). \n\n* **a) Heapsort:** No pior caso, o Heapsort tem uma complexidade de tempo de $O(N \\log N)$ para comparações. Ele mantém esse desempenho consistente, o que o torna uma boa escolha para o pior caso. \n\n* **b) Quicksort:** O Quicksort, embora geralmente rápido no caso médio ($O(N \\log N)$), pode degenerar para $O(N^2)$ no pior caso em termos de comparações, especialmente se o pivô for sempre o menor ou maior elemento. \n\n* **c) Inserção (Insertion Sort):** O Insertion Sort tem uma complexidade de $O(N^2)$ no pior caso (quando o array está em ordem inversa), tanto para comparações quanto para movimentações. \n\n* **d) Seleção (Selection Sort):** O Selection Sort tem uma complexidade de $O(N^2)$ no pior caso para comparações e movimentações, independentemente da ordem inicial dos elementos. \n\n**Conclusão:** Para um vetor muito grande e considerando o pior caso em termos de número de comparações, o Heapsort ($O(N \\log N)$) apresenta o menor custo em comparação com os outros algoritmos que têm complexidade de pior caso $O(N^2)$."
+  },
+  {
+    "id_questao": "2017_1_q3",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 3,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": "Selection Sort"
+      }
+    ],
+    "enunciado": "Marque a alternativa CORRETA.  Qual dos algoritmos abaixo apresenta o menor custo (em termos de número movimentações de elementos realizadas) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado.  Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Heapsort",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Quicksort",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Inserção",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Seleção",
+        "correta": true
+      },
+      {
+        "letra": "e",
+        "texto": "Mergesort",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio e Análise de Complexidade (Pior Caso para Movimentações):**\n\nVamos analisar a complexidade de tempo de pior caso para o número de movimentações de elementos de cada algoritmo listado, para um vetor muito grande ($N > 1$ milhão). \n\n* **a) Heapsort:** O Heapsort tem uma complexidade de tempo de $O(N \\log N)$ para movimentações no pior caso. \n\n* **b) Quicksort:** No pior caso, o Quicksort pode ter uma complexidade de tempo de $O(N^2)$ para movimentações. \n\n* **c) Inserção (Insertion Sort):** O Insertion Sort tem uma complexidade de $O(N^2)$ para movimentações no pior caso (quando o array está em ordem inversa). \n\n* **d) Seleção (Selection Sort):** O Selection Sort é notável por realizar o *menor* número de movimentações de elementos entre os algoritmos de ordenação quadráticos (comparações). Ele faz no máximo $O(N)$ trocas (movimentações), uma para cada posição, independentemente da ordem inicial dos elementos. No pior caso, ele ainda mantém $O(N)$ movimentações, enquanto os outros têm $O(N \\log N)$ ou $O(N^2)$. \n\n* **e) Mergesort:** O Mergesort tem uma complexidade de $O(N \\log N)$ para movimentações, mas geralmente requer espaço extra para as operações de merge. \n\n**Conclusão:** O Selection Sort se destaca por ter o menor número de movimentações (trocas) no pior caso ($O(N)$) entre os algoritmos listados, sendo mais eficiente nesse quesito do que os outros que possuem $O(N \\log N)$ ou $O(N^2)$ movimentações no pior caso."
+  }
+]

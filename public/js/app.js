@@ -1,0 +1,67 @@
+/**
+ * Arquivo principal da aplicação
+ */
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    // Carregar preferência de tema
+    loadThemePreference();
+    
+    // Carregar estatísticas
+    loadStats();
+    
+    // Adicionar eventos aos botões
+    document.getElementById('prevBtn').addEventListener('click', () => showQuestion(currentQuestionIndex - 1));
+    document.getElementById('nextBtn').addEventListener('click', () => showQuestion(currentQuestionIndex + 1));
+    document.getElementById('prevBtnMobile').addEventListener('click', () => showQuestion(currentQuestionIndex - 1));
+    document.getElementById('nextBtnMobile').addEventListener('click', () => showQuestion(currentQuestionIndex + 1));
+    document.getElementById('showAnswerBtn').addEventListener('click', showAnswer);
+    document.getElementById('randomBtn').addEventListener('click', goToRandomQuestion);
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('statsToggle').addEventListener('click', toggleStatsPanel);
+    document.getElementById('resetStatsBtn').addEventListener('click', resetStats);
+    
+    // Adicionar eventos aos filtros
+    document.getElementById('yearFilter').addEventListener('change', () => {
+        filteredQuestions = applyFilters(questions);
+        document.getElementById('totalQuestionsDisplay').textContent = filteredQuestions.length;
+        if (filteredQuestions.length > 0) {
+            showQuestion(0);
+        } else {
+            document.getElementById('questionText').innerHTML = 'Nenhuma questão encontrada com os filtros selecionados.';
+            document.getElementById('optionsContainer').innerHTML = '';
+            document.getElementById('explanation').style.display = 'none';
+            document.getElementById('currentQuestion').textContent = '0';
+            updateProgressBar();
+        }
+    });
+    document.getElementById('areaFilter').addEventListener('change', () => {
+        filteredQuestions = applyFilters(questions);
+        document.getElementById('totalQuestionsDisplay').textContent = filteredQuestions.length;
+        if (filteredQuestions.length > 0) {
+            showQuestion(0);
+        } else {
+            document.getElementById('questionText').innerHTML = 'Nenhuma questão encontrada com os filtros selecionados.';
+            document.getElementById('optionsContainer').innerHTML = '';
+            document.getElementById('explanation').style.display = 'none';
+            document.getElementById('currentQuestion').textContent = '0';
+            updateProgressBar();
+        }
+    });
+    document.getElementById('subareaFilter').addEventListener('change', () => {
+        filteredQuestions = applyFilters(questions);
+        document.getElementById('totalQuestionsDisplay').textContent = filteredQuestions.length;
+        if (filteredQuestions.length > 0) {
+            showQuestion(0);
+        } else {
+            document.getElementById('questionText').innerHTML = 'Nenhuma questão encontrada com os filtros selecionados.';
+            document.getElementById('optionsContainer').innerHTML = '';
+            document.getElementById('explanation').style.display = 'none';
+            document.getElementById('currentQuestion').textContent = '0';
+            updateProgressBar();
+        }
+    });
+    
+    // Carregar as questões
+    loadQuestions();
+});

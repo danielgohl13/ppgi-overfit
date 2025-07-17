@@ -12,12 +12,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs
+*.log
 
 # Arquivos do sistema operacional
 .DS_Store
 Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 
-# IDE
+# IDE e editores
 .idea/
 .vscode/
 *.suo
@@ -25,3 +32,43 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.cache
+*.diff
+*.patch
+*.old
+*.orig
+.tmp/
+.temp/
+
+# Arquivos de build e distribuição
+/dist
+/build
+/out
+/.next
+/.nuxt
+/.cache
+/.output
+
+# Arquivos específicos do projeto após refatoração
+/standalone.html
+/clean-json.js
+/public/js/debug.js
+/questions
+/index.html
+/offline.html
+/convert-questions.js
+
+# Arquivos de backup
+*.backup
+*~

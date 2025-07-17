@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Questões - PPGI</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="header-container">
+        <h1>Banco de Questões - PPGI</h1>
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
+    </div>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label for="yearFilter">Ano:</label>
+            <select id="yearFilter">
+                <option value="">Todos os anos</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="areaFilter">Área:</label>
+            <select id="areaFilter">
+                <option value="">Todas as áreas</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="subareaFilter">Subárea:</label>
+            <select id="subareaFilter">
+                <option value="">Todas as subáreas</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Painel de Estatísticas -->
+    <div class="stats-panel">
+        <div class="stats-header">
+            <h3 class="stats-title">📊 Estatísticas de Desempenho</h3>
+            <button id="statsToggle" class="stats-toggle">▼</button>
+        </div>
+        <div id="statsContent" class="stats-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalAnswered">0</div>
+                    <div class="stat-label">Questões Respondidas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="correctAnswers">0</div>
+                    <div class="stat-label">Respostas Corretas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="accuracyRate">0%</div>
+                    <div class="stat-label">Taxa de Acerto</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="currentStreak">0</div>
+                    <div class="stat-label">Sequência Atual</div>
+                </div>
+            </div>
+
+            <div class="performance-chart">
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;">Desempenho por Área</h4>
+                <div id="areaPerformance"></div>
+            </div>
+
+            <button id="resetStatsBtn" class="reset-stats-btn">🗑️ Limpar Estatísticas</button>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div>
+            <button id="prevBtn" disabled>Anterior</button>
+            <button id="nextBtn">Próxima</button>
+        </div>
+        <div>
+            <button id="showAnswerBtn">Mostrar Resposta</button>
+            <button id="randomBtn">Questão Aleatória</button>
+        </div>
+    </div>
+
+    <!-- Indicador de progresso -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+    </div>
+    <div class="stats">
+        <p>Questão <span id="currentQuestion">0</span> de <span id="totalQuestionsDisplay">0</span> (<span
+                id="progressPercent">0%</span>)</p>
+    </div>
+
+    <div class="question-container">
+        <div class="question-text markdown-body" id="questionText">Carregando questões...</div>
+        <div class="options" id="optionsContainer"></div>
+        <div class="explanation" id="explanation"></div>
+    </div>
+
+    <div class="stats">
+        <p>Total de questões no banco: <span id="totalQuestions">0</span></p>
+    </div>
+
+    <!-- Botões de navegação para mobile -->
+    <div class="mobile-nav">
+        <button id="prevBtnMobile" class="mobile-nav-btn" disabled>◀</button>
+        <button id="nextBtnMobile" class="mobile-nav-btn">▶</button>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="https://unpkg.com/json5@2.2.3/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Local JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/debug.js"></script>
+
+    <!-- Botão de depuração (temporário) -->
+    <div style="position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
+        <button onclick="checkSpecificFile()"
+            style="background: #ff5722; color: white; padding: 5px 10px; border: none; border-radius: 4px; margin-right: 5px;">Verificar
+            20172.json</button>
+        <button onclick="checkAllFiles()"
+            style="background: #2196f3; color: white; padding: 5px 10px; border: none; border-radius: 4px;">Verificar
+            Todos</button>
+    </div>
+</body>
+
+</html>
