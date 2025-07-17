@@ -76,7 +76,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-    background-color: #2980b9;
+    filter: brightness(0.9);
     transform: translateY(-1px);
     box-shadow: 0 2px 4px var(--shadow-color);
 }
@@ -117,12 +117,12 @@ button:disabled {
 }
 
 .option:hover {
-    background-color: rgba(52, 152, 219, 0.1);
+    background-color: rgba(var(--secondary-color-rgb), 0.1);
     border-color: var(--secondary-color);
 }
 
 .option.selected {
-    background-color: rgba(52, 152, 219, 0.2);
+    background-color: rgba(var(--secondary-color-rgb), 0.2);
     border-color: var(--secondary-color);
 }
 
