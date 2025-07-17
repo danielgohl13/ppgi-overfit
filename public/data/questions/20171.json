@@ -7,10 +7,18 @@
     "area": [
       {
         "nome": "Estruturas de Dados",
-        "subarea": "Árvores"
+        "subarea": "Árvores (BST, AVL, Rubro-Negra, B-trees, Heap)"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Pilhas"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Hashing"
       }
     ],
-    "enunciado": "Avaliando as seguintes sentenças a respeito de estrutura de dados:\n\nI. A diferença entre árvore binária de busca e árvores AVL é o fato de que a segunda pode se reconfigurar dinamicamente, com o intuito de manter um bom nível de balanceamento. \nII. Uma pilha garante que o último elemento inserido seja localizado no seu topo.  Porém, do ponto de vista conceitual, qualquer elemento da pilha pode ser removido, ainda que não esteja no seu topo. \nIII. Do ponto de vista conceitual, não há diferença alguma entre uma estrutura de array e uma lista encadeada. \nIV. Tabelas hash são estruturas de dados indicadas para armazenar grande volume de dados.  Apesar dessas estruturas permitirem acesso indexado, mais de um elemento pode ter o mesmo índice.  Elementos com o mesmo índice podem ser armazenados em uma mesma lista encadeada. \n\nÉ CORRETO afirmar que: ",
+    "enunciado": "Avaliando as seguintes sentenças a respeito de estrutura de dados:\n\nI. A diferença entre árvore binária de busca e árvores AVL é o fato de que a segunda pode se reconfigurar dinamicamente, com o intuito de manter um bom nível de balanceamento. \nII. Uma pilha garante que o último elemento inserido seja localizado no seu topo.  Porém, do ponto de vista conceitual, qualquer elemento da pilha pode ser removido, ainda que não esteja no seu topo. \nIII. Do ponto de vista conceitual, não há diferença alguma entre uma estrutura de array e uma lista encadeada. \nIV. Tabelas hash são estruturas de dados indicadas para armazenar grande volume de dados.  Apesar dessas estruturas permitirem acesso indexado, mais de um elemento pode ter o mesmo índice.  Elementos com o mesmo índice podem ser armazenados em uma mesma lista encadeada. \n\nÉ CORRETO afirmar que:",
     "opcoes": [
       {
         "letra": "a",
@@ -38,7 +46,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmações:**\n\n* **I. A diferença entre árvore binária de busca e árvores AVL é o fato de que a segunda pode se reconfigurar dinamicamente, com o intuito de manter um bom nível de balanceamento.** \n    * **Verdadeira.** Árvores AVL são árvores binárias de busca auto-balanceadas, o que significa que elas realizam rotações para manter a altura balanceada e, consequentemente, um bom desempenho para operações de busca, inserção e remoção. Árvores binárias de busca simples não possuem esse mecanismo de auto-balanceamento. \n\n* **II. Uma pilha garante que o último elemento inserido seja localizado no seu topo.  Porém, do ponto de vista conceitual, qualquer elemento da pilha pode ser removido, ainda que não esteja no seu topo.** \n    * **Falsa.** Uma pilha (Stack) segue o princípio LIFO (Last-In, First-Out), onde o último elemento inserido é o primeiro a ser removido, e a remoção ocorre *apenas* no topo. Do ponto de vista conceitual, não é permitido remover qualquer elemento, apenas o do topo. \n\n* **III. Do ponto de vista conceitual, não há diferença alguma entre uma estrutura de array e uma lista encadeada.** \n    * **Falsa.** Conceitualmente, arrays e listas encadeadas são estruturas de dados muito diferentes. Arrays armazenam elementos em posições de memória contíguas e têm acesso direto por índice (O(1)). Listas encadeadas armazenam elementos de forma não contígua, com cada nó contendo um ponteiro para o próximo elemento, e o acesso é sequencial (O(N)).\n\n* **IV. Tabelas hash são estruturas de dados indicadas para armazenar grande volume de dados.  Apesar dessas estruturas permitirem acesso indexado, mais de um elemento pode ter o mesmo índice.  Elementos com o mesmo índice podem ser armazenados em uma mesma lista encadeada.** \n    * **Verdadeira.** Tabelas hash são eficientes para grandes volumes de dados. A colisão (mais de um elemento com o mesmo índice hash) é um problema comum, e o encadeamento (chaining) é uma técnica de resolução de colisões que utiliza listas encadeadas para armazenar múltiplos elementos que mapeiam para o mesmo índice. \n\n**Conclusão:** Apenas as afirmações I e IV são verdadeiras."
+    "explicacao_geral": "**Raciocínio:**\n- **I (Verdadeira):** A principal característica da árvore AVL é ser uma árvore binária de busca auto-balanceável, que realiza rotações para manter a altura balanceada e garantir a complexidade de busca em $O(\\log n)$.\n- **II (Falsa):** A definição de uma pilha (LIFO - Last-In, First-Out) permite remoção estritamente do topo. Remover elementos de outras posições viola o princípio da estrutura.\n- **III (Falsa):** Arrays armazenam elementos em posições de memória contíguas com acesso $O(1)$ por índice, enquanto listas encadeadas usam ponteiros para conectar nós em memória não contígua, com acesso sequencial $O(n)$.\n- **IV (Verdadeira):** Tabelas hash usam uma função para mapear chaves a índices. Colisões (mesmo índice para chaves diferentes) são comuns e uma das técnicas para resolvê-las é o encadeamento, onde uma lista encadeada armazena os múltiplos elementos naquele índice."
   },
   {
     "id_questao": "2017_1_q2",
@@ -47,11 +55,15 @@
     "ano_prova": 2017,
     "area": [
       {
+        "nome": "Análise de Complexidade",
+        "subarea": "Notação Big O"
+      },
+      {
         "nome": "Algoritmos de Ordenação",
-        "subarea": "Heapsort"
+        "subarea": null
       }
     ],
-    "enunciado": "Marque a alternativa CORRETA.  Qual dos algoritmos abaixo apresenta o menor custo (em termos de número comparações entre elementos) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado.  Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
+    "enunciado": "Qual dos algoritmos abaixo apresenta o menor custo (em termos de número comparações entre elementos) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado. Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
     "opcoes": [
       {
         "letra": "a",
@@ -79,7 +91,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio e Análise de Complexidade (Pior Caso para Comparações):**\n\nVamos analisar a complexidade de tempo de pior caso para o número de comparações de cada algoritmo listado, para um vetor muito grande ($N > 1$ milhão). \n\n* **a) Heapsort:** No pior caso, o Heapsort tem uma complexidade de tempo de $O(N \\log N)$ para comparações. Ele mantém esse desempenho consistente, o que o torna uma boa escolha para o pior caso. \n\n* **b) Quicksort:** O Quicksort, embora geralmente rápido no caso médio ($O(N \\log N)$), pode degenerar para $O(N^2)$ no pior caso em termos de comparações, especialmente se o pivô for sempre o menor ou maior elemento. \n\n* **c) Inserção (Insertion Sort):** O Insertion Sort tem uma complexidade de $O(N^2)$ no pior caso (quando o array está em ordem inversa), tanto para comparações quanto para movimentações. \n\n* **d) Seleção (Selection Sort):** O Selection Sort tem uma complexidade de $O(N^2)$ no pior caso para comparações e movimentações, independentemente da ordem inicial dos elementos. \n\n**Conclusão:** Para um vetor muito grande e considerando o pior caso em termos de número de comparações, o Heapsort ($O(N \\log N)$) apresenta o menor custo em comparação com os outros algoritmos que têm complexidade de pior caso $O(N^2)$."
+    "explicacao_geral": "**Raciocínio:** A questão pede a comparação das complexidades de pior caso.\n- **Heapsort:** Pior caso é $O(n \\log n)$.\n- **Quicksort:** Pior caso é $O(n^2)$ (ocorre quando o vetor já está ordenado ou em ordem reversa e o pivô é sempre uma extremidade).\n- **Inserção (Insertion Sort):** Pior caso é $O(n^2)$ (ocorre quando o vetor está em ordem reversa).\n- **Seleção (Selection Sort):** Pior caso é $O(n^2)$ (a complexidade é a mesma para todos os casos).\nPara um vetor muito grande, $O(n \\log n)$ é significativamente menor (melhor) que $O(n^2)$. Portanto, Heapsort tem o menor custo no pior caso entre as opções."
   },
   {
     "id_questao": "2017_1_q3",
@@ -88,11 +100,15 @@
     "ano_prova": 2017,
     "area": [
       {
+        "nome": "Análise de Complexidade",
+        "subarea": "Análise de Algoritmos"
+      },
+      {
         "nome": "Algoritmos de Ordenação",
-        "subarea": "Selection Sort"
+        "subarea": null
       }
     ],
-    "enunciado": "Marque a alternativa CORRETA.  Qual dos algoritmos abaixo apresenta o menor custo (em termos de número movimentações de elementos realizadas) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado.  Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
+    "enunciado": "Qual dos algoritmos abaixo apresenta o menor custo (em termos de número movimentações de elementos realizadas) ao considerar-se, para cada algoritmo, a pior disposição possível para os elementos do vetor a ser ordenado. Considere que o vetor a ser ordenado é muito grande, acima de 1 milhão de elementos. ",
     "opcoes": [
       {
         "letra": "a",
@@ -120,6 +136,657 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio e Análise de Complexidade (Pior Caso para Movimentações):**\n\nVamos analisar a complexidade de tempo de pior caso para o número de movimentações de elementos de cada algoritmo listado, para um vetor muito grande ($N > 1$ milhão). \n\n* **a) Heapsort:** O Heapsort tem uma complexidade de tempo de $O(N \\log N)$ para movimentações no pior caso. \n\n* **b) Quicksort:** No pior caso, o Quicksort pode ter uma complexidade de tempo de $O(N^2)$ para movimentações. \n\n* **c) Inserção (Insertion Sort):** O Insertion Sort tem uma complexidade de $O(N^2)$ para movimentações no pior caso (quando o array está em ordem inversa). \n\n* **d) Seleção (Selection Sort):** O Selection Sort é notável por realizar o *menor* número de movimentações de elementos entre os algoritmos de ordenação quadráticos (comparações). Ele faz no máximo $O(N)$ trocas (movimentações), uma para cada posição, independentemente da ordem inicial dos elementos. No pior caso, ele ainda mantém $O(N)$ movimentações, enquanto os outros têm $O(N \\log N)$ ou $O(N^2)$. \n\n* **e) Mergesort:** O Mergesort tem uma complexidade de $O(N \\log N)$ para movimentações, mas geralmente requer espaço extra para as operações de merge. \n\n**Conclusão:** O Selection Sort se destaca por ter o menor número de movimentações (trocas) no pior caso ($O(N)$) entre os algoritmos listados, sendo mais eficiente nesse quesito do que os outros que possuem $O(N \\log N)$ ou $O(N^2)$ movimentações no pior caso."
+    "explicacao_geral": "**Raciocínio:** A questão analisa o número de trocas/movimentações no pior caso.\n- **Selection Sort:** Realiza exatamente $n-1$ trocas, resultando em uma complexidade de movimentação de $O(n)$. Ele encontra o menor elemento e o troca com a posição correta, fazendo isso para cada posição.\n- **Insertion Sort:** No pior caso (vetor reverso), cada elemento é movido, resultando em $O(n^2)$ movimentações.\n- **Quicksort:** No pior caso, também pode ter $O(n^2)$ trocas.\n- **Heapsort:** Realiza $O(n \\log n)$ trocas.\n- **Mergesort:** A implementação padrão realiza $O(n \\log n)$ movimentações para o vetor auxiliar e de volta.\nO Selection Sort é o algoritmo que minimiza o número de trocas, fazendo um número linear de movimentações ($O(n)$), o que é o menor custo entre as opções."
+  },
+  {
+    "id_questao": "2017_1_q4",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 4,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      },
+      {
+        "nome": "Hashing",
+        "subarea": "Resolução de Colisões"
+      }
+    ],
+    "enunciado": "Considere as seguintes afirmações sobre a estrutura lista encadeada dinâmica e marque a alternativa CORRETA. \n\nI. A busca em tal estrutura realiza menos comparações do que a melhor opção de algoritmo de busca em um vetor ordenado quando se considera o pior cenário para cada estrutura. \nII. É uma estrutura de dados usada para ordenar chaves por ser mais eficiente no processo de ordenação que o heapsort \nIII. É tipicamente utilizada como estrutura de dados básica na implementação de hash por endereçamento aberto ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "As três afirmações são falsas",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "As três afirmações são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas a afirmação I é verdadeira",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas a afirmação II é verdadeira",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas a afirmação III é verdadeira",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **I (Falsa):** O pior cenário de busca em uma lista encadeada é a busca sequencial, com complexidade $O(n)$. A melhor opção de busca em um vetor ordenado é a busca binária, cujo pior caso é $O(\\log n)$. $O(n)$ não é menor que $O(\\log n)$.\n- **II (Falsa):** Ordenar uma lista encadeada (por exemplo, com uma variação do merge sort) geralmente é menos eficiente do que ordenar um vetor com Heapsort, principalmente devido à perda de localidade de cache e à complexidade de acesso aos elementos.\n- **III (Falsa):** Listas encadeadas são usadas para resolver colisões em hash com **encadeamento separado (separate chaining)**, não em hash com **endereçamento aberto (open addressing)**. O endereçamento aberto resolve colisões procurando outra posição livre na própria tabela hash (ex: sondagem linear)."
+  },
+  {
+    "id_questao": "2017_1_q5",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 5,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      },
+      {
+        "nome": "Operações Fundamentais",
+        "subarea": "Busca"
+      }
+    ],
+    "enunciado": "Dada uma lista encadeada onde cada nó da lista é do tipo No, cujos campos são um ponteiro para o próximo elemento (campo prox) e um dado do tipo inteiro (campo dado). Dado também quatro (4) opções (versões) de funções para realizar a busca por um elemento em uma lista encadeada, onde recebe-se um ponteiro para o primeiro elemento da lista e uma chave. A função de busca deve retornar 1 (um) caso encontre o elemento buscado e 0 (zero) em caso contrário. Com base nas informações anteriores, considere que: (1) a lista encadeada não possui um nó cabeça de lista, portanto todos os nós contém valores presentes na lista; (2) todos os tipos de dados foram previamente declarados no programa; (3) a função não deve ter problemas de alocação de memória, seja por deixar de alocar dinamicamente dados necessários ou por causar alocação dinâmica de dados desnecessária. Analise as funções abaixo e marque a alternativa CORRETA\n\n**Versão I**\n```c\nint busca(No *prim, int chave) {\n  No *aux = (No *) malloc(sizeof(No));\n  aux = prim;\n  while(aux!= NULL) {\n    if(aux->dado == chave) return 1;\n    aux = aux->prox;\n  }\n  return 0;\n}\n```\n**Versão II**\n```c\nint busca(No *prim, int chave) {\n  while(prim!= NULL) {\n    if(prim->dado == chave) return 1;\n    prim = prim->prox;\n  }\n  return 0;\n}\n```\n**Versão III**\n```c\nint busca(No *prim, int chave) {\n  No *aux = prim;\n  while(prim->prox!= NULL) {\n    if(prim->dado == chave) return 1;\n    aux = aux->prox;\n  }\n  return 0;\n}\n```\n**Versão IV**\n```c\nint busca(No *prim, int chave) {\n  No *aux = (No *) malloc(sizeof(No));\n  while(aux->prox!= NULL) {\n    if(aux->dado == chave) return 1;\n    aux = aux->prox;\n  }\n  return 0;\n}\n```",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "A versão I está correta e não apresenta problemas de alocação de memória.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "A versão II está correta e não apresenta problemas de alocação de memória.",
+        "correta": true
+      },
+      {
+        "letra": "c",
+        "texto": "A versão III está correta e não apresenta problemas de alocação de memória",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "A versão IV está correta e não apresenta problemas de alocação de memória",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores está correta",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **Versão I (Incorreta):** Aloca memória dinamicamente com `malloc` para `aux` e imediatamente depois faz `aux` apontar para `prim`, perdendo a referência da memória alocada. Isso causa **vazamento de memória (memory leak)**. A lógica de busca em si estaria correta se não fosse a alocação desnecessária.\n- **Versão II (Correta):** Utiliza o próprio ponteiro de entrada `prim` para percorrer a lista. O laço `while(prim != NULL)` percorre todos os nós. A cada passo, verifica se o dado foi encontrado. Retorna 1 se encontrar e 0 se o laço terminar (chegar ao fim da lista). Não faz alocações desnecessárias e a lógica está correta.\n- **Versão III (Incorreta):** O laço `while(prim->prox != NULL)` para no penúltimo nó, ou seja, o último nó da lista **nunca é verificado**. Além disso, a variável `aux` é incrementada, mas a verificação é feita em `prim`, que não é alterado dentro do laço, causando um **loop infinito** se a lista tiver mais de um elemento e a chave não estiver no primeiro.\n- **Versão IV (Incorreta):** Aloca memória para `aux`, mas não a inicializa. Tentar acessar `aux->prox` ou `aux->dado` resulta em **comportamento indefinido**, pois `aux` aponta para uma área de memória não inicializada. Também causa vazamento de memória."
+  },
+  {
+    "id_questao": "2017_1_q6",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 6,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Pilhas"
+      }
+    ],
+    "enunciado": "Após a inserção da sequencia de números 3, 4, 6, 8 e 9 em uma pilha, o resultado CORRETO de 3 remoções sucessivas seria: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "3, 4 e 6, nesta ordem",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "6, 3 e 4, nesta ordem",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "6, 8 e 9, nesta ordem",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "9, 8 e 6, nesta ordem",
+        "correta": true
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Pilha é uma estrutura LIFO (Last-In, First-Out), ou seja, o último elemento a entrar é o primeiro a sair.\n1.  **Inserção:** A sequência 3, 4, 6, 8 e 9 é inserida. O estado da pilha (base à esquerda, topo à direita) será: `[3, 4, 6, 8, 9]`\n2.  **Remoção:** As remoções (pop) ocorrem a partir do topo.\n    -   1ª Remoção: Remove o 9. A pilha fica: `[3, 4, 6, 8]`\n    -   2ª Remoção: Remove o 8. A pilha fica: `[3, 4, 6]`\n    -   3ª Remoção: Remove o 6. A pilha fica: `[3, 4]`\nO resultado das 3 remoções sucessivas é a sequência 9, 8 e 6."
+  },
+  {
+    "id_questao": "2017_1_q7",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 7,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Hashing"
+      },
+      {
+        "nome": "Hashing",
+        "subarea": "Resolução de Colisões"
+      }
+    ],
+    "enunciado": "Considere as seguintes afirmações:\n\nI. Hash por encadeamento nunca apresenta colisões secundárias \nII. Hash por encadeamento jamais permite que o número de comparações entre chaves em uma operação de busca passe de log n, onde n é o número de chaves inseridas no hash. \nIII. Hash por encadeamento realiza sempre menos comparações entre chaves do que qualquer hash por endereçamento aberto. \n\nMarque a alternativa CORRETA: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas a afirmação I é verdadeira",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas a afirmação II é verdadeira",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas a afirmação III é verdadeira",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas as afirmações II e III são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores está correta",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **I (Verdadeira):** Colisão secundária é um fenômeno do endereçamento aberto (como sondagem quadrática), onde chaves diferentes que colidem na mesma posição inicial seguem a mesma sequência de sondagem. No hash por encadeamento, todas as chaves que mapeiam para o mesmo índice são simplesmente adicionadas à mesma lista encadeada, então o conceito de 'sequência de sondagem' não se aplica.\n- **II (Falsa):** No pior caso do hash por encadeamento, todas as 'n' chaves colidem no mesmo índice, formando uma única lista encadeada de tamanho 'n'. Uma busca nessa lista levaria $O(n)$ comparações, que é muito maior que $O(\\log n)$.\n- **III (Falsa):** Não é possível afirmar que o hash por encadeamento realiza *sempre* menos comparações. Em um cenário com poucas colisões e uma tabela de hash bem dimensionada, uma busca em hash com endereçamento aberto pode encontrar um item em poucas sondagens, potencialmente menos que as comparações necessárias para percorrer uma pequena lista no hash encadeado."
+  },
+  {
+    "id_questao": "2017_1_q8",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 8,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores (BST, AVL, Rubro-Negra, B-trees, Heap)"
+      }
+    ],
+    "enunciado": "Considere as seguintes árvores onde são apresentados apenas os valores das chaves em cada nó, sem mostrar o valor de outros campos eventualmente existentes. Considerando em todos os casos que as árvores não estão em processo de rotação por inserção de chaves, estando portanto em seu estado final após a inserção do conjunto de chaves mostrado. \n\n**Árvore I**\n```mermaid\ngraph TD\n    A[15] --> B[10]\n    A[15] --> C[20]\n    B[10] --> D[8]\n    B[10] --> E[12]\n    C[20] --> F[16]\n    C[20] --> G[25]\n```\n\n**Árvore II**\n```mermaid\ngraph TD\n    A[A] --> B[B]\n    A[A] --> C[C]\n    B[B] --> D[D]\n    C[C] --> E[E]\n    C[C] --> F[F]\n    E[E] --> G[G]\n    F[F] --> H[H]\n    F[F] --> I[I]\n```\n\n**Árvore III**\n```mermaid\ngraph TD\n    A[8] --> B[3]\n    A[8] --> C[10]\n    B[3] --> D[1]\n    B[3] --> E[6]\n    E[6] --> G[4]\n    E[6] --> H[7]\n    C[10] --> F[14]\n    F[14] --> I[13]\n```\n\n**Árvore IV**\n```mermaid\ngraph TD\n    A[8] --> B[4]\n    A[8] --> C[12]\n    B[4] --> D[2]\n    D[2] --> H[3]\n    B[4] --> E[5]\n    E[5] --> I[7]\n    C[12] --> F[9]\n    F[9] --> J[10]\n    C[12] --> G[14]\n```\n\nÉ CORRETO afirmar que: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas a árvore do quadro I poderia ser uma árvore AVL",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Todas as opções apresentadas nos quadros de I a IV podem ser exemplos de árvores AVL",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Nenhuma das 4 opções apresentadas podem ser exemplos de árvores AVL",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas as opções I e III podem ser exemplos de árvores AVL",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores (de A até D) está correta",
+        "correta": true
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Uma árvore AVL é uma Árvore Binária de Busca (BST) que satisfaz a condição de balanceamento: para qualquer nó, a diferença de altura entre suas subárvores esquerda e direita (fator de balanceamento) é no máximo 1 (em módulo).\n\n- **Árvore I:** Satisfaz a propriedade de BST (ex: 8 < 10 < 12) e todos os nós têm fator de balanceamento 0 ou 1. **É uma árvore AVL.**\n- **Árvore II:** Não satisfaz a propriedade de BST (considerando a ordem alfabética, o nó 'C' não pode ter 'E' como filho esquerdo, pois C < E). Portanto, **não é uma árvore AVL**.\n- **Árvore III:** Satisfaz a propriedade de BST, mas o nó com chave 10 está desbalanceado. Sua subárvore esquerda (nula) tem altura -1 e sua subárvore direita (com raiz 14) tem altura 1. O fator de balanceamento é $(-1) - 1 = -2$. Portanto, **não é uma árvore AVL**.\n- **Árvore IV:** Satisfaz a propriedade de BST e todos os nós estão balanceados. **É uma árvore AVL.**\n\n**Análise das Opções:**\n- (a) Incorreto: A árvore IV também é uma árvore AVL.\n- (b) Incorreto: As árvores II e III não são AVL.\n- (c) Incorreto: As árvores I e IV são AVL.\n- (d) Incorreto: A árvore III não é AVL.\n\nComo nenhuma das alternativas de 'a' a 'd' descreve corretamente a situação (que I e IV são AVL, enquanto II e III não são), a resposta correta é a 'e'."
+  },
+  {
+    "id_questao": "2017_1_q10",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 10,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores (BST, AVL, Rubro-Negra, B-trees, Heap)"
+      }
+    ],
+    "enunciado": "Considere as seguintes árvores onde são apresentados apenas os valores das chaves em cada nó, sem mostrar o valor de outros campos eventualmente existentes. Considerando em todos os casos que as árvores não estão em processo de rotação por inserção de chaves, estando portanto em seu estado final após a inserção do conjunto de chaves mostrado. \n\n**Árvore I**\n```mermaid\ngraph TD\n    A[15] --> B[10]\n    A[15] --> C[20]\n    B[10] --> D[8]\n    B[10] --> E[12]\n    C[20] --> F[16]\n    C[20] --> G[25]\n```\n\n**Árvore II**\n```mermaid\ngraph TD\n    A[A] --> B[B]\n    A[A] --> C[C]\n    B[B] --> D[D]\n    C[C] --> E[E]\n    C[C] --> F[F]\n    E[E] --> G[G]\n    F[F] --> H[H]\n    F[F] --> I[I]\n```\n\n**Árvore III**\n```mermaid\ngraph TD\n    A[8] --> B[3]\n    A[8] --> C[10]\n    B[3] --> D[1]\n    B[3] --> E[6]\n    E[6] --> G[4]\n    E[6] --> H[7]\n    C[10] --> F[14]\n    F[14] --> I[13]\n```\n\n**Árvore IV**\n```mermaid\ngraph TD\n    A[8] --> B[4]\n    A[8] --> C[12]\n    B[4] --> D[2]\n    D[2] --> H[3]\n    B[4] --> E[5]\n    E[5] --> I[7]\n    C[12] --> F[9]\n    F[9] --> J[10]\n    C[12] --> G[14]\n```\n\nÉ CORRETO afirmar que: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas a árvore do quadro I poderia ser uma árvore binária de pesquisa sem balanceamento",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Todas as 4 opções podem ser exemplos de árvores binárias de pesquisa sem balanceamento",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Nenhuma das 4 opções pode ser uma árvore binária de pesquisa sem balanceamento",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas as opções II e III podem de árvores binárias de pesquisa sem balanceamento",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores (de A até D) está correta",
+        "correta": true
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Uma Árvore Binária de Pesquisa (BST) deve satisfazer a propriedade: para qualquer nó `N`, todos os valores na subárvore esquerda de `N` são menores que o valor de `N`, e todos os valores na subárvore direita são maiores.\n\n- **Árvore I:** É uma BST válida. (Ex: 8 < 10 < 15 < 20 < 25)\n- **Árvore II:** Não é uma BST válida assumindo a ordem alfabética. Por exemplo, na raiz A, o filho direito é C, e C tem um filho esquerdo E. A propriedade da BST implicaria que A < E < C, o que é falso.\n- **Árvore III:** É uma BST válida. (Ex: 1 < 3 < 4 < 6 < 7 < 8 < 10 < 13 < 14)\n- **Árvore IV:** É uma BST válida. (Ex: 3 > 2, 7 > 5, 10 > 9 violam a propriedade. Reanalisando, 3 é filho de 2, 7 é filho de 5, 10 é filho de 9. Isso viola a propriedade da BST).\n\n**Correção da Análise da Árvore IV:**\n- Nó 2 tem filho direito 3 (OK: 3 > 2).\n- Nó 5 tem filho direito 7 (OK: 7 > 5).\n- Nó 9 tem filho direito 10 (OK: 10 > 9).\n- Nó 4 tem filhos 2 e 5 (OK: 2 < 4 < 5).\n- Nó 12 tem filhos 9 e 14 (OK: 9 < 12 < 14).\n- Nó 8 tem filhos 4 e 12 (OK: 4 < 8 < 12).\nA árvore IV **é** uma BST válida.\n\n**Conclusão Final da Análise:**\n- Árvore I: É BST.\n- Árvore II: Não é BST.\n- Árvore III: É BST.\n- Árvore IV: É BST.\n\n**Análise das Opções:**\n- (a) Falso. As árvores III e IV também são BSTs.\n- (b) Falso. A árvore II não é uma BST.\n- (c) Falso. As árvores I, III e IV são BSTs.\n- (d) Falso. A árvore II não é, e a árvore I também é.\n\nComo nenhuma das alternativas de 'a' a 'd' está correta, a resposta certa é 'e'."
+  },
+  {
+    "id_questao": "2017_1_q11",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 11,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores (BST, AVL, Rubro-Negra, B-trees, Heap)"
+      },
+      {
+        "nome": "Operações Fundamentais",
+        "subarea": "Travessia"
+      }
+    ],
+    "enunciado": "Sabendo que um arvore binária com 5 nós tem como resultados dos seus percursos pós-ordem e in-ordem, respectivamente STQRPeSQTPR. É CORRETO afirmar: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "O nó raiz tem o valor P",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "Q é um nó folha",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "S é um nó interno",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "T é filho de S",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Todas as alternativas estão corretas",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Podemos reconstruir a árvore usando os percursos.\n- **Pós-ordem (Esquerda, Direita, Raiz):** STQRP. O último elemento, **P**, é a raiz da árvore.\n- **Em-ordem (Esquerda, Raiz, Direita):** SQTPR. Tudo à esquerda da raiz 'P' no percurso em-ordem pertence à subárvore esquerda; tudo à direita pertence à subárvore direita.\n\n1.  **Raiz:** P.\n2.  **Subárvore Esquerda (de P):** Os elementos são S, Q, T (de SQTPR).\n3.  **Subárvore Direita (de P):** O elemento é R (de SQTPR).\n4.  **Analisando a Subárvore Esquerda:**\n    -   Pós-ordem correspondente: STQ (de STQRP).\n    -   Em-ordem correspondente: SQT (de SQTPR).\n    -   A raiz desta subárvore é o último da pós-ordem, que é **Q**.\n    -   No percurso em-ordem (SQT), S está à esquerda de Q e T está à direita. Logo, S é filho esquerdo de Q e T é filho direito de Q.\n\n**Árvore Reconstruída:**\n```mermaid\ngraph TD\n    P --> Q\n    P --> R\n    Q --> S\n    Q --> T\n```\n\n**Análise das Afirmações:**\n- (a) O nó raiz tem o valor P. **(Correto)**\n- (b) Q é um nó folha. **(Falso)**, Q tem filhos S e T.\n- (c) S é um nó interno. **(Falso)**, S é uma folha.\n- (d) T é filho de S. **(Falso)**, T é filho de Q.\n- (e) Todas as alternativas estão corretas. **(Falso)**"
+  },
+  {
+    "id_questao": "2017_1_q12",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 12,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Análise de Complexidade",
+        "subarea": "Análise de Algoritmos"
+      },
+      {
+        "nome": "Operações Fundamentais",
+        "subarea": "Busca"
+      }
+    ],
+    "enunciado": "Sobre as afirmações abaixo:\n\nI. A busca sequencial só pode ser realizada corretamente em vetores que não estejam ordenados \nII. A busca por uma chave em um vetor ordenado pode ser realizada corretamente com número constante de operações, não dependendo do tamanho do vetor. \nIII. Pode-se encontrar o maior elemento de um vetor não ordenado com um algoritmo que realiza um número de operações proporcional ao tamanho do vetor na pior das situação possível para o algoritmo. \n\nPode-se dizer que:",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas I está correta",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas II está correta",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas III está correta",
+        "correta": true
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas II e III estão corretas",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas I e III estão corretas",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **I (Falsa):** A busca sequencial funciona perfeitamente em vetores ordenados. Ela simplesmente não aproveita a ordenação para ser mais eficiente, mas sua correção não é afetada.\n- **II (Falsa):** A busca mais eficiente em um vetor ordenado é a busca binária, que tem complexidade $O(\\log n)$. Não é um número constante de operações; o número de operações depende (logaritmicamente) do tamanho do vetor.\n- **III (Verdadeira):** Para encontrar o maior elemento em um vetor não ordenado, é necessário percorrer o vetor inteiro, comparando cada elemento com o maior valor encontrado até o momento. Isso requer a verificação de todos os 'n' elementos, resultando em um número de operações proporcional a 'n', ou seja, complexidade $O(n)$."
+  },
+  {
+    "id_questao": "2017_1_q13",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 13,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Pilhas"
+      }
+    ],
+    "enunciado": "Dada uma lista encadeada onde cada nó da lista é do tipo No, cujos campos são um ponteiro para o próximo elemento (campo prox) e um dado do tipo inteiro (campo dado). Considere que: (1) a lista encadeada não possui um nó cabeça de lista, portanto todos os nós contém valores presentes na lista; (2) todos os tipos de dados foram previamente declarados no programa; (3) a função não deve ter problemas de alocação de memória, seja por deixar de alocar dinamicamente dados necessários ou por causar alocação dinâmica de dados desnecessária. Marque a alternativa CORRETA sobre as funções função I e função II\n\n**Função I**\n```c\nvoid funcaol(No *prim, int chave) {\n  No *aux = (No *) malloc(sizeof(No));\n  aux->chave = chave;\n  aux->prox = prim;\n  prim = aux;\n}\n```\n**Função II**\n```c\nvoid funcaolI(No **prim, int chave) { // Corrigido para funcaoII\n  No *aux = (No *) malloc(sizeof(No));\n  aux->chave = chave;\n  aux->prox = *prim;\n  *prim = aux;\n}\n```",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas a função função I pode ser usada para inserir corretamente elementos em uma pilha sem gerar qualquer problema de alocação de memória ou erro na pilha.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas a função função II pode ser usada para inserir corretamente elementos em uma pilha sem gerar qualquer problema de alocação de memória ou erro na pilha.",
+        "correta": true
+      },
+      {
+        "letra": "c",
+        "texto": "Ambas as funções podem ser usadas para inserir elementos em uma pilha sem gerar qualquer problema de alocação de memória ou erro na pilha.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas a função função I serve para inserir corretamente elementos em uma lista encadeada sem gerar erros, mas não em uma pilha.",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas a função função II serve para inserir corretamente elementos em uma lista encadeada sem gerar erros, mas não em uma pilha.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Inserir um elemento em uma pilha implementada com lista encadeada significa inserir no início da lista. Para modificar a cabeça da lista (o ponteiro `prim`), é necessário passar seu endereço (um ponteiro para ponteiro, `**`).\n- **Função I:** Recebe o ponteiro `prim` por **valor**. Qualquer alteração em `prim` dentro da função (como `prim = aux;`) é local e não afeta o ponteiro original fora da função. Portanto, a lista não é modificada corretamente.\n- **Função II:** Recebe o ponteiro `prim` por **referência** (`No **prim`). A linha `*prim = aux;` modifica o ponteiro original que foi passado para a função, atualizando corretamente a cabeça da lista para o novo nó. Esta é a forma correta de implementar a inserção no início (operação de push da pilha).\nA alternativa correta indica que a função II pode ser usada para inserir em uma pilha, o que é verdade, pois a inserção no início da lista é a operação de push."
+  },
+  {
+    "id_questao": "2017_1_q14",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 14,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Hashing"
+      },
+      {
+        "nome": "Hashing",
+        "subarea": "Resolução de Colisões"
+      }
+    ],
+    "enunciado": "Considere as afirmações sobre um hash linear (sem encadeamento): \n\nI. No evento de uma colisão, o valor a ser inserido é sempre colocado no início do array; \nII. A busca pela chave é realizada utilizando busca binária (mais eficiente) \nIII. É obrigatório o uso de funções diferentes para inserção e remoção de chaves \nIV. É projetado para funcionar com arrays de tamanho previamente definido. \n\nSobre as afirmações, sabe-se que:",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Todas são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Todas são falsas",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas II e IV são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas IV é verdadeira",
+        "correta": true
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas I e II são verdadeiras",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Hash linear refere-se a uma tabela hash com endereçamento aberto e sondagem linear.\n- **I (Falsa):** Em uma colisão, a sondagem linear procura a próxima posição livre (`i+1`, `i+2`, etc.), não o início do array.\n- **II (Falsa):** A busca binária requer que o vetor esteja ordenado. Os elementos em uma tabela hash não estão em ordem, então a busca deve seguir a mesma lógica da inserção (calcular o hash e fazer a sondagem linear), que é uma busca sequencial a partir do ponto de colisão.\n- **III (Falsa):** As funções de inserção e remoção podem ser diferentes em implementação, mas não é uma obrigatoriedade conceitual. A lógica de encontrar a posição de uma chave é a mesma para ambas.\n- **IV (Verdadeira):** Tabelas hash baseadas em arrays, como as que usam endereçamento aberto, operam sobre um array de tamanho fixo, pré-definido. Estratégias de redimensionamento podem ser aplicadas, mas a estrutura base é um array de tamanho fixo."
+  },
+  {
+    "id_questao": "2017_1_q15",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 15,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Hashing"
+      },
+      {
+        "nome": "Hashing",
+        "subarea": "Resolução de Colisões"
+      }
+    ],
+    "enunciado": "Considere as afirmações sobre hash linear vs hash encadeado \n\nI. Para uma tabela hash de tamanho M, tanto o hash linear quanto o hash encadeado podem receber uma quantidade de chaves C, onde C > M \nII. Quanto acontece uma colisão no hash encadeado, a chave é inserida na posição livre mais próxima da chave original. \nIII. Hash linear funciona melhor em disco, pois as chaves obrigatoriamente ficam em espaços separados de memória, facilitando a varredura. \nIV. O uso de uma segunda função de hash (no hash encadeado), garante um melhor espalhamento das chaves pela tabela hash \n\nSobre as afirmações, sabe-se que:",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Todas são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Todas são falsas",
+        "correta": true
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas I e III são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas III é verdadeira",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas I e II são verdadeiras",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **I (Falsa):** Hash linear (endereçamento aberto) não pode armazenar mais chaves do que o tamanho da tabela (C não pode ser > M). O hash encadeado pode, pois as chaves extras são armazenadas nas listas encadeadas.\n- **II (Falsa):** Isso descreve a sondagem linear, que é uma técnica de endereçamento aberto. No hash encadeado, a chave é inserida na lista encadeada correspondente ao índice da colisão.\n- **III (Falsa):** O hash linear tende a ter melhor desempenho em disco devido à localidade de referência (elementos próximos na sondagem estão próximos na memória), ao contrário do hash encadeado, cujos nós da lista podem estar espalhados pela memória.\n- **IV (Falsa):** O uso de uma segunda função de hash (hashing duplo) é uma técnica de **endereçamento aberto**, não de hash encadeado. O hash encadeado usa uma única função de hash para determinar em qual lista inserir a chave."
+  },
+  {
+    "id_questao": "2017_1_q16",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 16,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores (BST, AVL, Rubro-Negra, B-trees, Heap)"
+      }
+    ],
+    "enunciado": "Considere que o vetor a seguir é uma heap mínima (assuma índice do array iniciando em zero) \n\n`[4, 5, 7, 10, 13, 11, 15, 22]`\n\nMarque a alternativa que contem a afirmativa CORRETA: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Essa heap possui todos os nós folhas na mesma altura",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Ao alterar o valor 22 por 6, 2 trocas são necessárias para corrigir a heap",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "O valor no índice 7 precisa ser necessariamente menor que o do índice 4",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "O valor no índice 6 precisa ser obrigatoriamente maior que o do índice 1",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Ao alterar o valor 13 por 8, nada precisa ser feito para corrigir a heap",
+        "correta": true
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Em uma heap mínima, todo nó pai deve ser menor ou igual a seus filhos. Em um array com índice 0, os filhos do nó na posição `i` são `2*i+1` e `2*i+2`, e o pai do nó `j` é `(j-1)/2`.\n- **Vetor:** `[4, 5, 7, 10, 13, 11, 15, 22]`\n\n**Análise das Opções:**\n- **(a) Falsa:** Uma heap é uma árvore binária quase completa, o que significa que as folhas podem estar em dois níveis adjacentes.\n- **(b) Falsa:** Se o valor 22 (índice 7) for trocado por 6, a heap precisa ser corrigida (operação `heapify-up` ou `sift-up`). O pai de 6 (índice 7) está em `(7-1)/2 = 3`, valor 10. Como 6 < 10, eles trocam. A heap se torna `[4, 5, 7, 6, 13, 11, 15, 10]`. Agora 6 está no índice 3. Seu pai está em `(3-1)/2 = 1`, valor 5. Como 6 > 5, a propriedade da heap é satisfeita e o processo para. Foi necessária apenas **1 troca**.\n- **(c) Falsa:** O nó no índice 7 (valor 22) e o nó no índice 4 (valor 13) são primos, não há relação de ordem obrigatória entre eles.\n- **(d) Falsa:** O valor no índice 6 (15) e no índice 1 (5) não têm relação direta. O pai do nó 6 é o nó `(6-1)/2 = 2` (valor 7). A relação é 15 > 7, o que está correto para uma heap mínima.\n- **(e) Verdadeira:** Ao alterar o valor 13 (índice 4) por 8. A heap se torna `[4, 5, 7, 10, 8, 11, 15, 22]`. Verificamos a propriedade da heap: o pai de 8 (índice 4) está em `(4-1)/2 = 1`, valor 5. Como 8 > 5, a propriedade em relação ao pai é mantida. Os filhos de 8 estariam nos índices 9 e 10, que estão fora do vetor. Portanto, a heap permanece correta e **nada precisa ser feito**."
+  },
+  {
+    "id_questao": "2017_1_q18",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 18,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      }
+    ],
+    "enunciado": "Considere o código abaixo, assumindo que o mesmo é usado dentro de um programa e que os todos os cabeçalhos necessários são incluídos: \n\n```c\n// Conta ocorrências de uma chave na lista encadeada, retornando o total de ocorrências, zero caso a chave não ocorra\nint ContaOcorrenciasChave (tipoNo *prim, int chave) {\n  tipoNo *aux = prim;\n  int cont = 0;\n  int x;\n  for (x=0; aux[x] != NULL; x++) {\n    if (aux[x].dado == chave) // A sintaxe original 'if [x].c f (aux ( ). dado == chave)' foi corrigida para uma sintaxe C válida\n      cont++;\n  }\n  return x;\n}\n```\nMarque a alternativa CORRETA dentre as afirmações abaixo: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "O código executa a tarefas proposta sem gerar qualquer tipo de erro de lógica ou de vazamento de memória",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "O código nem compila",
+        "correta": true
+      },
+      {
+        "letra": "c",
+        "texto": "O código executa a tarefa proposta sem erros de lógica",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "O código não gera erro de segmentação",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma das alternativas anteriores",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** O código tenta iterar sobre uma lista encadeada como se fosse um array. \n- A sintaxe `aux[x]` é usada para acessar elementos de um array, onde `aux` seria o endereço base e `x` o deslocamento. Para uma lista encadeada, `aux` é um ponteiro para um único `tipoNo`.\n- A forma correta de percorrer uma lista encadeada seria com um laço `while(aux != NULL)` e atualizando o ponteiro com `aux = aux->prox;`.\n- Devido ao uso incorreto da notação de array (`[]`) em um ponteiro para struct, o código não compilará. Um compilador C gerará um erro informando que não é possível aplicar indexação a um tipo ponteiro para struct.\n\n- **(a, c, d) Falso:** O código não compila, então não pode executar a tarefa ou gerar erros de execução como falha de segmentação. Ele falha na fase de compilação.\n- **(b) Verdadeiro:** O código apresenta erros de sintaxe que impedem a compilação."
+  },
+  {
+    "id_questao": "2017_1_q19",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 19,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      },
+      {
+        "nome": "Análise de Complexidade",
+        "subarea": "Notação Big O"
+      }
+    ],
+    "enunciado": "Uma lista encadeada simples é uma estrutura que corresponde a uma sequência lógica de entradas ou nós.  Cada nó armazena a localização do próximo elemento na sequência, ou seja, de seu nó sucessor.  Marque a alternativa CORRETA: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "A existência de um ponteiro apontando para o 1º elemento e outro para o fim da lista permite que a inserção ou deleção de dados de um nó que esteja nas extremidades da lista seja rapidamente executada",
+        "correta": true
+      },
+      {
+        "letra": "b",
+        "texto": "Enquanto a entrada que determina o topo da lista é mantida em um nó descritor dessa lista, a entrada que marca o fim da lista é mantida em todos os nós da lista.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "O armazenamento de uma lista requer uma área contígua de memória para permitir a otimização no processamento de busca de valores chaves na lista",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "O armazenamento de uma lista requer uma área contígua de memória. Como listas são estruturas previamente projetadas e definidas, normalmente são definidos procedimentos que permitem inserir e remover valores com eficiência.",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Para estabelecer a ligação entre um nó já pertencente a uma lista e um novo nó, basta fazer com que o novo nó referencie no campo next, o nó que anteriormente era referenciado pelo nó original, desde que esse campo não tenha o valor nulo",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:** Analisando as operações em uma lista com ponteiros para o início (cabeça) e fim (cauda).\n- **Inserção no início:** Tendo o ponteiro da cabeça, a operação é $O(1)$.\n- **Remoção no início:** Tendo o ponteiro da cabeça, a operação é $O(1)$.\n- **Inserção no fim:** Tendo o ponteiro da cauda, a operação é $O(1)$.\n- **Remoção no fim (em lista simplesmente encadeada):** Mesmo com o ponteiro da cauda, é preciso encontrar o *penúltimo* nó para atualizar seu ponteiro `next` para `NULL`. Isso exige percorrer a lista desde o início, uma operação $O(n)$.\n\nA alternativa (a) afirma que a inserção ou deleção nas extremidades é *rapidamente executada*. Isso é verdade para 3 das 4 operações (inserção no início/fim, remoção no início). A remoção no fim é a exceção. No entanto, comparada com as outras alternativas, esta é a mais correta.\n\n- **(b) Falso:** O ponteiro para o fim é mantido em uma estrutura descritora da lista, não em todos os nós.\n- **(c, d) Falso:** Listas encadeadas são caracterizadas por **não** usarem memória contígua.\n- **(e) Falso:** A descrição da ligação está incompleta e imprecisa. Para inserir um nó novo *depois* de um nó original, o `next` do original aponta para o novo, e o `next` do novo aponta para o que era o `next` do original."
+  },
+  {
+    "id_questao": "2017_1_q20",
+    "prova_referencia": "2017-1.pdf",
+    "numero_questao": 20,
+    "ano_prova": 2017,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      }
+    ],
+    "enunciado": "Marque a alternativa CORRETA. Uma lista duplamente encadeada tem como característica ser formada por elementos que: ",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Se concatenam de forma circular, de tal maneira que, ao chegar ao final da lista, o próximo elemento volta a ser o primeiro.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Contêm, além de um ou mais campos chave, mais um campo de ponteiro: o próximo, que permite o acesso ao elemento que sucede o atual (o próximo) presente na mesma lista.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Contêm, além de um campo chave, mais um campo de ponteiro: o próximo, que permite o acesso ao elemento que sucede o atual (o próximo) presente na mesma lista, de tal forma que os campos chave estão ordenados, ou seja, a chave do próximo é sempre maior ou igual à chave do atual elemento.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Contêm, além de um ou mais campos chave, dois outros campos de ponteiros: próximo e anterior, que permitem o acesso aos elementos adjacentes (próximo e anterior) presentes na mesma lista.",
+        "correta": true
+      },
+      {
+        "letra": "e",
+        "texto": "Estão em posições adjacentes da memória, permitindo o acesso sequencial ao próximo e ao anterior de cada elemento pelo simples uso de um índice.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Raciocínio:**\n- **(a) Falso:** Isso descreve uma lista circular, que pode ser simples ou duplamente encadeada, mas não é a característica definidora de uma lista duplamente encadeada.\n- **(b) Falso:** Isso descreve uma lista **simplesmente** encadeada.\n- **(c) Falso:** Isso descreve uma lista simplesmente encadeada e **ordenada**. Ser ordenada não é uma característica inerente de todas as listas.\n- **(d) Verdadeiro:** A característica que define uma lista duplamente encadeada é que cada nó possui, além do dado, dois ponteiros: um para o próximo elemento (`próximo`) e um para o elemento anterior (`anterior`).\n- **(e) Falso:** Isso descreve um **array (vetor)**, que armazena elementos em memória contígua."
   }
 ]
