@@ -42,7 +42,7 @@ Acesse a aplicação online em: [https://ppgi-overfit.vercel.app](https://ppgi-o
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/ppgi-overfit.git
+   git clone https://github.com/danielgohl13/ppgi-overfit.git
    cd ppgi-overfit
    ```
 
