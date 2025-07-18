@@ -9,6 +9,8 @@ Aplicação web para estudo e prática de questões do Programa de Pós-Graduaç
 - Estatísticas de desempenho
 - Modo claro/escuro
 - Suporte a LaTeX para fórmulas matemáticas
+- Renderização de diagramas Mermaid
+- Feedback sonoro para acertos e erros
 - Responsivo para dispositivos móveis
 
 ## Tecnologias

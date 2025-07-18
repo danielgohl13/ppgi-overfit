@@ -19,7 +19,10 @@
 <body>
     <div class="header-container">
         <h1>PPGI Overfit</h1>
-        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
+        <div class="header-controls">
+            <button id="audioToggle" class="audio-toggle" aria-label="Desativar sons">🔊</button>
+            <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
+        </div>
     </div>
 
     <div class="filters">
@@ -132,6 +135,7 @@
 
     <!-- Local JavaScript -->
     <script src="js/utils.js"></script>
+    <script src="js/audio.js"></script>
     <script src="js/stats.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/questions.js"></script>

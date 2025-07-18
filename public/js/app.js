@@ -1,4 +1,16 @@
-/**
+/**               :=%==. -               
+           -%@#@**=%@@@%*=            
+         -% #  .#*+#+##+%%*+          
+        ++    -:-@@=@@@@@@@@*         
+       +=. :.%@@#@@@+=@@@@%#@@        
+       :. @@@@@@@    ..  *@@@*        
+       %%.**.=  *@:    =@@@#@*        
+       @@*%@@@@@@@@@@@@@@@@=@#        
+       +%%#+*#@@%@%@@@@@@%@@%+        
+        *%@##@%@#@#%@@@@*#**:         
+         *%@*%#@#@@**+-+*+:=          
+          :=:+**%%##%#+:+-            
+              :=-++-+Dannast.                
  * Arquivo principal da aplicação
  */
 
@@ -41,6 +53,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('showAnswerBtn').addEventListener('click', showAnswer);
     document.getElementById('randomBtn').addEventListener('click', goToRandomQuestion);
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    
+    // Usar o objeto AudioManager para gerenciar o áudio
+    if (window.AudioManager) {
+        document.getElementById('audioToggle').addEventListener('click', function() {
+            window.AudioManager.toggleAudio();
+        });
+        // Inicializar o botão de áudio
+        window.AudioManager.updateAudioButton();
+    }
+    
     document.getElementById('statsToggle').addEventListener('click', toggleStatsPanel);
     document.getElementById('resetStatsBtn').addEventListener('click', resetStats);
     

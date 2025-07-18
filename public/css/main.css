@@ -733,4 +733,36 @@ os para o rodapé */
     margin-top: 10px;
     font-size: 0.85em;
     opacity: 0.8;
+}/*
+ Estilos para o botão de áudio */
+.header-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.audio-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.audio-toggle:hover {
+    background-color: var(--border-color);
+}
+
+/* Animação para feedback visual ao reproduzir sons */
+@keyframes soundFeedback {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.sound-feedback {
+    animation: soundFeedback 0.3s ease;
 }

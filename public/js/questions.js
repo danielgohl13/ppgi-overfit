@@ -186,6 +186,15 @@ function showQuestion(index) {
                 // Marcar a opção selecionada
                 optionElement.classList.add(isCorrect ? 'correct' : 'incorrect');
                 
+                // Reproduzir som de acerto ou erro
+                if (window.AudioManager) {
+                    if (isCorrect) {
+                        window.AudioManager.playCorrectSound();
+                    } else {
+                        window.AudioManager.playIncorrectSound();
+                    }
+                }
+                
                 // Registrar a resposta nas estatísticas
                 recordAnswer(isCorrect, question.area);
                 
