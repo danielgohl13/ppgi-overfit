@@ -1,7 +1,7 @@
 {
   "name": "ppgi-overfit",
   "version": "1.0.0",
-  "description": "Aplicação de banco de questões para o PPGI",
+  "description": "Aplicação para estudo e prática de questões do PPGI",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
