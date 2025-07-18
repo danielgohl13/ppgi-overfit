@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('prevBtn').addEventListener('click', () => showQuestion(currentQuestionIndex - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showQuestion(currentQuestionIndex + 1));
     document.getElementById('showAnswerBtn').addEventListener('click', showAnswer);
+    document.getElementById('shuffleBtn').addEventListener('click', shuffleQuestions);
     document.getElementById('randomBtn').addEventListener('click', goToRandomQuestion);
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
     

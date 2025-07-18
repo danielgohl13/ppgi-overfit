@@ -384,4 +384,73 @@ function goToRandomQuestion() {
     } while (randomIndex === currentQuestionIndex);
     
     showQuestion(randomIndex);
+}/**
+
+ * Embaralha as questões filtradas usando o algoritmo Fisher-Yates
+ */
+function shuffleQuestions() {
+    if (filteredQuestions.length <= 1) {
+        if (window.modalManager) {
+            window.modalManager.showMessage('Não há questões suficientes para embaralhar!', 'error');
+        }
+        return;
+    }
+
+    // Adicionar animação ao botão shuffle
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    if (shuffleBtn) {
+        shuffleBtn.classList.add('shuffling');
+        setTimeout(() => {
+            shuffleBtn.classList.remove('shuffling');
+        }, 600);
+    }
+
+    // Adicionar animação ao card da questão
+    const questionCard = document.getElementById('questionCard');
+    if (questionCard) {
+        questionCard.classList.add('shuffling');
+        setTimeout(() => {
+            questionCard.classList.remove('shuffling');
+        }, 800);
+    }
+
+    // Mostrar feedback visual centralizado
+    showShuffleFeedback(filteredQuestions.length);
+
+    // Algoritmo Fisher-Yates para embaralhar array
+    setTimeout(() => {
+        for (let i = filteredQuestions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [filteredQuestions[i], filteredQuestions[j]] = [filteredQuestions[j], filteredQuestions[i]];
+        }
+
+        // Resetar para a primeira questão após embaralhar
+        currentQuestionIndex = 0;
+        showQuestion(0);
+
+        // Mostrar indicador de shuffle
+        const shuffleIndicator = document.getElementById('shuffleIndicator');
+        if (shuffleIndicator) {
+            shuffleIndicator.style.display = 'block';
+        }
+
+        console.log(`Questões embaralhadas! Total: ${filteredQuestions.length}`);
+    }, 400); // Delay para sincronizar com a animação
+}/**
+ 
+* Mostra feedback visual centralizado para o shuffle
+ * @param {number} count - Número de questões embaralhadas
+ */
+function showShuffleFeedback(count) {
+    const feedback = document.createElement('div');
+    feedback.className = 'shuffle-feedback';
+    feedback.innerHTML = `🔀 ${count} questões<br>embaralhadas!`;
+    
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        if (feedback.parentNode) {
+            feedback.parentNode.removeChild(feedback);
+        }
+    }, 1500);
 }

@@ -539,4 +539,108 @@ s Indicators */
     .modal-footer {
         padding: 15px 20px;
     }
+}/*
+ Shuffle Button Animation */
+.control-btn.shuffling {
+    animation: shuffleRotate 0.6s ease-in-out;
+}
+
+@keyframes shuffleRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    75% { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Question Card Shuffle Animation */
+.question-card.shuffling {
+    animation: cardShuffle 0.8s ease-in-out;
+}
+
+@keyframes cardShuffle {
+    0% { transform: translateX(0) rotateY(0deg); opacity: 1; }
+    25% { transform: translateX(-20px) rotateY(-15deg); opacity: 0.8; }
+    50% { transform: translateX(20px) rotateY(15deg); opacity: 0.6; }
+    75% { transform: translateX(-10px) rotateY(-5deg); opacity: 0.8; }
+    100% { transform: translateX(0) rotateY(0deg); opacity: 1; }
+}
+
+/* Enhanced shuffle feedback */
+.shuffle-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: 500;
+    z-index: 10001;
+    animation: shuffleFeedback 1.5s ease-in-out;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes shuffleFeedback {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+}/* S
+huffle Indicator */
+.shuffle-indicator {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 500;
+    margin: 0 15px;
+    box-shadow: 0 2px 8px rgba(116, 185, 255, 0.3);
+    animation: shuffleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes shuffleGlow {
+    0% { box-shadow: 0 2px 8px rgba(116, 185, 255, 0.3); }
+    100% { box-shadow: 0 2px 12px rgba(116, 185, 255, 0.6); }
+}
+
+/* Header container adjustments */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.header-container h1 {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Mobile adjustments for shuffle indicator */
+@media (max-width: 768px) {
+    .shuffle-indicator {
+        font-size: 0.75em;
+        padding: 4px 8px;
+        margin: 0 8px;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-controls {
+        order: 2;
+    }
+    
+    .shuffle-indicator {
+        order: 1;
+        margin: 5px 0;
+    }
 }

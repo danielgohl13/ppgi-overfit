@@ -100,6 +100,13 @@ class ModalManager {
         if (typeof applyFilters === 'function') {
             filteredQuestions = applyFilters(questions);
             document.getElementById('totalQuestionsDisplay').textContent = filteredQuestions.length;
+            
+            // Esconder indicador de shuffle quando filtros são aplicados
+            const shuffleIndicator = document.getElementById('shuffleIndicator');
+            if (shuffleIndicator) {
+                shuffleIndicator.style.display = 'none';
+            }
+            
             if (filteredQuestions.length > 0) {
                 showQuestion(0);
             } else {
@@ -371,6 +378,13 @@ class KeyboardManager {
                     e.preventDefault();
                     goToRandomQuestion();
                     break;
+                case 's':
+                case 'S':
+                    e.preventDefault();
+                    if (typeof shuffleQuestions === 'function') {
+                        shuffleQuestions();
+                    }
+                    break;
             }
         });
     }
@@ -378,7 +392,7 @@ class KeyboardManager {
 
 // Initialize all managers when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    new ModalManager();
+    window.modalManager = new ModalManager();
     new SwipeManager();
     new KeyboardManager();
 });
