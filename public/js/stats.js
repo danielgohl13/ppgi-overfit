@@ -16,12 +16,26 @@ let userStats = {
 };
 
 /**
- * Carrega as estatísticas do localStorage
+ * Carrega as estatísticas do progressManager
  */
 function loadStats() {
-    const savedStats = localStorage.getItem('ppgi-stats');
-    if (savedStats) {
-        userStats = { ...userStats, ...JSON.parse(savedStats) };
+    if (window.progressManager) {
+        const progressStats = window.progressManager.getProgressStats();
+        const areaStats = window.progressManager.getAreaStats();
+        const currentStreak = window.progressManager.getCurrentStreak();
+        
+        userStats.totalAnswered = progressStats.totalAnswered;
+        userStats.correctAnswers = progressStats.totalCorrect;
+        userStats.currentStreak = currentStreak;
+        
+        // Converter estatísticas de área para o formato esperado
+        userStats.areaStats = {};
+        Object.keys(areaStats).forEach(areaName => {
+            userStats.areaStats[areaName] = {
+                total: areaStats[areaName].total,
+                correct: areaStats[areaName].correct
+            };
+        });
     }
     updateStatsDisplay();
 }
@@ -125,6 +139,12 @@ function updateAreaPerformanceChart() {
  */
 function resetStats() {
     if (confirm('Tem certeza que deseja limpar todas as estatísticas? Esta ação não pode ser desfeita.')) {
+        // Limpar progresso no progressManager
+        if (window.progressManager) {
+            window.progressManager.clearAllProgress();
+        }
+        
+        // Limpar estatísticas locais
         userStats = {
             totalAnswered: 0,
             correctAnswers: 0,
@@ -138,6 +158,11 @@ function resetStats() {
         };
         saveStats();
         updateStatsDisplay();
+        
+        // Recarregar a questão atual para remover o estado de "respondida"
+        if (typeof showQuestion === 'function' && typeof currentQuestionIndex !== 'undefined') {
+            showQuestion(currentQuestionIndex);
+        }
     }
 }
 

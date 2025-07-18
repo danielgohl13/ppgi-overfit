@@ -151,6 +151,68 @@ function showQuestion(index) {
     // Renderizar diagramas Mermaid na questão
     renderMermaid(questionText);
     
+    // Verificar se a questão já foi respondida
+    const savedProgress = window.progressManager ? window.progressManager.getQuestionProgress(question.id_questao) : null;
+    
+    // Atualizar indicadores visuais do progresso
+    const questionCard = document.getElementById('questionCard');
+    if (questionCard) {
+        // Remover classes anteriores
+        questionCard.classList.remove('answered', 'incorrect');
+        
+        // Remover indicador anterior se existir
+        const existingIndicator = questionCard.querySelector('.progress-indicator');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+        
+        // Adicionar indicadores se a questão foi respondida
+        if (savedProgress) {
+            questionCard.classList.add('answered');
+            
+            // Criar indicador visual
+            const indicator = document.createElement('div');
+            indicator.className = `progress-indicator ${savedProgress.isCorrect ? 'correct' : 'incorrect'}`;
+            indicator.innerHTML = savedProgress.isCorrect ? '✓' : '✗';
+            indicator.title = savedProgress.isCorrect ? 'Respondida corretamente' : 'Respondida incorretamente';
+            questionCard.appendChild(indicator);
+            
+            if (!savedProgress.isCorrect) {
+                questionCard.classList.add('incorrect');
+            }
+        }
+    }
+    
+    // Atualizar status na meta da questão
+    if (questionMeta && question.ano_prova) {
+        let statusBadge = '';
+        if (savedProgress) {
+            if (savedProgress.isCorrect) {
+                statusBadge = '<span class="question-status answered-correct">✓ Correta</span>';
+            } else {
+                statusBadge = '<span class="question-status answered-incorrect">✗ Incorreta</span>';
+            }
+        } else {
+            statusBadge = '<span class="question-status new">Nova</span>';
+        }
+        
+        let metaContent = `<span class="question-year">Prova ${question.ano_prova}</span>`;
+        
+        // Adicionar áreas
+        if (question.area && Array.isArray(question.area) && question.area.length > 0) {
+            const areas = question.area.map(area => {
+                if (area.subarea) {
+                    return `${area.nome} - ${area.subarea}`;
+                }
+                return area.nome;
+            }).join(' • ');
+            metaContent += ` <span class="question-separator">•</span> <span class="question-areas">${areas}</span>`;
+        }
+        
+        metaContent += statusBadge;
+        questionMeta.innerHTML = metaContent;
+    }
+    
     // Limpar opções anteriores
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
@@ -164,6 +226,25 @@ function showQuestion(index) {
             
             // Renderizar LaTeX na opção
             renderLatex(optionElement);
+            
+            // Restaurar estado se a questão já foi respondida
+            if (savedProgress && savedProgress.selectedOption === option.letra) {
+                selectedOption = option.letra;
+                optionElement.classList.add('selected');
+                
+                // Marcar como correta ou incorreta
+                const isCorrect = option.correta === true;
+                optionElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+                
+                // Mostrar explicação se disponível
+                if (question.explicacao_geral) {
+                    const explanation = document.getElementById('explanation');
+                    explanation.innerHTML = processMarkdown(question.explicacao_geral);
+                    renderLatex(explanation);
+                    renderMermaid(explanation);
+                    explanation.style.display = 'block';
+                }
+            }
             
             // Adicionar evento de clique
             optionElement.addEventListener('click', function() {
@@ -192,6 +273,16 @@ function showQuestion(index) {
                     } else {
                         window.AudioManager.playIncorrectSound();
                     }
+                }
+                
+                // Registrar a resposta no sistema de persistência
+                if (window.progressManager && question.id_questao) {
+                    window.progressManager.recordAnswer(
+                        question.id_questao,
+                        option.letra,
+                        isCorrect,
+                        question.area
+                    );
                 }
                 
                 // Registrar a resposta nas estatísticas

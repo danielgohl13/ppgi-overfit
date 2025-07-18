@@ -46,6 +46,23 @@ class ModalManager {
             statsModalClose.addEventListener('click', () => this.closeModal(statsModal));
         }
 
+        // Event listeners for progress management
+        const exportProgressBtn = document.getElementById('exportProgressBtn');
+        const importProgressBtn = document.getElementById('importProgressBtn');
+        const importProgressFile = document.getElementById('importProgressFile');
+
+        if (exportProgressBtn) {
+            exportProgressBtn.addEventListener('click', () => this.exportProgress());
+        }
+        if (importProgressBtn) {
+            importProgressBtn.addEventListener('click', () => {
+                importProgressFile.click();
+            });
+        }
+        if (importProgressFile) {
+            importProgressFile.addEventListener('change', (e) => this.importProgress(e));
+        }
+
         // Close modal when clicking outside
         window.addEventListener('click', (event) => {
             if (event.target.classList.contains('modal')) {
@@ -100,6 +117,101 @@ class ModalManager {
         document.getElementById('areaFilter').value = '';
         document.getElementById('subareaFilter').value = '';
         this.applyFilters();
+    }
+
+    exportProgress() {
+        if (window.progressManager) {
+            const progressData = window.progressManager.exportProgress();
+            const blob = new Blob([progressData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ppgi-overfit-progress-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show success message
+            this.showMessage('Progresso exportado com sucesso!', 'success');
+        }
+    }
+
+    importProgress(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const jsonData = e.target.result;
+                if (window.progressManager && window.progressManager.importProgress(jsonData)) {
+                    // Reload stats and current question
+                    if (typeof loadStats === 'function') {
+                        loadStats();
+                    }
+                    if (typeof showQuestion === 'function' && typeof currentQuestionIndex !== 'undefined') {
+                        showQuestion(currentQuestionIndex);
+                    }
+                    
+                    this.showMessage('Progresso importado com sucesso!', 'success');
+                } else {
+                    this.showMessage('Erro ao importar progresso. Verifique o arquivo.', 'error');
+                }
+            } catch (error) {
+                console.error('Erro ao importar progresso:', error);
+                this.showMessage('Erro ao importar progresso. Arquivo inválido.', 'error');
+            }
+        };
+        reader.readAsText(file);
+        
+        // Clear the input
+        event.target.value = '';
+    }
+
+    showMessage(message, type = 'info') {
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.className = `message message-${type}`;
+        messageEl.textContent = message;
+        messageEl.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            max-width: 300px;
+        `;
+        
+        // Set background color based on type
+        switch (type) {
+            case 'success':
+                messageEl.style.backgroundColor = '#27ae60';
+                break;
+            case 'error':
+                messageEl.style.backgroundColor = '#e74c3c';
+                break;
+            default:
+                messageEl.style.backgroundColor = '#3498db';
+        }
+        
+        // Add to page
+        document.body.appendChild(messageEl);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            messageEl.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                if (messageEl.parentNode) {
+                    messageEl.parentNode.removeChild(messageEl);
+                }
+            }, 300);
+        }, 3000);
     }
 }
 
