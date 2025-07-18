@@ -48,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adicionar eventos aos botões
     document.getElementById('prevBtn').addEventListener('click', () => showQuestion(currentQuestionIndex - 1));
     document.getElementById('nextBtn').addEventListener('click', () => showQuestion(currentQuestionIndex + 1));
-    document.getElementById('prevBtnMobile').addEventListener('click', () => showQuestion(currentQuestionIndex - 1));
-    document.getElementById('nextBtnMobile').addEventListener('click', () => showQuestion(currentQuestionIndex + 1));
     document.getElementById('showAnswerBtn').addEventListener('click', showAnswer);
     document.getElementById('randomBtn').addEventListener('click', goToRandomQuestion);
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
@@ -63,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.AudioManager.updateAudioButton();
     }
     
-    document.getElementById('statsToggle').addEventListener('click', toggleStatsPanel);
     document.getElementById('resetStatsBtn').addEventListener('click', resetStats);
     
     // Adicionar eventos aos filtros

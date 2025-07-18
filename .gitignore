@@ -72,3 +72,5 @@ ehthumbs.db
 # Arquivos de backup
 *.backup
 *~
+# Ignorar arquivo README.md na pasta audio
+public/audio/README.md

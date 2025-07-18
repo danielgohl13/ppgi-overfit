@@ -82,8 +82,8 @@ async function loadQuestions() {
         questions = questionArrays.flat();
         console.log(`Total de questões carregadas: ${questions.length}`);
         
-        // Atualizar contadores
-        document.getElementById('totalQuestions').textContent = questions.length;
+        // Log do total de questões carregadas
+        console.log(`Total de questões disponíveis: ${questions.length}`);
         
         // Preencher os filtros
         populateFilters(questions);
@@ -120,13 +120,10 @@ function showQuestion(index) {
     
     const question = filteredQuestions[index];
     
-    // Criar informações do cabeçalho da questão
-    let questionHeader = '';
-    
-    // Adicionar ano da prova
+    // Atualizar metadados da questão
+    const questionMeta = document.getElementById('questionMeta');
     if (question.ano_prova) {
-        questionHeader += `<div class="question-meta">`;
-        questionHeader += `<span class="question-year">Prova ${question.ano_prova}</span>`;
+        let metaContent = `<span class="question-year">Prova ${question.ano_prova}</span>`;
         
         // Adicionar áreas
         if (question.area && Array.isArray(question.area) && question.area.length > 0) {
@@ -136,15 +133,17 @@ function showQuestion(index) {
                 }
                 return area.nome;
             }).join(' • ');
-            questionHeader += ` <span class="question-separator">•</span> <span class="question-areas">${areas}</span>`;
+            metaContent += ` <span class="question-separator">•</span> <span class="question-areas">${areas}</span>`;
         }
         
-        questionHeader += `</div>`;
+        questionMeta.innerHTML = metaContent;
+    } else {
+        questionMeta.innerHTML = '';
     }
     
     // Atualizar texto da questão
     const questionText = document.getElementById('questionText');
-    questionText.innerHTML = questionHeader + processMarkdown(question.enunciado);
+    questionText.innerHTML = processMarkdown(question.enunciado);
     
     // Renderizar LaTeX na questão
     renderLatex(questionText);
@@ -201,8 +200,9 @@ function showQuestion(index) {
                 // Mostrar a explicação se disponível
                 if (question.explicacao_geral) {
                     const explanation = document.getElementById('explanation');
-                    explanation.innerHTML = marked.parse(question.explicacao_geral);
+                    explanation.innerHTML = processMarkdown(question.explicacao_geral);
                     renderLatex(explanation);
+                    renderMermaid(explanation);
                     explanation.style.display = 'block';
                 }
             });
@@ -231,8 +231,10 @@ function updateProgressBar() {
     if (filteredQuestions.length === 0) return;
 
     const progress = ((currentQuestionIndex + 1) / filteredQuestions.length) * 100;
-    document.getElementById('progressBar').style.width = `${progress}%`;
-    document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+    }
 }
 
 /**
@@ -241,14 +243,14 @@ function updateProgressBar() {
 function updateButtonStates() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const prevBtnMobile = document.getElementById('prevBtnMobile');
-    const nextBtnMobile = document.getElementById('nextBtnMobile');
     
-    prevBtn.disabled = currentQuestionIndex <= 0;
-    prevBtnMobile.disabled = currentQuestionIndex <= 0;
+    if (prevBtn) {
+        prevBtn.disabled = currentQuestionIndex <= 0;
+    }
     
-    nextBtn.disabled = currentQuestionIndex >= filteredQuestions.length - 1;
-    nextBtnMobile.disabled = currentQuestionIndex >= filteredQuestions.length - 1;
+    if (nextBtn) {
+        nextBtn.disabled = currentQuestionIndex >= filteredQuestions.length - 1;
+    }
 }
 
 /**

@@ -14,107 +14,121 @@
     <!-- Local CSS -->
     <link rel="stylesheet" href="css/themes.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/interface-redesign.css">
 </head>
 
 <body>
     <div class="header-container">
         <h1>PPGI Overfit</h1>
         <div class="header-controls">
-            <button id="audioToggle" class="audio-toggle" aria-label="Desativar sons">🔊</button>
-            <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
-        </div>
-    </div>
-
-    <div class="filters">
-        <div class="filter-group">
-            <label for="yearFilter">Ano:</label>
-            <select id="yearFilter">
-                <option value="">Todos os anos</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="areaFilter">Área:</label>
-            <select id="areaFilter">
-                <option value="">Todas as áreas</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="subareaFilter">Subárea:</label>
-            <select id="subareaFilter">
-                <option value="">Todas as subáreas</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Painel de Estatísticas -->
-    <div class="stats-panel">
-        <div class="stats-header">
-            <h3 class="stats-title">📊 Estatísticas de Desempenho</h3>
-            <button id="statsToggle" class="stats-toggle">▼</button>
-        </div>
-        <div id="statsContent" class="stats-content">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="totalAnswered">0</div>
-                    <div class="stat-label">Questões Respondidas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="correctAnswers">0</div>
-                    <div class="stat-label">Respostas Corretas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="accuracyRate">0%</div>
-                    <div class="stat-label">Taxa de Acerto</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="currentStreak">0</div>
-                    <div class="stat-label">Sequência Atual</div>
-                </div>
-            </div>
-
-            <div class="performance-chart">
-                <h4 style="color: var(--primary-color); margin-bottom: 15px;">Desempenho por Área</h4>
-                <div id="areaPerformance"></div>
-            </div>
-
-            <button id="resetStatsBtn" class="reset-stats-btn">🗑️ Limpar Estatísticas</button>
-        </div>
-    </div>
-
-    <div class="controls">
-        <div>
-            <button id="prevBtn" disabled>Anterior</button>
-            <button id="nextBtn">Próxima</button>
-        </div>
-        <div>
-            <button id="showAnswerBtn">Mostrar Resposta</button>
-            <button id="randomBtn">Questão Aleatória</button>
+            <button id="filtersBtn" class="control-btn" aria-label="Filtros" title="Filtros">🔍</button>
+            <button id="statsBtn" class="control-btn" aria-label="Estatísticas" title="Estatísticas">📊</button>
+            <button id="randomBtn" class="control-btn" aria-label="Questão Aleatória" title="Questão Aleatória">🎲</button>
+            <button id="audioToggle" class="control-btn" aria-label="Desativar sons" title="Áudio">🔊</button>
+            <button id="themeToggle" class="control-btn" aria-label="Alternar tema claro/escuro" title="Tema">☀️</button>
         </div>
     </div>
 
     <!-- Indicador de progresso -->
     <div class="progress-container">
         <div id="progressBar" class="progress-bar" style="width: 0%"></div>
-    </div>
-    <div class="stats">
-        <p>Questão <span id="currentQuestion">0</span> de <span id="totalQuestionsDisplay">0</span> (<span
-                id="progressPercent">0%</span>)</p>
-    </div>
-
-    <div class="question-container">
-        <div class="question-text markdown-body" id="questionText">Carregando questões...</div>
-        <div class="options" id="optionsContainer"></div>
-        <div class="explanation" id="explanation"></div>
+        <div class="progress-info">
+            <span id="currentQuestion">0</span> / <span id="totalQuestionsDisplay">0</span>
+        </div>
     </div>
 
-    <div class="stats">
-        <p>Total de questões no banco: <span id="totalQuestions">0</span></p>
+    <!-- Container principal das questões -->
+    <div class="question-card-container" id="questionCardContainer">
+        <div class="question-card" id="questionCard">
+            <div class="question-header">
+                <div class="question-meta" id="questionMeta"></div>
+            </div>
+            <div class="question-content">
+                <div class="question-text markdown-body" id="questionText">Carregando questões...</div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+            <div class="question-actions">
+                <button id="showAnswerBtn" class="action-btn">💡 Mostrar Resposta</button>
+            </div>
+            <div class="explanation" id="explanation"></div>
+        </div>
     </div>
 
-    <!-- Botões de navegação para mobile -->
-    <div class="mobile-nav">
-        <button id="prevBtnMobile" class="mobile-nav-btn" disabled>◀</button>
-        <button id="nextBtnMobile" class="mobile-nav-btn">▶</button>
+    <!-- Controles de navegação para desktop -->
+    <div class="desktop-nav">
+        <button id="prevBtn" class="nav-btn" disabled>← Anterior</button>
+        <button id="nextBtn" class="nav-btn">Próxima →</button>
+    </div>
+
+    <!-- Modal de Filtros -->
+    <div id="filtersModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔍 Filtros</h3>
+                <button class="modal-close" id="filtersModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="filter-group">
+                    <label for="yearFilter">Ano:</label>
+                    <select id="yearFilter">
+                        <option value="">Todos os anos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="areaFilter">Área:</label>
+                    <select id="areaFilter">
+                        <option value="">Todas as áreas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="subareaFilter">Subárea:</label>
+                    <select id="subareaFilter">
+                        <option value="">Todas as subáreas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="clearFiltersBtn" class="btn-secondary">Limpar Filtros</button>
+                <button id="applyFiltersBtn" class="btn-primary">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Estatísticas -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📊 Estatísticas de Desempenho</h3>
+                <button class="modal-close" id="statsModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalAnswered">0</div>
+                        <div class="stat-label">Questões Respondidas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="correctAnswers">0</div>
+                        <div class="stat-label">Respostas Corretas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="accuracyRate">0%</div>
+                        <div class="stat-label">Taxa de Acerto</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="currentStreak">0</div>
+                        <div class="stat-label">Sequência Atual</div>
+                    </div>
+                </div>
+                <div class="performance-chart">
+                    <h4>Desempenho por Área</h4>
+                    <div id="areaPerformance"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="resetStatsBtn" class="btn-danger">🗑️ Limpar Estatísticas</button>
+            </div>
+        </div>
     </div>
 
     <!-- Rodapé com informações de autoria -->
@@ -139,6 +153,7 @@
     <script src="js/stats.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/questions.js"></script>
+    <script src="js/interface-redesign.js"></script>
     <script src="js/app.js"></script>
 </body>
 
