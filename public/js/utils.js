@@ -323,12 +323,28 @@ function renderMermaid(element) {
 function processMarkdown(markdown) {
     console.log("Processando Markdown com blocos Mermaid");
     
+    // Corrigir caracteres de escape duplicados no JSON
+    // Isso é necessário porque o JSON requer que as barras invertidas sejam escapadas
+    let fixedMarkdown = markdown;
+    
+    // Corrigir caracteres de escape comuns
+    fixedMarkdown = fixedMarkdown.replace(/\\\\n/g, '\\n'); // Quebras de linha
+    fixedMarkdown = fixedMarkdown.replace(/\\\\t/g, '\\t'); // Tabulações
+    fixedMarkdown = fixedMarkdown.replace(/\\\\r/g, '\\r'); // Retornos de carro
+    
+    // Corrigir comandos LaTeX comuns
+    fixedMarkdown = fixedMarkdown.replace(/\\\\cdot/g, '\\cdot');
+    fixedMarkdown = fixedMarkdown.replace(/\\\\log/g, '\\log');
+    fixedMarkdown = fixedMarkdown.replace(/\\\\pmod/g, '\\pmod');
+    fixedMarkdown = fixedMarkdown.replace(/\\\\lceil/g, '\\lceil');
+    fixedMarkdown = fixedMarkdown.replace(/\\\\rceil/g, '\\rceil');
+    
     // Extrair blocos de código Mermaid antes do processamento Markdown
     const mermaidBlocks = [];
     const placeholders = [];
     
     // Substituir blocos de código Mermaid por placeholders únicos
-    let processedMarkdown = markdown.replace(/```mermaid\s*([\s\S]*?)```/g, function(match, code) {
+    let processedMarkdown = fixedMarkdown.replace(/```mermaid\s*([\s\S]*?)```/g, function(match, code) {
         const placeholder = `MERMAID_PLACEHOLDER_${mermaidBlocks.length}`;
         mermaidBlocks.push(code.trim());
         placeholders.push(placeholder);
