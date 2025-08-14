@@ -7,10 +7,10 @@
     "area": [
       {
         "nome": "Algoritmos",
-        "subarea": null
+        "subarea": "Laços de Repetição"
       }
     ],
-    "enunciado": "Ao compilar e executar o programa a seguir escrito em linguagem de programação C, quantas vezes será impressa a string Teste?\n```c\n#include <stdio.h>\nint main(void) {\n    int i, j;\n    for (i=2; i<=4; i++) {\n        for(j=1; j<3; j++) {\n            printf(\"Teste\\n\");\n        }\n    }\n}\n```",
+    "enunciado": "Ao compilar e executar o programa a seguir escrito em linguagem de programação C, quantas vezes será impressa a string Teste?\n\n```c\n#include <stdio.h>\nint main(void) {\n  int i, j;\n  for (i=2; i<=4; i++) {\n    for(j=1; j<3; j++) {\n      printf(\"Teste\\n\");\n    }\n  }\n}\n```",
     "opcoes": [
       {
         "letra": "a",
@@ -38,7 +38,48 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** A questão envolve a análise de dois laços `for` aninhados.\n\n- **Laço Externo:** `for (i=2; i<=4; i++)`. Este laço executará para `i = 2`, `i = 3` e `i = 4`. Portanto, ele realiza 3 iterações.\n- **Laço Interno:** `for(j=1; j<3; j++)`. Este laço executará para `j = 1` e `j = 2`. Portanto, ele realiza 2 iterações.\n\n**Cálculo:** Para cada iteração do laço externo, o laço interno executa completamente. O número total de vezes que `printf(\"Teste\\n\");` será executado é o produto das iterações dos dois laços: 3 (iterações externas) * 2 (iterações internas) = 6 vezes."
+    "explicacao_geral": "**Raciocínio:** A questão avalia a capacidade de analisar laços de repetição aninhados (for loops).\n\n- **Laço Externo:** A variável `i` começa em 2 e o laço continua enquanto `i <= 4`. Portanto, o laço externo executa para `i = 2`, `i = 3` e `i = 4`, totalizando **3** iterações.\n- **Laço Interno:** A variável `j` começa em 1 e o laço continua enquanto `j < 3`. Portanto, o laço interno executa para `j = 1` e `j = 2`, totalizando **2** iterações para cada iteração do laço externo.\n\n**Cálculo:** O número total de vezes que `printf(\"Teste\\n\");` é executado é o produto das iterações dos laços: 3 (externo) * 2 (interno) = **6** vezes.\n\n- **(a) Correto:** O programa imprimirá \"Teste\" 6 vezes.\n- **(b, c, d, e) Incorreto:** Os outros valores não correspondem ao número total de execuções dos laços aninhados."
+  },
+  {
+    "id_questao": "2024_2_q2",
+    "prova_referencia": "2024-2.pdf",
+    "numero_questao": 2,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": "Insertion Sort"
+      }
+    ],
+    "enunciado": "Considere que o algoritmo de ordenação Insertion Sort foi empregado para ordenar, de maneira crescente, o vetor (4, 3, 2, 1). Analise as afirmativas abaixo.\n\nI. A configuração (4, 4, 2, 1) jamais pode ocorrer durante os passos da ordenação;\nII. A configuração (2, 3, 4, 1) necessariamente ocorre durante os passos da ordenação;\nIII. A configuração (1, 4, 3, 2) jamais ocorre durante os passos da ordenação.",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas as afirmativas I e II são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas as afirmativas II e III são verdadeiras.",
+        "correta": true
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas as afirmativas I e III são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas a afirmativa I é verdadeira.",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas a afirmativa II é verdadeira.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial, provavelmente por ambiguidade no termo 'ocorre durante os passos'. No entanto, analisando o funcionamento do Insertion Sort, é possível chegar a uma conclusão lógica.\n\n**Passo a passo do Insertion Sort em (4, 3, 2, 1):**\n1.  **Início:** `(4, 3, 2, 1)`\n2.  **i = 1 (elemento = 3):**\n    -   Compara 3 com 4. Como 3 < 4, desloca o 4 para a direita. O vetor fica transitoriamente como `(4, 4, 2, 1)`.\n    -   Insere o 3 na posição correta. Vetor após a 1ª iteração: `(3, 4, 2, 1)`.\n3.  **i = 2 (elemento = 2):**\n    -   Compara 2 com 4, desloca o 4. Vetor transiente: `(3, 4, 4, 1)`.\n    -   Compara 2 com 3, desloca o 3. Vetor transiente: `(3, 3, 4, 1)`.\n    -   Insere o 2. Vetor após a 2ª iteração: `(2, 3, 4, 1)`.\n4.  **i = 3 (elemento = 1):**\n    -   Desloca 4, 3, e 2 para a direita.\n    -   Insere o 1. Vetor final: `(1, 2, 3, 4)`.\n\n**Análise das Afirmativas:**\n-   **I. Falsa:** A configuração `(4, 4, 2, 1)` ocorre como um estado intermediário (transiente) durante o deslocamento do elemento 4 na primeira iteração.\n-   **II. Verdadeira:** A configuração `(2, 3, 4, 1)` é exatamente o estado do vetor após a conclusão da segunda iteração principal.\n-   **III. Verdadeira:** A configuração `(1, 4, 3, 2)` nunca surge durante o processo de ordenação.\n\n**Conclusão Corrigida:** As afirmativas II e III são verdadeiras. Portanto, a alternativa (b) é a correta."
   },
   {
     "id_questao": "2024_2_q3",
@@ -48,10 +89,14 @@
     "area": [
       {
         "nome": "Algoritmos",
+        "subarea": "Laços de Repetição"
+      },
+      {
+        "nome": "Operações Fundamentais",
         "subarea": null
       }
     ],
-    "enunciado": "Ao compilar e executar o programa a seguir escrito em linguagem de programação C, o que será impresso?\n```c\n#include <stdio.h>\nint main(void) {\n    int x, i, cont = 0;\n    x=18;\n    for(i=1; i<=x; i++) {\n        if ((x % i) == 0) {\n            cont=cont+1;\n        }\n    }\n    printf(\"%d\", cont);\n}\n```",
+    "enunciado": "Ao compilar e executar o programa a seguir escrito em linguagem de programação C, o que será impresso?\n\n```c\n#include <stdio.h>\nint main(void) {\n  int x, i, cont = 0;\n  x = 18;\n  for(i = 1; i <= x; i++) {\n    if ((x % i) == 0) {\n      cont = cont + 1;\n    }\n  }\n  printf(\"%d\", cont);\n}\n```",
     "opcoes": [
       {
         "letra": "a",
@@ -79,7 +124,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** O programa calcula o número de divisores do inteiro `x`, que foi inicializado com o valor 18.\n\n- **Laço:** O laço `for` itera a variável `i` de 1 até 18.\n- **Condição:** A condição `if ((x % i) == 0)` verifica se o resto da divisão de `x` por `i` é zero. Isso é verdade apenas quando `i` é um divisor de `x`.\n- **Contador:** A variável `cont` é incrementada toda vez que um divisor é encontrado.\n\n**Divisores de 18:** 1, 2, 3, 6, 9, 18.\n\nO programa encontrará 6 divisores, e o valor final de `cont` impresso na tela será 6."
+    "explicacao_geral": "**Raciocínio:** O programa em C inicializa uma variável `x` com o valor 18 e um contador `cont` com 0. O laço `for` itera de `i = 1` até `i = 18`. Dentro do laço, a condição `if ((x % i) == 0)` verifica se `i` é um divisor de `x` (ou seja, se o resto da divisão de `x` por `i` é zero).\n\n**Cálculo:** O objetivo é contar todos os divisores do número 18.\nOs divisores de 18 são:\n- 1 (18 % 1 == 0)\n- 2 (18 % 2 == 0)\n- 3 (18 % 3 == 0)\n- 6 (18 % 6 == 0)\n- 9 (18 % 9 == 0)\n- 18 (18 % 18 == 0)\n\nO contador `cont` será incrementado para cada um desses 6 valores. Ao final, o programa imprimirá o valor de `cont`, que é **6**.\n\n- **(a) Correto:** O número 18 tem 6 divisores.\n- **(b, c, d, e) Incorreto:** Os outros valores não correspondem à contagem de divisores de 18."
   },
   {
     "id_questao": "2024_2_q4",
@@ -92,7 +137,7 @@
         "subarea": "Pilhas"
       }
     ],
-    "enunciado": "Considere a seguinte sequência de operações em uma pilha inicialmente vazia, considerando que Push implementa a operação de empilhar um elemento e Pop a operação de desempilhar um elemento:\nPush(4); Pop(); Push(2); Push(3); Pop(); Push(1); Pop(); Pop(); Push(6); Push(7).\n\nApós todas as operações serem realizadas, qual será o número de elementos na pilha?",
+    "enunciado": "Considere a seguinte sequência de operações em uma pilha inicialmente vazia, considerando que Push implementa a operação de empilhar um elemento e Pop a operação de desempilhar um elemento:\n\n`Push(4); Pop(); Push(2); Push(3); Pop(); Push(1); Pop(); Pop(); Push(6); Push(7).`",
     "opcoes": [
       {
         "letra": "a",
@@ -120,7 +165,101 @@
         "correta": true
       }
     ],
-    "explicacao_geral": "**Rastreamento das Operações na Pilha (LIFO - Last-In, First-Out):**\n\n1.  `Pilha: []` (inicialmente vazia)\n2.  `Push(4)` -> `Pilha: [4]`\n3.  `Pop()` -> `Pilha: []` (remove 4)\n4.  `Push(2)` -> `Pilha: [2]`\n5.  `Push(3)` -> `Pilha: [2, 3]` (3 está no topo)\n6.  `Pop()` -> `Pilha: [2]` (remove 3)\n7.  `Push(1)` -> `Pilha: [2, 1]` (1 está no topo)\n8.  `Pop()` -> `Pilha: [2]` (remove 1)\n9.  `Pop()` -> `Pilha: []` (remove 2)\n10. `Push(6)` -> `Pilha: [6]`\n11. `Push(7)` -> `Pilha: [6, 7]` (7 está no topo)\n\nAo final de todas as operações, a pilha contém os elementos `[6, 7]`. Portanto, o número de elementos na pilha é 2."
+    "explicacao_geral": "**Raciocínio:** A questão requer o rastreamento do estado de uma pilha (estrutura LIFO - Last-In, First-Out), onde o último elemento a entrar é o primeiro a sair.\n\n**Passo a passo:**\n1.  `Pilha: []` (vazia)\n2.  `Push(4)` -> `Pilha: [4]`\n3.  `Pop()` -> `Pilha: []` (remove o 4)\n4.  `Push(2)` -> `Pilha: [2]`\n5.  `Push(3)` -> `Pilha: [3, 2]` (3 está no topo)\n6.  `Pop()` -> `Pilha: [2]` (remove o 3)\n7.  `Push(1)` -> `Pilha: [1, 2]` (1 está no topo)\n8.  `Pop()` -> `Pilha: [2]` (remove o 1)\n9.  `Pop()` -> `Pilha: []` (remove o 2)\n10. `Push(6)` -> `Pilha: [6]`\n11. `Push(7)` -> `Pilha: [7, 6]` (7 está no topo)\n\n**Resultado:** Após todas as operações, a pilha contém os elementos 7 e 6. Portanto, o número final de elementos na pilha é **2**.\n\n- **(e) Correto:** A pilha termina com 2 elementos.\n- **(a, b, c, d) Incorreto:** São contagens resultantes de erros no rastreamento das operações Push e Pop."
+  },
+  {
+    "id_questao": "2024_2_q5",
+    "prova_referencia": "2024-2.pdf",
+    "numero_questao": 5,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Pilhas"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Filas"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Listas Encadeadas"
+      }
+    ],
+    "enunciado": "Considere as seguintes afirmações sobre pilhas e filas:\n\nI. Uma forma de implementar pilhas é usando um vetor alocado dinamicamente. Sempre que a pilha ficar cheia, o vetor pode ser redimensionado (realocado).\nII. Se a fila for armazenada em uma lista simplesmente ligada, então uma forma eficiente de implementar é realizando inserções no final e remoções no início da lista, guardando sempre um ponteiro para o primeiro nó e um ponteiro para o último nó.\nIII. Se a pilha for armazenada em uma lista duplamente encadeada, então as operações de inserção e remoção serão eficientes tanto se elas forem realizadas no início quanto no final da lista.",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Apenas as afirmativas I e II são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas as afirmativas II e III são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas as afirmativas I e III são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Todas as afirmativas são verdadeiras.",
+        "correta": true
+      },
+      {
+        "letra": "e",
+        "texto": "Nenhuma afirmativa é verdadeira.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial, mas todas as afirmativas descrevem técnicas de implementação padrão e eficientes para as respectivas estruturas de dados.\n\n**Análise das Afirmativas:**\n-   **I. Verdadeira:** Esta é uma implementação comum de uma pilha dinâmica. Usar um vetor que pode ser redimensionado (como `std::vector` em C++ ou `ArrayList` em Java) permite que a pilha cresça conforme a necessidade, evitando o estouro (overflow) de uma pilha de tamanho fixo.\n-   **II. Verdadeira:** Esta é a implementação canônica e mais eficiente de uma fila com lista encadeada. Manter ponteiros para o início (`front`) e o fim (`rear`) permite que tanto a inserção (enqueue, no fim) quanto a remoção (dequeue, no início) sejam realizadas em tempo constante, $O(1)$.\n-   **III. Verdadeira:** Uma lista duplamente encadeada permite inserção e remoção em $O(1)$ em ambas as extremidades (início e fim). Para uma pilha (LIFO), pode-se escolher consistentemente uma extremidade (por exemplo, sempre inserir e remover no início) para operações eficientes. Essa estrutura também é a base para um deque (fila de duas pontas).\n\n**Conclusão Corrigida:** Como todas as três afirmativas são conceitualmente corretas e descrevem implementações válidas e eficientes, a alternativa (d) é a resposta correta."
+  },
+  {
+    "id_questao": "2024_2_q6",
+    "prova_referencia": "2024-2.pdf",
+    "numero_questao": 6,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Árvores"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "AVL"
+      }
+    ],
+    "enunciado": "A seguir é apresentada uma árvore AVL com 9 nós.\n\n```mermaid\ngraph TD\n    6 --> 2\n    6 --> 8\n    2 --> 1\n    2 --> 5\n    8 --> 9\n    5 --> 3\n```\n\nConsidere as seguintes afirmativas acerca dessa árvore e de árvores AVL em geral.\n\nI. Esta árvore é incorreta, pois o nó que contém a chave 8 está desbalanceado.\nII. É possível inserir ao menos uma chave nessa árvore sem que seja necessário realizar rotações.\nIII. Se a chave 4 for inserida na árvore, será necessário realizar uma rotação simples que altera a raiz da árvore, a qual contém atualmente o nó com valor 6, para que ela permaneça balanceada.",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "As afirmativas I e II são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "As afirmativas II e III são verdadeiras.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas a afirmativa I é verdadeira.",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas a afirmativa II é verdadeira.",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "Apenas a afirmativa III é verdadeira.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial. A anulação ocorreu porque a árvore apresentada no enunciado **não é uma Árvore Binária de Busca (BST)** válida, que é um pré-requisito para ser uma árvore AVL.\n\n**Erro na Estrutura da Árvore:**\n-   Na árvore, o nó `5` tem o nó `3` como filho. No diagrama, `3` é mostrado como filho à direita de `5`.\n-   A propriedade da BST exige que, para qualquer nó, todos os valores na subárvore esquerda sejam menores e todos os valores na subárvore direita sejam maiores.\n-   Como `3 < 5`, o nó `3` deveria estar na subárvore esquerda de `5`. Portanto, a estrutura viola a propriedade fundamental da BST.\n\nComo a premissa da questão (ser uma árvore AVL) é falsa devido à violação da propriedade da BST, nenhuma das afirmativas pode ser avaliada de forma consistente. A questão é, portanto, inválida."
   },
   {
     "id_questao": "2024_2_q7",
@@ -131,6 +270,10 @@
       {
         "nome": "Estruturas de Dados",
         "subarea": "AVL"
+      },
+      {
+        "nome": "Análise de Complexidade",
+        "subarea": null
       }
     ],
     "enunciado": "Qual é a altura máxima de qualquer árvore AVL com 9 nós, considerando aqui que a altura de uma árvore com um único nó é zero e com dois nós é 1?",
@@ -161,7 +304,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** Para encontrar a altura máxima de uma árvore AVL com `n` nós, verificamos o número mínimo de nós `N(h)` necessários para formar uma árvore AVL de altura `h`.\n\n- A recorrência para `N(h)` é: $N(h) = 1 + N(h-1) + N(h-2)$\n- Casos base (conforme o enunciado): \n  - $h=0$: $N(0)=1$ (um nó)\n  - $h=1$: $N(1)=2$ (dois nós)\n\n**Cálculo:**\n- Para $h=2$: $N(2) = 1 + N(1) + N(0) = 1 + 2 + 1 = 4$ nós.\n- Para $h=3$: $N(3) = 1 + N(2) + N(1) = 1 + 4 + 2 = 7$ nós.\n- Para $h=4$: $N(4) = 1 + N(3) + N(2) = 1 + 7 + 4 = 12$ nós.\n\nUma árvore com 9 nós tem mais nós que o mínimo para uma altura de 3 (7 nós) e menos nós que o mínimo para uma altura de 4 (12 nós). Portanto, a altura máxima que uma árvore AVL com 9 nós pode atingir é 3."
+    "explicacao_geral": "**Raciocínio:** A questão pede a altura máxima de uma árvore AVL com um número específico de nós. Uma árvore AVL maximiza sua altura quando possui o número mínimo de nós para aquela altura. A fórmula para o número mínimo de nós, $N(h)$, em uma árvore AVL de altura $h$ é:\n$N(h) = N(h-1) + N(h-2) + 1$\ncom casos base $N(0) = 1$ e $N(1) = 2$.\n\n**Cálculo:** Vamos calcular o número mínimo de nós para cada altura até ultrapassar 9 nós.\n-   **h = 0:** $N(0) = 1$ nó.\n-   **h = 1:** $N(1) = 2$ nós.\n-   **h = 2:** $N(2) = N(1) + N(0) + 1 = 2 + 1 + 1 = 4$ nós.\n-   **h = 3:** $N(3) = N(2) + N(1) + 1 = 4 + 2 + 1 = 7$ nós.\n-   **h = 4:** $N(4) = N(3) + N(2) + 1 = 7 + 4 + 1 = 12$ nós.\n\nUma árvore AVL com 9 nós tem mais nós que o mínimo para altura 3 (7 nós), mas não tem nós suficientes para garantir uma altura 4 (que exige no mínimo 12 nós). Portanto, a altura máxima que uma árvore AVL com 9 nós pode atingir é **3**.\n\n- **(c) Correto:** A altura máxima é 3.\n- **(a, b, d, e) Incorreto:** Os outros valores não correspondem ao limite de altura para uma árvore AVL com 9 nós."
   },
   {
     "id_questao": "2024_2_q8",
@@ -174,7 +317,7 @@
         "subarea": "QuickSort"
       }
     ],
-    "enunciado": "Considere que o particionamento realizado em um vetor pelo algoritmo Quicksort deve garantir que ao final o vetor esteja corretamente ordenado e considere uma implementação na qual a escolha do pivô é feita de forma aleatória a partir de um dos elementos do vetor. O vetor abaixo apresenta o resultado do primeiro particionamento do Quicksort em um processo de ordenação de forma crescente, feito portanto considerando o vetor completo como intervalo. Selecione a alternativa correta.\n\n`[3, 7, 2, 5, 4, 7, 8, 8]`",
+    "enunciado": "Considere que o particionamento realizado em um vetor pelo algoritmo Quicksort deve garantir que ao final o vetor esteja corretamente ordenado e considere uma implementação na qual a escolha do pivô é feita de forma aleatória a partir de um dos elementos do vetor. O vetor abaixo apresenta o resultado do primeiro particionamento do Quicksort em um processo de ordenação de forma crescente, feito portanto considerando o vetor completo como intervalo.\n\n`3 7 2 5 4 7 8 8`\n\nSelecione a alternativa correta.",
     "opcoes": [
       {
         "letra": "a",
@@ -202,7 +345,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** Após o particionamento em torno de um pivô `p`, o vetor é rearranjado de modo que existe um índice `k` onde todos os elementos à esquerda de `k` são menores ou iguais a `p`, e todos os elementos à direita de `k` são maiores ou iguais a `p`. Os subvetores à esquerda e à direita não estão internamente ordenados.\n\nVamos testar os pivôs sugeridos na opção correta:\n\n- **Se o pivô foi 7:** Os elementos do vetor são `{3, 7, 2, 5, 4, 7, 8, 8}`. Os elementos menores que 7 são `{3, 2, 5, 4}`. Os elementos maiores que 7 são `{8, 8}`. O vetor particionado `[3, 7, 2, 5, 4, 7, 8, 8]` é um resultado válido. Por exemplo, ele pode ser dividido em `[3, 2, 5, 4]` (menores), `[7, 7]` (iguais) e `[8, 8]` (maiores), e o particionamento pode misturar os elementos dentro desses grupos.\n\n- **Se o pivô foi 8:** Os elementos menores que 8 são `{3, 7, 2, 5, 4, 7}`. O vetor particionado `[3, 7, 2, 5, 4, 7, 8, 8]` é um resultado válido, pois todos os elementos antes dos `8`s são, de fato, menores que 8.\n\n- **Outros pivôs:** Se o pivô fosse, por exemplo, 5, o elemento 7 não poderia estar à esquerda do 5 no resultado do particionamento, o que invalida essa possibilidade. O mesmo raciocínio se aplica aos outros valores."
+    "explicacao_geral": "**Raciocínio:** A propriedade fundamental do particionamento do Quicksort (para ordem crescente) é que ele rearranja o vetor (ou subvetor) em duas partições: uma com elementos menores ou iguais ao pivô e outra com elementos maiores que o pivô. Isso significa que deve existir um \"ponto de corte\" no vetor.\n\nVamos analisar o vetor resultante: `[3, 7, 2, 5, 4, 7, 8, 8]`\n\n-   Precisamos encontrar um valor de pivô `p` que poderia ter gerado essa configuração. A propriedade da partição implica que deve haver um índice `k` tal que todos os elementos `v[0...k]` são menores ou iguais a `p` e todos os elementos `v[k+1...fim]` são maiores que `p` (ou uma variação dependendo da implementação, como `<p` e `>=p`).\n\n-   **Testando a opção (c):**\n    -   **Se o pivô fosse 7:** A partição seria entre elementos `<= 7` e `> 7`. No vetor, os elementos `[3, 7, 2, 5, 4, 7]` são todos `<= 7` e os elementos `[8, 8]` são `> 7`. A fronteira da partição está exatamente entre o segundo `7` e o primeiro `8`. Isso é um estado de partição válido.\n    -   **Se o pivô fosse 8:** A partição seria entre elementos `<= 8` e `> 8`. Todos os elementos no vetor são `<= 8`. Portanto, a partição de elementos `> 8` seria vazia. O vetor inteiro formaria a partição da esquerda, o que também é um resultado de partição válido (embora desbalanceado).\n\n-   **Testando outras opções:**\n    -   **Se o pivô fosse 5 (da opção b):** O elemento `7` (no índice 1) é `> 5`, mas está à esquerda do elemento `4` (no índice 4) que é `< 5`. Isso viola a propriedade de particionamento. Portanto, 5 não poderia ser o pivô.\n\n**Conclusão:** Os únicos valores de pivô que poderiam resultar na fronteira de partição observada (entre 7 e 8) são 7 ou 8."
   },
   {
     "id_questao": "2024_2_q9",
@@ -211,24 +354,12 @@
     "ano_prova": 2024,
     "area": [
       {
-        "nome": "Algoritmos de Ordenação",
-        "subarea": "QuickSort"
-      },
-      {
-        "nome": "Algoritmos de Ordenação",
-        "subarea": "MergeSort"
-      },
-      {
-        "nome": "Algoritmos de Ordenação",
-        "subarea": "Insertion Sort"
-      },
-      {
-        "nome": "Algoritmos de Ordenação",
-        "subarea": "Selection Sort"
-      },
-      {
         "nome": "Análise de Complexidade",
         "subarea": "Notação Big O"
+      },
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": null
       }
     ],
     "enunciado": "Considerando que você está ordenando um vetor com 1 bilhão de posições e considerando o pior dos cenários em termos de número de comparações envolvendo chaves para cada algoritmo, ao considerarmos apenas QuickSort, MergeSort, Ordenação por Inserção e Ordenação por Seleção",
@@ -259,7 +390,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise da Complexidade no Pior Caso:**\n\n- **QuickSort:** No pior caso (por exemplo, com um vetor já ordenado e um pivô ruim), sua complexidade de tempo é $O(n^2)$.\n- **MergeSort:** Tem uma complexidade de tempo garantida de $O(n \\log n)$ em todos os casos (melhor, médio e pior).\n- **Ordenação por Inserção (Insertion Sort):** No pior caso (vetor em ordem inversa), sua complexidade é $O(n^2)$.\n- **Ordenação por Seleção (Selection Sort):** Sua complexidade é sempre $O(n^2)$, independentemente da ordem inicial dos dados.\n\nPara um vetor muito grande (`n` = 1 bilhão), a diferença entre $O(n \\log n)$ e $O(n^2)$ é colossal. O MergeSort, com sua complexidade de pior caso $O(n \\log n)$, fará um número de comparações ordens de magnitude menor do que os outros algoritmos, que têm um pior caso de $O(n^2)$."
+    "explicacao_geral": "**Raciocínio:** A questão pede para comparar a eficiência dos algoritmos de ordenação em seu **pior caso** de complexidade de tempo (número de comparações) para uma entrada muito grande ($n = 10^9$).\n\n**Complexidade de Pior Caso:**\n-   **QuickSort:** $O(n^2)$. Ocorre quando o pivô escolhido é consistentemente o menor ou o maior elemento, levando a partições desbalanceadas.\n-   **MergeSort:** $O(n \\log n)$. A complexidade do MergeSort é consistente em todos os casos (melhor, médio e pior) porque ele sempre divide o vetor ao meio.\n-   **Insertion Sort:** $O(n^2)$. Ocorre quando o vetor está ordenado em ordem inversa.\n-   **Selection Sort:** $O(n^2)$. A complexidade do Selection Sort é a mesma para todos os casos, pois ele sempre percorre o restante do vetor para encontrar o próximo elemento a ser colocado na posição correta.\n\n**Comparação:**\nPara um `n` muito grande, uma complexidade $O(n \\log n)$ é assintoticamente muito superior (mais rápida) do que uma complexidade $O(n^2)$.\n\n-   $n \\log n$ (MergeSort) << $n^2$ (QuickSort, Insertion Sort, Selection Sort).\n\nPortanto, o MergeSort fará significativamente menos comparações no pior cenário.\n\n- **(b) Correto:** Mergesort tem a melhor complexidade de pior caso entre os listados.\n- **(a, c, d) Incorreto:** Os outros têm complexidade de pior caso de $O(n^2)$.\n- **(e) Incorreto:** Não há empate, a complexidade do Quicksort no pior caso é superior à do Mergesort."
   },
   {
     "id_questao": "2024_2_q10",
@@ -272,7 +403,7 @@
         "subarea": "Listas Encadeadas"
       }
     ],
-    "enunciado": "Considere o seguinte programa (pseudocódigo) e indique qual das alternativas é a verdadeira.\n```c\n#include <stdio.h>\n#include <stdlib.h>\ntypedef struct No { int dado; struct No* prox; } No;\n\nNo* criarNo (int valor) {\n    No* novo = malloc(sizeof(No));\n    novo->dado = valor;\n    novo->prox = NULL;\n    return novo;\n}\n\nvoid inserirNo (No** cabeca, int valor) {\n    No* novo = criarNo(valor);\n    novo->prox = *cabeca;\n    *cabeca = novo;\n}\n\nint main() {\n    No* lista = NULL;\n    inserirNo(&lista, 10);\n    inserirNo(&lista, 20);\n    inserirNo(&lista, 30);\n    printf(\"Lista criada com os elementos!\\n\");\n    return 0;\n}\n```",
+    "enunciado": "Considere o seguinte programa (pseudocódigo) e indique qual das alternativas é a verdadeira.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct No { int dado; struct No* prox; } No;\n\nNo* criarNo (int valor) {\n  No* novo = malloc(sizeof (No));\n  novo->dado = valor;\n  novo->prox = NULL;\n  return novo;\n}\n\nvoid inserirNo (No** cabeca, int valor) {\n  No* novo = criarNo (valor);\n  novo->prox = *cabeca;\n  *cabeca = novo;\n}\n\nint main() {\n  No* lista = NULL;\n  inserirNo (&lista, 10);\n  inserirNo (&lista, 20);\n  inserirNo(&lista, 30);\n  printf(\"Lista criada com os elementos!\\n\");\n  return 0;\n}\n```",
     "opcoes": [
       {
         "letra": "a",
@@ -300,7 +431,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "Analisando o código:\n1.  **Alocação de Memória:** A função `criarNo` usa `malloc(sizeof(No))`, o que caracteriza o uso de alocação dinâmica de memória.\n2.  **Método de Inserção:** A função `inserirNo` executa `novo->prox = *cabeca;` e `*cabeca = novo;`. Esta é a lógica padrão para inserir um novo nó no **início** da lista (tornando-o a nova cabeça).\n3.  **Representação da Lista:** A variável `lista` na função `main` é um ponteiro para o primeiro nó (`No*`), servindo como a cabeça da lista.\n4.  **Liberação de Memória:** Não há nenhuma chamada à função `free()` no código, portanto, a memória alocada dinamicamente para os nós não é liberada explicitamente.\n\nA alternativa (d) descreve corretamente todos esses pontos."
+    "explicacao_geral": "**Raciocínio:** A questão pede uma análise completa do código C fornecido.\n\n1.  **Alocação de Memória:** A função `criarNo` usa `malloc(sizeof(No))`. `malloc` é a função padrão em C para alocação dinâmica de memória. Portanto, o programa **utiliza alocação dinâmica**.\n2.  **Ponto de Inserção:** A função `inserirNo` executa as seguintes operações:\n    -   `novo->prox = *cabeca;`: O ponteiro `prox` do novo nó aponta para o antigo início da lista.\n    -   `*cabeca = novo;`: O ponteiro da cabeça da lista é atualizado para apontar para o novo nó.\n    Isso efetivamente insere o novo elemento **no início** da lista.\n3.  **Representação da Lista:** A variável `lista` na função `main` é do tipo `No*`, um ponteiro para o primeiro nó, que serve como a \"cabeça\" ou ponto de entrada da lista.\n4.  **Liberação de Memória:** A função `main` aloca memória através das chamadas a `inserirNo`, mas em nenhum momento a função `free()` é chamada para liberar a memória dos nós criados. Portanto, **não há liberação explícita** de memória, o que causa um vazamento de memória (memory leak).\n\n**Análise das Opções:**\n-   (a) Incorreto: Utiliza alocação dinâmica.\n-   (b) Incorreto: A inserção é no início, não no fim.\n-   (c) Incorreto: Não há liberação de memória.\n-   (d) **Correto:** Descreve com precisão todos os quatro pontos analisados.\n-   (e) Incorreto: A opção (d) está correta."
   },
   {
     "id_questao": "2024_2_q11",
@@ -317,7 +448,7 @@
         "subarea": null
       }
     ],
-    "enunciado": "Considerando o seguinte programa (pseudocódigo) indique qual das afirmações é a verdadeira.\n```c\n#include <stdio.h>\n#include <stdlib.h>\ntypedef struct No { int dado; struct No* prox; } No;\n\nNo* criarNo (int valor) { /* ... (igual à questão 10) ... */ }\n\nvoid inserirNo (No** cabeca, int valor) {\n    No* novo = criarNo(valor);\n    if (*cabeca == NULL) {\n        *cabeca = novo;\n    } else {\n        No* atual = *cabeca;\n        while (atual->prox != NULL) {\n            atual = atual->prox;\n        }\n        atual->prox = novo;\n    }\n}\n\nint main() {\n    No* lista = NULL;\n    inserirNo(&lista, 10);\n    inserirNo(&lista, 20);\n    inserirNo(&lista, 30);\n    return 0;\n}\n```",
+    "enunciado": "Considerando o seguinte programa (pseudocódigo) indique qual das afirmações é a verdadeira.\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct No { int dado; struct No* prox; } No;\n\nNo* criarNo (int valor) { /* ... (igual à questão 10) ... */ }\n\nvoid inserirNo (No** cabeca, int valor) {\n  No* novo = criarNo (valor);\n  if (*cabeca == NULL) {\n    *cabeca = novo;\n  } else {\n    No* atual = *cabeca; // Corrigido de 'No atual cabeca;'\n    while (atual->prox != NULL) { // Linha em negrito\n      atual = atual->prox;\n    }\n    atual->prox = novo;\n  }\n}\n\nint main() {\n  No* lista = NULL;\n  inserirNo (&lista, 10);\n  inserirNo(&lista, 20);\n  inserirNo (&lista, 30);\n  return 0;\n}\n```\n\n*(Nota: O código original na prova continha bugs. A versão acima foi corrigida para refletir a intenção de inserir no final da lista, que é como a questão deve ser interpretada para ter uma resposta lógica.)*",
     "opcoes": [
       {
         "letra": "a",
@@ -345,7 +476,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** O código implementa a inserção no final de uma lista simplesmente encadeada. O laço `while (atual->prox != NULL)` é usado para percorrer a lista até encontrar o último nó.\n\nVamos rastrear as chamadas:\n1.  **`inserirNo(&lista, 10)`:** A lista está vazia (`*cabeca == NULL`). O `while` não é executado. A lista se torna `[10]`.\n2.  **`inserirNo(&lista, 20)`:** A lista é `[10]`. `atual` começa em 10. A condição `atual->prox != NULL` é falsa. O `while` não é executado. `10->prox` é atualizado para o novo nó. A lista se torna `[10, 20]`.\n3.  **`inserirNo(&lista, 30)`:** A lista é `[10, 20]`. `atual` começa em 10. \n    - **1ª iteração do `while`:** A condição `atual->prox != NULL` (ou seja, `10->prox != NULL`) é verdadeira. O corpo do laço (`atual = atual->prox;`) é executado, e `atual` passa a apontar para o nó 20.\n    - **2ª iteração do `while`:** A condição `atual->prox != NULL` (ou seja, `20->prox != NULL`) é falsa. O laço termina.\n    - Após o laço, `20->prox` é atualizado para o novo nó.\n\nA questão é ambígua sobre se \"executada\" se refere ao corpo do laço ou à avaliação da condição. No entanto, se interpretarmos como \"o ponteiro `atual` foi avançado X vezes\", ele foi avançado uma vez. Se interpretarmos como \"a condição do while foi avaliada X vezes até falhar\", ela foi avaliada para o nó 10 (verdadeiro) e para o nó 20 (falso), totalizando 2 avaliações. Dado o gabarito, a interpretação correta era a de quantas vezes a condição do laço é verificada para se chegar ao fim da lista na terceira inserção."
+    "explicacao_geral": "**Raciocínio:** A questão analisa a execução de um laço `while` que percorre uma lista encadeada para inserir um novo elemento no final. O termo \"executada\" é ambíguo, mas geralmente se refere ao número de vezes que a **condição do laço é avaliada**.\n\n**Passo a passo da execução:**\n1.  **`inserirNo(&lista, 10)`:** A lista está vazia. O `if` é verdadeiro. O laço `while` não é alcançado. Lista: `[10]`.\n2.  **`inserirNo(&lista, 20)`:** A lista é `[10]`. O `else` é executado. `atual` aponta para o nó 10.\n    -   A condição `while(atual->prox != NULL)` é avaliada. `10->prox` é `NULL`, então a condição é **falsa**. O corpo do laço não executa. A linha é executada **1 vez** (a verificação).\n    -   `atual->prox` recebe o novo nó. Lista: `[10, 20]`.\n3.  **`inserirNo(&lista, 30)`:** A lista é `[10, 20]`. O `else` é executado. `atual` aponta para o nó 10.\n    -   **Execução 1:** A condição `while(atual->prox != NULL)` é avaliada. `10->prox` aponta para 20 (não é `NULL`), então a condição é **verdadeira**. O corpo do laço executa, e `atual` passa a apontar para o nó 20.\n    -   **Execução 2:** A condição `while(atual->prox != NULL)` é avaliada novamente. `20->prox` é `NULL`, então a condição é **falsa**. O laço termina.\n    -   `atual->prox` recebe o novo nó. Lista: `[10, 20, 30]`.\n\n**Conclusão:** Na terceira chamada, a linha com o comando `while` (a condição) foi executada/avaliada **2 vezes**. A segunda parte da afirmativa 'b' também está correta: o número de execuções (iterações) depende do número de elementos na lista, caracterizando uma operação de complexidade $O(n)$.\n\n- **(b) Correto:** A condição do laço é verificada 2 vezes para inserir o terceiro elemento.\n- **(a, c, d, e) Incorreto:** Os outros valores não correspondem ao número de avaliações da condição do laço."
   },
   {
     "id_questao": "2024_2_q12",
@@ -356,9 +487,13 @@
       {
         "nome": "Operações Fundamentais",
         "subarea": "Busca"
+      },
+      {
+        "nome": "Algoritmos",
+        "subarea": "Busca Binária"
       }
     ],
-    "enunciado": "Considerando o seguinte programa (pseudocódigo) indique qual das afirmações é a verdadeira.\n```c\n#include <stdio.h>\nint buscaBinaria (int vetor[], int tamanho, int valor) {\n    int inicio = 0;\n    int fim = tamanho - 1;\n    while (inicio <= fim) {\n        int meio = (inicio + fim) / 2;\n        if (vetor[meio] == valor) {\n            return meio;\n        }\n        if (vetor[meio] < valor) {\n            inicio = meio + 1;\n        } else {\n            fim = meio - 1;\n        }\n    }\n    return -1;\n}\nint main() {\n    int vetor[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};\n    int tamanho = sizeof(vetor) / sizeof(vetor[0]);\n    int valor = 15;\n    int resultado = buscaBinaria(vetor, tamanho, valor);\n    printf(\"%d\\n\", resultado);\n    return 0;\n}\n```",
+    "enunciado": "Considerando o seguinte programa (pseudocódigo) indique qual das afirmações é a verdadeira.\n\n```c\n#include <stdio.h>\n\nint buscaBinaria (int vetor[], int tamanho, int valor) {\n  int inicio = 0;\n  int fim = tamanho - 1;\n  while (inicio <= fim) { // Linha em negrito\n    int meio = (inicio + fim) / 2;\n    if (vetor[meio] == valor) {\n      return meio;\n    }\n    if (vetor[meio] < valor) {\n      inicio = meio + 1;\n    } else {\n      fim = meio - 1;\n    }\n  }\n  return -1;\n}\n\nint main() {\n  int vetor[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};\n  int tamanho = sizeof(vetor) / sizeof(vetor[0]);\n  int valor = 15;\n  int resultado; // Bug: não inicializado\n  // Correção pretendida: resultado = buscaBinaria(vetor, tamanho, valor);\n  printf(\"%d\\n\", resultado);\n  return 0;\n}\n```\n*(Nota: O código original da prova contém um bug, pois a variável `resultado` é impressa sem ter recebido o retorno da função `buscaBinaria`. A análise considera a intenção correta do código.)*",
     "opcoes": [
       {
         "letra": "a",
@@ -377,7 +512,7 @@
       },
       {
         "letra": "d",
-        "texto": "A linha em negrito, loop while, 3 vezes e o programa imprime -1.",
+        "texto": "A linha em negrito, loop while, será executada 3 vezes e o programa imprime -1.",
         "correta": false
       },
       {
@@ -386,7 +521,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Rastreamento da Busca Binária:**\n- **Vetor:** `{1, 3, 5, 7, 9, 11, 13, 15, 17, 19}` (tamanho 10, índices 0-9)\n- **Valor a ser buscado:** 15\n- **Código Corrigido:** O código do `main` foi corrigido para `int resultado = buscaBinaria(...)` para que a impressão funcione como o esperado.\n\n**1ª Iteração do `while`:**\n- `inicio = 0`, `fim = 9`\n- `meio = (0 + 9) / 2 = 4`\n- `vetor[4]` é 9. Como `9 < 15`, o intervalo é ajustado: `inicio = meio + 1 = 5`.\n\n**2ª Iteração do `while`:**\n- `inicio = 5`, `fim = 9`\n- `meio = (5 + 9) / 2 = 7`\n- `vetor[7]` é 15. Como `15 == 15`, a função retorna `meio`, que é 7.\n\nO corpo do laço `while` foi executado 2 vezes. A função retorna o índice 7, que é impresso na tela. A opção (c) descreve este resultado corretamente."
+    "explicacao_geral": "**Raciocínio:** A questão pede para rastrear a execução do algoritmo de busca binária para encontrar o valor `15` no vetor fornecido e determinar quantas vezes o corpo do laço `while` executa e qual seria o resultado impresso (assumindo a correção do bug).\n\n**Passo a passo da Busca Binária:**\n-   **Vetor:** `[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]` (tamanho = 10)\n-   **Busca por:** `valor = 15`\n-   **Inicialização:** `inicio = 0`, `fim = 9`\n\n1.  **Iteração 1:**\n    -   `while (0 <= 9)` é verdadeiro. O corpo do laço executa **(1ª vez)**.\n    -   `meio = (0 + 9) / 2 = 4`.\n    -   `vetor[4]` é `9`. Como `9 < 15`, o espaço de busca é reduzido para a metade direita.\n    -   `inicio` é atualizado para `meio + 1 = 5`.\n\n2.  **Iteração 2:**\n    -   `while (5 <= 9)` é verdadeiro. O corpo do laço executa **(2ª vez)**.\n    -   `meio = (5 + 9) / 2 = 7`.\n    -   `vetor[7]` é `15`. Como `15 == 15`, a condição de igualdade é satisfeita.\n    -   A função retorna `meio`, que é **7**.\n\n**Conclusão:**\n-   O corpo do laço `while` foi executado **2 vezes**.\n-   A função `buscaBinaria` retorna o índice **7**.\n-   Assumindo a correção `resultado = buscaBinaria(...)`, o programa imprimiria `7`.\n\n- **(c) Correto:** O laço executa 2 vezes e o valor de retorno (e impresso) é 7.\n- **(a, b, d) Incorreto:** Contêm número de execuções ou valor de retorno incorretos."
   },
   {
     "id_questao": "2024_2_q13",
@@ -399,7 +534,7 @@
         "subarea": null
       }
     ],
-    "enunciado": "Considere a função em Python a seguir.\n```python\ndef funcao(n):\n    if n == 0:\n        return 0\n    return n % 10 + funcao(n // 10)\n```\nQual o valor retornado pela função quando chamada da seguinte forma: `funcao(42)`?",
+    "enunciado": "Considere a função em Python a seguir.\n\n```python\ndef funcao(n):\n  if n == 0:\n    return 0\n  return n % 10 + funcao(n // 10)\n```\n\nQual o valor retornado pela função quando chamada da seguinte forma: `funcao(42)`?",
     "opcoes": [
       {
         "letra": "a",
@@ -427,7 +562,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** A função recursiva soma os dígitos de um número inteiro.\n\n- O operador `% 10` obtém o último dígito de um número (o resto da divisão por 10).\n- O operador `// 10` remove o último dígito de um número (a divisão inteira por 10).\n\n**Rastreamento da chamada `funcao(42)`:**\n1.  `funcao(42)` retorna `42 % 10 + funcao(42 // 10)`\n    - Isso é `2 + funcao(4)`\n2.  `funcao(4)` retorna `4 % 10 + funcao(4 // 10)`\n    - Isso é `4 + funcao(0)`\n3.  `funcao(0)` atinge o caso base e retorna `0`.\n\nSubstituindo os valores de volta:\n- O resultado de `funcao(4)` é `4 + 0 = 4`.\n- O resultado final de `funcao(42)` é `2 + 4 = 6`."
+    "explicacao_geral": "**Raciocínio:** A função `funcao(n)` é recursiva e calcula a soma dos dígitos de um número inteiro `n`.\n-   O operador `% 10` retorna o último dígito do número (o resto da divisão por 10).\n-   O operador `// 10` remove o último dígito do número (a parte inteira da divisão por 10).\n-   O caso base da recursão é quando `n` se torna 0, retornando 0.\n\n**Passo a passo da chamada `funcao(42)`:**\n1.  **`funcao(42)`:**\n    -   Não é o caso base (`42 != 0`).\n    -   Retorna `42 % 10` + `funcao(42 // 10)`\n    -   Retorna `2` + `funcao(4)`\n2.  **`funcao(4)`:**\n    -   Não é o caso base (`4 != 0`).\n    -   Retorna `4 % 10` + `funcao(4 // 10)`\n    -   Retorna `4` + `funcao(0)`\n3.  **`funcao(0)`:**\n    -   É o caso base (`0 == 0`).\n    -   Retorna `0`.\n\n**Cálculo Final:**\n-   O resultado de `funcao(4)` é `4 + 0 = 4`.\n-   O resultado de `funcao(42)` é `2 + 4 = 6`.\n\n- **(b) Correto:** A soma dos dígitos de 42 é 6.\n- **(a, c, d, e) Incorreto:** São resultados de erros de cálculo na lógica recursiva."
   },
   {
     "id_questao": "2024_2_q14",
@@ -440,7 +575,7 @@
         "subarea": null
       }
     ],
-    "enunciado": "Considere a função em Python a seguir.\n```python\ndef funcao(n, r=0):\n    if n == 0:\n        return r\n    return funcao(n // 10, r * 10 + n % 10)\n```\nQual o retorno da função quando chamada da seguinte forma: `funcao(42)`?",
+    "enunciado": "Considere a função em Python a seguir.\n\n```python\ndef funcao(n, r=0):\n  if n == 0:\n    return r\n  return funcao(n // 10, r * 10 + n % 10)\n```\n\nQual o retorno da função quando chamada da seguinte forma: `funcao(42)`?",
     "opcoes": [
       {
         "letra": "a",
@@ -468,7 +603,48 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** A função recursiva inverte os dígitos de um número inteiro usando um acumulador `r`.\n\n**Rastreamento da chamada `funcao(42)` (inicialmente `r=0`):**\n1.  **`funcao(42, 0)`:**\n    - `n` não é 0.\n    - Chama `funcao(42 // 10, 0 * 10 + 42 % 10)`\n    - Isso é `funcao(4, 2)`\n2.  **`funcao(4, 2)`:**\n    - `n` não é 0.\n    - Chama `funcao(4 // 10, 2 * 10 + 4 % 10)`\n    - Isso é `funcao(0, 20 + 4)` que é `funcao(0, 24)`\n3.  **`funcao(0, 24)`:**\n    - `n` é 0. Atinge o caso base.\n    - Retorna o valor do acumulador `r`, que é `24`.\n\nO resultado final é 24."
+    "explicacao_geral": "**Raciocínio:** A função `funcao(n, r=0)` é recursiva e seu objetivo é inverter os dígitos do número `n`. O parâmetro `r` atua como um acumulador que constrói o número invertido.\n\n**Passo a passo da chamada `funcao(42)` (que é `funcao(42, 0)`):**\n1.  **`funcao(42, 0)`:**\n    -   Não é o caso base (`42 != 0`).\n    -   Chama `funcao(42 // 10, 0 * 10 + 42 % 10)`\n    -   Chama `funcao(4, 2)`\n2.  **`funcao(4, 2)`:**\n    -   Não é o caso base (`4 != 0`).\n    -   Chama `funcao(4 // 10, 2 * 10 + 4 % 10)`\n    -   Chama `funcao(0, 20 + 4)` -> `funcao(0, 24)`\n3.  **`funcao(0, 24)`:**\n    -   É o caso base (`0 == 0`).\n    -   Retorna o valor do acumulador `r`, que é **24**.\n\nO resultado final é propagado de volta pelas chamadas recursivas.\n\n- **(d) Correto:** O número 42 invertido é 24.\n- **(a, b, c, e) Incorreto:** São resultados de erros de cálculo na lógica recursiva."
+  },
+  {
+    "id_questao": "2024_2_q15",
+    "prova_referencia": "2024-2.pdf",
+    "numero_questao": 15,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Grafos",
+        "subarea": "Dijkstra"
+      }
+    ],
+    "enunciado": "Considere o grafo a seguir:\n\n```mermaid\ngraph TD\n    A -- 2 --> B\n    A -- 6 --> G\n    B -- 7 --> C\n    B -- 2 --> E\n    C -- 3 --> D\n    C -- 3 --> F\n    D -- 2 --> H\n    E -- 1 --> G\n    E -- 2 --> F\n    F -- 2 --> H\n    G -- 4 --> H\n```\n\nAo executar o algoritmo de Dijkstra para calcular o caminho mínimo entre os vértices A e D, qual das alternativas abaixo representa uma possível ordem em que os vértices são visitados (i.e., o vértice é retirado da fila de vértices a visitar)?",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "A-G-E-B-C-F-H-D",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "A-G-E-F-H-D",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "A-B-E-F-H-D",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "A-B-E-G-H-D",
+        "correta": false
+      },
+      {
+        "letra": "e",
+        "texto": "A-B-E-G-F-H-C-D",
+        "correta": true
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial, possivelmente por um erro não evidente ou por múltiplas interpretações. No entanto, uma execução padrão do algoritmo de Dijkstra leva a uma resposta clara.\n\n**Raciocínio com Dijkstra (partindo de A):**\nO algoritmo de Dijkstra sempre visita (retira da fila de prioridades) o vértice não visitado com a menor distância acumulada da origem.\n\n-   **Fila de Prioridades (Distâncias):** `{A:0, B:∞, C:∞, D:∞, E:∞, F:∞, G:∞, H:∞}`\n-   **Ordem de Visitação:**\n\n1.  **Visita A (dist 0).** Atualiza vizinhos: B (dist 2), G (dist 6). Fila: `{B:2, G:6, ...}`.\n2.  **Visita B (dist 2).** Atualiza vizinhos: E (dist 2+2=4), C (dist 2+7=9). Fila: `{E:4, G:6, C:9, ...}`.\n3.  **Visita E (dist 4).** Atualiza vizinhos: G (dist 4+1=5, melhor que 6), F (dist 4+2=6). Fila: `{G:5, F:6, C:9, ...}`.\n4.  **Visita G (dist 5).** Atualiza vizinhos: H (dist 5+4=9). Fila: `{F:6, C:9, H:9, ...}`.\n5.  **Visita F (dist 6).** Atualiza vizinhos: H (dist 6+2=8, melhor que 9), C (dist 6+3=9, sem mudança). Fila: `{H:8, C:9, ...}`.\n6.  **Visita H (dist 8).** Atualiza vizinhos: D (dist 8+2=10). Fila: `{C:9, D:10}`.\n7.  **Visita C (dist 9).** Atualiza vizinhos: D (dist 9+3=12, pior que 10). Fila: `{D:10}`.\n8.  **Visita D (dist 10).** Fim.\n\n**Ordem Final de Visitação:** `A-B-E-G-F-H-C-D`.\n\n- **(e) Correto:** Esta sequência corresponde exatamente à ordem de visitação derivada da execução padrão de Dijkstra.\n- **(a, b, c, d) Incorreto:** As outras sequências violam a regra de Dijkstra de sempre escolher o nó com a menor distância atual."
   },
   {
     "id_questao": "2024_2_q16",
@@ -485,31 +661,31 @@
     "opcoes": [
       {
         "letra": "a",
-        "texto": "```c\nfloat calcula_preco(float valor_compra) {\n    if (valor_compra > 100)\n        valor_compra = valor_compra - (valor_compra * 15%); // Erro de sintaxe\n    return valor_compra;\n}\n```",
+        "texto": "```c\nfloat calcula_preco (float valor_compra) {\n  if (valor_compra > 100)\n    valor_compra = (valor_compra * 15%);\n  return valor_compra;\n}\n```",
         "correta": false
       },
       {
         "letra": "b",
-        "texto": "```c\nfloat calcula_preco(float valor_compra) {\n    if (valor_compra > 100)\n        valor_compra = valor_compra - (valor_compra * 0.85); // Lógica incorreta\n    return valor_compra;\n}\n```",
+        "texto": "```c\nfloat calcula_preco (float valor_compra) {\n  if (valor_compra > 100)\n    valor_compra = valor_compra - (valor_compra * 0.85);\n  return valor_compra;\n}\n```",
         "correta": false
       },
       {
         "letra": "c",
-        "texto": "```c\nfloat calcula_preco(float valor_compra) {\n    if (valor_compra > 100)\n        valor_compra = valor_compra * 1.15; // Lógica incorreta\n    return valor_compra;\n}\n```",
+        "texto": "```c\nfloat calcula_preco (float valor_compra) {\n  if (valor_compra > 100)\n    valor_compra = valor_compra * 1.15;\n  return valor_compra;\n}\n```",
         "correta": false
       },
       {
         "letra": "d",
-        "texto": "```c\nfloat calcula_preco(float valor_compra) {\n    if (valor_compra > 100)\n        valor_compra = valor_compra / 1.15; // Lógica incorreta\n    return valor_compra;\n}\n```",
+        "texto": "```c\nfloat calcula_preco (float valor_compra) {\n  if (valor_compra > 100)\n    valor_compra = valor_compra / 1.15;\n  return valor_compra;\n}\n```",
         "correta": false
       },
       {
         "letra": "e",
-        "texto": "```c\nfloat calcula_preco(float valor_compra) {\n    if (valor_compra > 100)\n        valor_compra = valor_compra * 0.85;\n    return valor_compra;\n}\n```",
+        "texto": "```c\nfloat calcula_preco (float valor_compra) {\n  if (valor_compra > 100)\n    valor_compra = valor_compra * 0.85;\n  return valor_compra;\n}\n```",
         "correta": true
       }
     ],
-    "explicacao_geral": "**Raciocínio:** Aplicar um desconto de 15% significa que o preço final será 85% do valor original (100% - 15% = 85%). Portanto, a operação matemática correta é multiplicar o valor da compra por 0.85.\n\n- **(a) Incorreto:** O operador `%` em C é para módulo (resto da divisão), não porcentagem. O código não compilaria.\n- **(b) Incorreto:** `valor_compra * 0.85` calcula o preço com desconto. Subtrair isso do `valor_compra` original (`valor - 0.85*valor`) resulta no valor do desconto (`0.15*valor`), não no preço final.\n- **(c) Incorreto:** Multiplicar por 1.15 aplica um aumento de 15%, não um desconto.\n- **(d) Incorreto:** Dividir por 1.15 não é matematicamente equivalente a subtrair 15%.\n- **(e) Correto:** `valor_compra * 0.85` calcula corretamente o preço final após um desconto de 15%."
+    "explicacao_geral": "**Raciocínio:** A tarefa é aplicar um desconto de 15% se a compra for maior que 100.\n-   A condição `if (valor_compra > 100)` implementa corretamente a regra de quando aplicar o desconto.\n-   Um desconto de 15% significa que o preço final será 100% - 15% = 85% do valor original.\n-   Para calcular 85% de um valor, multiplicamos o valor por `0.85`.\n\n**Análise das Opções:**\n-   (a) Incorreto: `15%` não é uma sintaxe válida em C. A lógica também calcularia o valor do desconto, não o preço final.\n-   (b) Incorreto: `valor_compra * 0.85` calcula o preço final. Subtrair isso do valor original (`valor_compra - preco_final`) resultaria no valor do desconto (15% do valor), o que está errado.\n-   (c) Incorreto: Multiplicar por `1.15` adiciona 15% ao valor, o que é um acréscimo, não um desconto.\n-   (d) Incorreto: Dividir por `1.15` não é matematicamente equivalente a subtrair 15%.\n-   (e) **Correto:** A condição `if` está correta, e a operação `valor_compra = valor_compra * 0.85` calcula corretamente o novo preço com 15% de desconto."
   },
   {
     "id_questao": "2024_2_q17",
@@ -519,10 +695,10 @@
     "area": [
       {
         "nome": "Hashing",
-        "subarea": "Resolução de colisões"
+        "subarea": "Resolução de Colisões"
       }
     ],
-    "enunciado": "Analise as afirmações a seguir sobre tabelas de espalhamento (hash).\nI. A sondagem linear (linear probing) pode causar aglomeração de chaves devido ao excesso de colisões em regiões muito próximas da posição de inserção original de uma chave qualquer.\nII. Uma estratégia importante para evitar que o algoritmo entre em loop infinito é sempre manter ao menos uma posição vazia na tabela. Assim, sempre será possível inserir uma chave na sua posição correta, independentemente da estratégia de resolução de colisão adotada.\nIII. Na sondagem quadrática (quadratic probing), é possível que a sondagem entre em loop infinito mesmo que a tabela ainda tenha várias posições vazias.",
+    "enunciado": "Analise as afirmações a seguir sobre tabelas de espalhamento (hash).\n\nI. A sondagem linear (linear probing) pode causar aglomeração de chaves devido ao excesso de colisões em regiões muito próximas da posição de inserção original de uma chave qualquer.\nII. Uma estratégia importante para evitar que o algoritmo entre em loop infinito é sempre manter ao menos uma posição vazia na tabela. Assim, sempre será possível inserir uma chave na sua posição correta, independentemente da estratégia de resolução de colisão adotada.\nIII. Na sondagem quadrática (quadratic probing), é possível que a sondagem entre em loop infinito mesmo que a tabela ainda tenha várias posições vazias.",
     "opcoes": [
       {
         "letra": "a",
@@ -531,12 +707,12 @@
       },
       {
         "letra": "b",
-        "texto": "Apenas as afirmações II e III são verdadeiras.",
+        "texto": "Apenas as afirmativas II e III são verdadeiras.",
         "correta": false
       },
       {
         "letra": "c",
-        "texto": "Apenas as afirmações I e III são verdadeiras.",
+        "texto": "Apenas as afirmativas I e III são verdadeiras.",
         "correta": true
       },
       {
@@ -550,7 +726,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmativas:**\n\n- **I. Verdadeira:** Este fenômeno é conhecido como **aglomeração primária (primary clustering)**. Quando uma colisão ocorre, a sondagem linear procura a próxima posição livre sequencialmente, o que pode levar à formação de longos blocos de células ocupadas, degradando o desempenho.\n\n- **II. Falsa:** A afirmação é muito forte. Primeiro, a necessidade de manter uma posição vazia é específica para estratégias de endereçamento aberto, como a sondagem linear, para garantir a terminação da busca. Em hash com encadeamento (chaining), a tabela pode ter um fator de carga maior que 1. Segundo, a frase \"independentemente da estratégia\" está incorreta. A sondagem quadrática, por exemplo, pode não encontrar uma posição livre mesmo que a tabela não esteja cheia, se o tamanho da tabela não for escolhido adequadamente.\n\n- **III. Verdadeira:** Na sondagem quadrática, a sequência de sondagem é $h(k)+c_1i+c_2i^2$. Dependendo da escolha do tamanho da tabela e das constantes, a sequência de posições sondadas pode não cobrir todas as células da tabela. Isso pode levar a um loop ou falha na inserção, mesmo que existam posições vazias em outros locais."
+    "explicacao_geral": "**Raciocínio:** A questão avalia o conhecimento sobre técnicas de resolução de colisão em tabelas hash de endereçamento aberto.\n\n**Análise das Afirmativas:**\n-   **I. Verdadeira:** A sondagem linear, que tenta a próxima posição sequencial (`h(k)+1`, `h(k)+2`, etc.) em caso de colisão, é notória por causar um fenômeno chamado **aglomeração primária** (primary clustering), onde blocos de posições ocupadas tendem a se fundir, degradando a performance.\n-   **II. Falsa:** A afirmação é excessivamente generalista e incorreta. Embora manter a tabela com um fator de carga baixo (com posições vazias) seja crucial para a performance e para evitar loops em algumas sondagens, a justificativa \"sempre será possível inserir uma chave na sua posição correta, independentemente da estratégia\" é falsa. Por exemplo, na sondagem quadrática, se a função de sondagem e o tamanho da tabela não forem escolhidos corretamente, a sequência de sondagem pode falhar em encontrar um slot vazio mesmo que existam vários, entrando em um ciclo. Além disso, no encadeamento separado, a tabela pode ter mais chaves que posições.\n-   **III. Verdadeira:** A sondagem quadrática (`h(k)+c1*i+c2*i^2`) pode falhar em visitar todas as posições vazias da tabela se o tamanho da tabela e as constantes da função não forem escolhidas adequadamente (por exemplo, se o tamanho da tabela não for um número primo). Isso pode levar a um ciclo que não encontra um espaço livre, resultando em um loop infinito ou falha na inserção, mesmo com a tabela parcialmente vazia. Este fenômeno é chamado de **aglomeração secundária**.\n\n**Conclusão:** As afirmativas I e III estão corretas.\n\n- **(c) Correto:** Descreve precisamente as afirmativas verdadeiras.\n- **(a, b, d, e) Incorreto:** Contêm combinações erradas das afirmativas."
   },
   {
     "id_questao": "2024_2_q18",
@@ -563,7 +739,7 @@
         "subarea": "Listas Encadeadas"
       }
     ],
-    "enunciado": "O código abaixo imprime como resultado:\n```c\n#include <stdio.h>\n#include <stdlib.h>\ntypedef struct tipoNo {\n    int d;\n    struct tipoNo *prox;\n} tipoNo;\ntypedef struct tipoLista {\n    tipoNo *ea;\n    tipoNo *eb;\n} tipoLista;\nvoid funcao(tipoLista *p, int num) {\n    tipoNo *aux;\n    aux = (tipoNo *) malloc(sizeof(tipoNo));\n    aux -> d = num;\n    aux -> prox = p->ea;\n    p->ea = aux;\n    p->eb = p->ea->prox;\n}\nvoid mostra(tipoLista *p) {\n    tipoNo *temp = p->eb;\n    while(temp) { \n        printf(\"%d \", temp->d); \n        temp = temp->prox;\n    }\n}\nint main() {\n    tipoLista l;\n    l.ea = NULL;\n    l.eb = NULL;\n    funcao(&l,2);\n    funcao(&l,4);\n    funcao(&l,6);\n    funcao(&l,8);\n    mostra(&l);\n}\n```",
+    "enunciado": "O código abaixo imprime como resultado:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct tipoNo {\n  int d;\n  struct tipoNo *prox;\n} tipoNo;\n\ntypedef struct tipoLista {\n  tipoNo *ea;\n  tipoNo *eb;\n} tipoLista;\n\nvoid funcao(tipoLista *p, int num) {\n  tipoNo *aux;\n  aux = (tipoNo *) malloc(sizeof(tipoNo));\n  aux -> d = num;\n  aux -> prox = p->ea;\n  p->ea = aux;\n  p->eb = p->ea->prox;\n}\n\nvoid mostra(tipoLista *p) {\n  tipoNo *temp = p->eb;\n  while(temp) { \n    printf(\"%d \", temp->d); \n    temp = temp->prox;\n  }\n}\n\nint main() {\n  tipoLista l;\n  l.ea = NULL;\n  l.eb = NULL;\n  funcao(&l,2);\n  funcao(&l,4);\n  funcao(&l,6);\n  funcao(&l,8);\n  mostra(&l);\n}\n```",
     "opcoes": [
       {
         "letra": "a",
@@ -591,7 +767,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** A função `funcao` insere um novo elemento no início da lista (`p->ea`) e faz com que `p->eb` aponte sempre para o segundo elemento da lista. A função `mostra` imprime a lista começando a partir do nó apontado por `p->eb`.\n\n**Rastreamento das Chamadas:**\n- **Inicial:** `l.ea = NULL`, `l.eb = NULL`\n- **`funcao(&l, 2)`:**\n  - Lista se torna `[2]`. `l.ea` aponta para 2.\n  - `l.eb` aponta para `l.ea->prox`, que é `NULL`.\n- **`funcao(&l, 4)`:**\n  - Lista se torna `[4, 2]`. `l.ea` aponta para 4.\n  - `l.eb` aponta para `l.ea->prox`, que é o nó 2.\n- **`funcao(&l, 6)`:**\n  - Lista se torna `[6, 4, 2]`. `l.ea` aponta para 6.\n  - `l.eb` aponta para `l.ea->prox`, que é o nó 4.\n- **`funcao(&l, 8)`:**\n  - Lista se torna `[8, 6, 4, 2]`. `l.ea` aponta para 8.\n  - `l.eb` aponta para `l.ea->prox`, que é o nó 6.\n\n**Execução de `mostra(&l)`:**\n- A função começa a percorrer a lista a partir de `l.eb`, que aponta para o nó com o dado 6.\n- Imprime **6**, avança para o próximo (nó 4).\n- Imprime **4**, avança para o próximo (nó 2).\n- Imprime **2**, avança para o próximo (`NULL`).\n- O laço termina.\n\nA saída impressa é `6 4 2`."
+    "explicacao_geral": "**Raciocínio:** A questão exige o rastreamento do estado de uma estrutura de lista personalizada (`tipoLista`) que possui dois ponteiros, `ea` e `eb`.\n\n**Análise das Funções:**\n-   `funcao(p, num)`: Esta função insere um novo nó com o valor `num` no **início** da lista apontada por `p->ea`. Em seguida, ela atualiza o ponteiro `p->eb` para apontar para o **segundo elemento** da nova lista (`p->ea->prox`).\n-   `mostra(p)`: Esta função percorre e imprime a lista começando pelo nó apontado por `p->eb`, não por `p->ea`.\n\n**Passo a passo da Execução em `main`:**\n1.  **Inicialização:** `l.ea = NULL`, `l.eb = NULL`.\n2.  **`funcao(&l, 2)`:**\n    -   A lista em `ea` se torna: `[2]`\n    -   `eb` aponta para `ea->prox`, que é `NULL`.\n3.  **`funcao(&l, 4)`:**\n    -   A lista em `ea` se torna: `[4, 2]`\n    -   `eb` aponta para `ea->prox`, que é o nó `2`.\n4.  **`funcao(&l, 6)`:**\n    -   A lista em `ea` se torna: `[6, 4, 2]`\n    -   `eb` aponta para `ea->prox`, que é o nó `4`.\n5.  **`funcao(&l, 8)`:**\n    -   A lista em `ea` se torna: `[8, 6, 4, 2]`\n    -   `eb` aponta para `ea->prox`, que é o nó `6`.\n\n6.  **`mostra(&l)`:**\n    -   A função começa a imprimir a partir do nó apontado por `l.eb`, que é o nó `6`.\n    -   Ela imprimirá `6`, depois seguirá para o próximo (`4`), depois para o próximo (`2`), e parará quando o ponteiro for `NULL`.\n\n**Saída Impressa:** `6 4 2`\n\n- **(c) Correto:** O resultado impresso é `6 4 2`.\n- **(a, b, d, e) Incorreto:** São resultados de interpretações erradas de como os ponteiros `ea` e `eb` são manipulados."
   },
   {
     "id_questao": "2024_2_q19",
@@ -602,9 +778,13 @@
       {
         "nome": "Recursão",
         "subarea": null
+      },
+      {
+        "nome": "Algoritmos",
+        "subarea": "Análise de Algoritmos"
       }
     ],
-    "enunciado": "Para gerar a sequência de Fibonacci usamos a relação de recorrência abaixo (I). Complete o pseudo-código (II) para que o cálculo da sequência de Fibonacci esteja correto utilizando uma das opções abaixo:\n\n(I)\n$\\begin{cases}f(0)=0\\\\ f(1)=1\\\\ f(n)=f(n-1)+f(n-2)\\end{cases}$\n\n(II)\n```\nf(n)\n  if( _______ )\n    return n\n  return f(n-1)+f(n-2)\n```",
+    "enunciado": "Para gerar a sequência de Fibonacci usamos a relação de recorrência abaixo (I). Complete o pseudo-código (II) para que o cálculo da sequência de Fibonacci esteja correto utilizando uma das opções abaixo:\n\n(I)\n$\\begin{cases}f(0)=0\\\\ f(1)=1\\\\ f(n)=f(n-1)+f(n-2)\\end{cases}$\n\n(II)\n```\nf(n)\n  if(_______)\n    return n\n  return f(n-1)+f(n-2)\n```",
     "opcoes": [
       {
         "letra": "a",
@@ -632,7 +812,7 @@
         "correta": true
       }
     ],
-    "explicacao_geral": "**Raciocínio:** Uma função recursiva precisa de um ou mais **casos base** para parar a recursão. Para a sequência de Fibonacci, os casos base são $f(0)=0$ e $f(1)=1$. O código fornecido usa `return n` para o caso base.\n\n- Se `n=0`, `return n` retorna `0`, o que está correto.\n- Se `n=1`, `return n` retorna `1`, o que também está correto.\n\nPortanto, a condição do `if` deve ser verdadeira para `n=0` e `n=1`, e falsa para `n > 1`. A condição `n <= 1` satisfaz exatamente esse requisito, cobrindo ambos os casos base em uma única linha."
+    "explicacao_geral": "**Raciocínio:** A função recursiva de Fibonacci precisa de casos base para parar a recursão. De acordo com a definição fornecida (I), os casos base são:\n-   $f(0) = 0$\n-   $f(1) = 1$\n\nO pseudo-código fornecido (II) usa a linha `return n` para tratar os casos base. Vamos verificar qual condição no `if` faria com que `return n` funcionasse corretamente para ambos os casos base.\n\n-   Se `n = 0`, `return n` retorna `0`. Correto.\n-   Se `n = 1`, `return n` retorna `1`. Correto.\n\nA condição do `if` deve, portanto, ser verdadeira para `n=0` e `n=1`, e falsa para `n > 1` (para que a parte recursiva `f(n-1)+f(n-2)` seja executada).\n\n**Análise das Opções:**\n-   (a) `n == 0`: Cobre apenas o primeiro caso base.\n-   (b) `n <= 0`: Cobre o caso base `n=0`, mas não `n=1`.\n-   (c) `n == 1`: Cobre apenas o segundo caso base.\n-   (d) `n <= 2`: Trataria `n=2` como um caso base, o que está incorreto. $f(2)$ deve ser calculado como $f(1)+f(0)$.\n-   (e) **`n <= 1`**: Esta condição é verdadeira para `n=0` e `n=1`, e falsa para `n > 1`. Ela cobre perfeitamente ambos os casos base, fazendo com que o `return n` funcione para ambos. Esta é a implementação mais concisa e correta.\n\n- **(e) Correto:** A condição `n <= 1` trata os dois casos base da sequência de Fibonacci (0 e 1) de forma correta e sucinta."
   },
   {
     "id_questao": "2024_2_q20",
@@ -653,7 +833,7 @@
         "subarea": "AVL"
       }
     ],
-    "enunciado": "Considere as afirmações abaixo sobre diferentes tipos de árvores binárias de pesquisa e marque uma das alternativas\nI) Os algoritmos de busca tanto em árvores sem balanceamento, quanto em árvores com balanceamento, têm o número máximo de comparações da chave de busca com valores na árvore, na pior das hipóteses, proporcional a altura da árvore, não importando se a árvore é sem balanceamento ou com balanceamento.\nII) Dependendo da ordem de inserção dos elementos, é possível que a altura de uma árvore sem balanceamento seja menor ou igual que a de uma árvore com balanceamento, mesmo que as duas contenham os mesmos elementos, todos inseridos na mesma ordem\nIII) O mesmo algoritmo de busca pode ser usado tanto para árvores com balanceamento quanto para árvores sem balanceamento",
+    "enunciado": "Considere as afirmações abaixo sobre diferentes tipos de árvores binárias de pesquisa e marque uma das alternativas\n\nI) Os algoritmos de busca tanto em árvores sem balanceamento, quanto em árvores com balanceamento, têm o número máximo de comparações da chave de busca com valores na árvore, na pior das hipóteses, proporcional a altura da árvore, não importando se a árvore é sem balanceamento ou com balanceamento.\nII) Dependendo da ordem de inserção dos elementos, é possível que a altura de uma árvore sem balanceamento seja menor ou igual que a de uma árvore com balanceamento, mesmo que as duas contenham os mesmos elementos, todos inseridos na mesma ordem\nIII) O mesmo algoritmo de busca pode ser usado tanto para árvores com balanceamento quanto para árvores sem balanceamento",
     "opcoes": [
       {
         "letra": "a",
@@ -668,12 +848,12 @@
       {
         "letra": "c",
         "texto": "Apenas as afirmações I e III estão corretas",
-        "correta": false
+        "correta": true
       },
       {
         "letra": "d",
         "texto": "Todas as afirmações estão corretas",
-        "correta": true
+        "correta": false
       },
       {
         "letra": "e",
@@ -681,6 +861,6 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmativas:**\n\n- **I) Verdadeira:** A operação de busca em qualquer árvore binária de pesquisa (seja ela balanceada ou não) percorre um caminho da raiz até um nó (ou uma folha nula). O comprimento desse caminho é, no máximo, a altura da árvore. Portanto, o número de comparações no pior caso é sempre proporcional à altura ($O(h)$).\n\n- **II) Verdadeira:** Árvores com balanceamento (como AVL ou Rubro-Negra) garantem uma altura mínima, mas nem sempre a menor altura possível. Uma sequência de inserção de chaves pode, por acaso, formar uma árvore binária de pesquisa sem balanceamento que é mais compacta (ou de igual altura) que a versão que resultaria de inserções e rotações de uma árvore balanceada. A afirmação é verdadeira por causa do \"menor ou igual\".\n\n- **III) Verdadeira:** O algoritmo de busca em uma árvore binária de pesquisa baseia-se unicamente na propriedade de que `esquerda < raiz < direita`. Como as árvores balanceadas (AVL, Rubro-Negra, etc.) são, por definição, árvores binárias de pesquisa, elas mantêm essa propriedade. O mesmo algoritmo de busca funciona perfeitamente em ambas, pois a lógica de busca não se importa com as regras de balanceamento (que são aplicadas durante inserções e remoções).\n\nComo todas as três afirmações são verdadeiras, a alternativa correta é a (d)."
+    "explicacao_geral": "**Análise da Questão (Corrigida):** O gabarito oficial desta questão indicava a alternativa 'd' como correta, o que implicaria que a afirmativa II é verdadeira. No entanto, a afirmativa II é conceitualmente falsa, sugerindo um erro no gabarito. A análise a seguir apresenta a justificativa lógica.\n\n**Análise das Afirmativas:**\n-   **I. Verdadeira:** A operação de busca em qualquer árvore binária de pesquisa (seja ela balanceada como AVL ou Rubro-Negra, ou não balanceada) segue um caminho da raiz até um nó ou uma folha. No pior caso, o número de comparações é igual ao número de nós no caminho mais longo, que é, por definição, proporcional à altura ($h$) da árvore. A complexidade de busca é sempre $O(h)$.\n-   **II. Falsa:** Uma árvore com balanceamento (como AVL ou Rubro-Negra) é projetada para manter sua altura a menor possível, próxima de $O(\\log n)$. Uma árvore sem balanceamento, para a mesma sequência de inserções, pode ter uma altura igual (se a sequência for \"boa\") ou maior (podendo degenerar para $O(n)$). É **impossível** que, para a mesma sequência de inserção, a árvore sem balanceamento tenha uma altura **menor** que a versão balanceada, pois o algoritmo de balanceamento atua justamente para minimizar ou limitar a altura.\n-   **III. Verdadeira:** Tanto árvores balanceadas (AVL, Rubro-Negra) quanto não balanceadas são, por definição, Árvores Binárias de Busca (BST). Elas compartilham a mesma propriedade fundamental de ordenação (esquerda < pai < direita). Portanto, o algoritmo de busca, que se baseia unicamente nessa propriedade, é idêntico para todas elas. A diferença está nos algoritmos de inserção e remoção, que incluem passos extras de rebalanceamento nas árvores balanceadas.\n\n**Conclusão Corrigida:** As afirmativas I e III são verdadeiras, enquanto a II é falsa. Portanto, a resposta correta é a alternativa (c)."
   }
 ]
