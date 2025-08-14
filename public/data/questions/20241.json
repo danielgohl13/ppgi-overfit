@@ -1,5 +1,41 @@
 [
   {
+    "id_questao": "2024_1_q1",
+    "prova_referencia": "2024-1.pdf",
+    "numero_questao": 1,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": "Insertion Sort"
+      }
+    ],
+    "enunciado": "Considere a função abaixo escrita em linguagem C e com o objetivo de ordenar um vetor de inteiros com n elementos de maneira crescente:\n\n```c\nvoid ordena (int v[], unsigned tamanhoDoVetor) {\n  int i,j,k;\n  for(i=1; i < tamanhoDoVetor; i++) {\n    k=v[i];\n    for(j=i-1; (j>=0) && (v[j]>k); j--) {\n      v[j+1]=v[j];\n      v[j]=k;\n    }\n  }\n}\n```\n\nAssinale a alternativa correta:",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "O código ordena o vetor por inserção de maneira crescente",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "O código ordena o vetor de maneira crescente por seleção",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "É possível alterar o código em uma única linha para ordenar o vetor de maneira crescente por inserção",
+        "correta": true
+      },
+      {
+        "letra": "d",
+        "texto": "É possível alterar o código em uma única linha para ordenar o vetor de maneira crescente por seleção",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial. A anulação deve-se provavelmente a um bug na implementação que a torna incorreta, mas conceitualmente próxima do Insertion Sort.\n\n**Análise do Código:**\nO código apresentado é uma tentativa de implementar o algoritmo **Insertion Sort**. No entanto, ele contém um erro lógico:\n- A linha `v[j]=k;` está **dentro** do laço `for` interno.\n- A lógica correta do Insertion Sort requer que o laço interno apenas desloque os elementos maiores para a direita (`v[j+1]=v[j];`). A inserção do elemento `k` em sua posição final (`v[j+1]=k;`) deve ocorrer **após** o término do laço interno.\n\n**Correção e Análise das Alternativas:**\n- **(a) Incorreto:** O código, como está, não ordena o vetor corretamente para todos os casos devido ao bug.\n- **(b) Incorreto:** O algoritmo se assemelha ao Insertion Sort, não ao Selection Sort.\n- **(c) Correto (com ressalvas):** A alternativa mais plausível. Para corrigir o código e transformá-lo em um Insertion Sort funcional, a linha `v[j]=k;` deve ser alterada para `v[j+1]=k;` e movida para fora do laço interno. Embora isso envolva mais do que apenas editar uma linha, a interpretação mais branda é que a lógica principal pode ser corrigida alterando fundamentalmente uma linha e sua posição. Nenhuma outra alternativa se aproxima de uma resposta correta.\n- **(d) Incorreto:** A estrutura do código não corresponde ao Selection Sort."
+  },
+  {
     "id_questao": "2024_1_q2",
     "prova_referencia": "2024-1.pdf",
     "numero_questao": 2,
@@ -8,13 +44,9 @@
       {
         "nome": "Análise de Complexidade",
         "subarea": "Notação Big O"
-      },
-      {
-        "nome": "Algoritmos",
-        "subarea": null
       }
     ],
-    "enunciado": "Se um programador fez testes para avaliar o tempo de execução para entradas de tamanho 1000 em um programa $O(n^2)$ e obteve tempo de 1 minuto, quanto tempo demoraria para uma entrada de tamanho 2000? (considere que 1000 é suficientemente grande para desprezar fatores menores na função de custo e que o custo unitário por operação não variou com o tamanho do problema entre os dois experimentos)",
+    "enunciado": "Se um programador fez testes para avaliar o tempo de execução para entradas de tamanho 1000 em um programa $O(n^2)$ e obteve tempo de 1 minuto, quanto tempo demoraria para uma entrada de tamanho 2000?",
     "opcoes": [
       {
         "letra": "a",
@@ -37,7 +69,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio:** A complexidade é $O(n^2)$. Se o tamanho da entrada `n` dobra (de 1000 para 2000), o tempo de execução aumenta pelo quadrado desse fator, ou seja, $2^2 = 4$ vezes.\n\n**Cálculo:** 1 minuto * 4 = 4 minutos.\n\n- **(a) Incorreto:** 2 minutos seria o caso se a complexidade fosse linear, $O(n)$.\n- **(b, d) Incorreto:** São valores que não correspondem à proporção quadrática."
+    "explicacao_geral": "**Raciocínio:** A complexidade de tempo do algoritmo é $O(n^2)$. Isso significa que o tempo de execução $T(n)$ é aproximadamente proporcional ao quadrado do tamanho da entrada $n$. Podemos expressar isso como $T(n) \\approx c \\cdot n^2$, onde $c$ é uma constante.\n\n**Análise:**\n- O tamanho da entrada `n` dobrou (de 1000 para 2000). O fator de aumento é 2.\n- Como o tempo é proporcional a $n^2$, o tempo de execução aumentará pelo **quadrado do fator de aumento** da entrada.\n- Fator de aumento do tempo = (fator de aumento da entrada)² = $2^2 = 4$.\n\n**Cálculo:**\n- Tempo para n=1000: 1 minuto.\n- Tempo para n=2000: (Tempo para n=1000) * 4 = 1 minuto * 4 = **4 minutos**.\n\n- **(a) Incorreto:** Seria 2 minutos se a complexidade fosse linear, $O(n)$.\n- **(c) Correto:** O tempo aumenta quadraticamente com o tamanho da entrada.\n- **(b, d) Incorreto:** São valores que não correspondem à proporção quadrática."
   },
   {
     "id_questao": "2024_1_q3",
@@ -54,7 +86,7 @@
         "subarea": "Ω"
       }
     ],
-    "enunciado": "Sobre as afirmativas abaixo:\nI) Se $f(n)=log_{2}(n)$ então $f(n)$ é $O(log_{10}(n))$\nII) Se um algoritmo tem função de custo $T(n)=3n$ então é correto afirmar que o algoritmo é $O(n^{2})$\nIII) Se um algoritmo A tem função de custo $T1(n)$ na classe de complexidade Ω(n) e um algoritmo B tem função de custo $T2(n)$ na classe de complexidade Ω($n^{2}$) então sabe-se com certeza que $T1(n)$ está na classe $O(T2(n))$.",
+    "enunciado": "Sobre as afirmativas abaixo:\n\nI) Se $f(n)=\\log_{2}(n)$ então $f(n)$ é $O(\\log_{10}(n))$\n\nII) Se um algoritmo tem função de custo $T(n)=3n$ então é correto afirmar que o algoritmo é $O(n^2)$\n\nIII) Se um algoritmo A tem função de custo T1(n) na classe de complexidade $\\Omega(n)$ e um algoritmo B tem função de custo T2(n) na classe de complexidade $\\Omega(n^2)$ então sabe-se com certeza que $T1(n)$ está na classe $O(T2(n))$.",
     "opcoes": [
       {
         "letra": "a",
@@ -77,7 +109,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmativas:**\n\n- **I) Correta:** A mudança de base em logaritmos equivale a multiplicar por uma constante ($log_b(a) = \\frac{log_c(a)}{log_c(b)}$). Como a notação Big O ignora fatores constantes, $O(log_{2}(n))$ é equivalente a $O(log_{10}(n))$.\n- **II) Correta:** A notação Big O descreve um limite superior. Uma função linear como $T(n)=3n$ é limitada superiormente por uma função quadrática $c*n^2$ para um `c` e `n` suficientemente grandes (ex: para c=1, $3n \\le n^2$ para todo $n \\ge 3$).\n- **III) Incorreta:** A notação Ω descreve um limite inferior. $T1(n)$ poderia ser $n^3$ (que é $Ω(n)$) e $T2(n)$ poderia ser $n^2$ (que é $Ω(n^2)$). Neste caso, $T1(n)$ não é $O(T2(n))$ porque $n^3$ cresce mais rápido que $n^2$."
+    "explicacao_geral": "**Análise das Afirmativas:**\n\n-   **I) Verdadeira:** Pela propriedade de mudança de base de logaritmos, $\\log_{2}(n) = \\frac{\\log_{10}(n)}{\\log_{10}(2)}$. Como $\\frac{1}{\\log_{10}(2)}$ é uma constante positiva, $\\log_{2}(n)$ é um múltiplo constante de $\\log_{10}(n)$. Portanto, $\\log_{2}(n)$ pertence a $O(\\log_{10}(n))$ (e também a $\\Theta(\\log_{10}(n))$).\n\n-   **II) Verdadeira:** A notação Big O ($O$) descreve um limite superior assintótico. Uma função $T(n)=3n$ cresce mais lentamente que $n^2$. Formalmente, podemos encontrar constantes $c>0$ e $n_0$ tal que $3n \\le c \\cdot n^2$ para todo $n \\ge n_0$ (por exemplo, $c=1$ e $n_0=3$). Assim, $3n$ é $O(n^2)$.\n\n-   **III) Falsa:** A notação Omega ($\\Omega$) descreve um limite inferior. A afirmativa não garante que $T1(n)$ cresça mais lentamente que $T2(n)$.\n    -   **Contraexemplo:** Seja $T1(n) = n^3$ e $T2(n) = n^2$.\n    -   $T1(n) = n^3$ está em $\\Omega(n)$, pois $n^3$ cresce mais rápido que $n$.\n    -   $T2(n) = n^2$ está em $\\Omega(n^2)$, pois $n^2$ cresce na mesma ordem que $n^2$.\n    -   No entanto, $T1(n) = n^3$ **não** está em $O(T2(n)) = O(n^2)$, pois $n^3$ cresce mais rápido que $n^2$.\n\n**Conclusão:** Apenas as afirmativas I e II estão corretas."
   },
   {
     "id_questao": "2024_1_q4",
@@ -86,15 +118,15 @@
     "ano_prova": 2024,
     "area": [
       {
-        "nome": "Operações Fundamentais",
-        "subarea": "Busca"
+        "nome": "Algoritmos",
+        "subarea": "Busca Binária"
       },
       {
-        "nome": "Estruturas de Dados",
-        "subarea": "Arrays"
+        "nome": "Operações Fundamentais",
+        "subarea": "Busca"
       }
     ],
-    "enunciado": "Dado o vetor abaixo, o qual é apresentado em uma tabela onde a primeira linha indica a posição dos elementos e a segunda linha os valores armazenados. \n\n| Posição | 0 | 1 | 2 | 3 | 4  | 5  | 6  | 7  | 8  |\n|:-------:|:-:|:-:|:-:|:-:|:--:|:--:|:--:|:--:|:--:|\n| Valor   | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 |\n\nUma busca binária no mesmo compararia a chave 13 com os seguintes valores do vetor:",
+    "enunciado": "Dado o vetor abaixo, o qual é apresentado em uma tabela onde a primeira linha indica a posição dos elementos e a segunda linha os valores armazenados.\n\n| 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  |\n|----|----|----|----|----|----|----|----|----|\n| 2  | 4  | 6  | 8  | 10 | 12 | 14 | 16 | 18 |\n\nUma busca binária no mesmo compararia a chave 13 com os seguintes valores do vetor:",
     "opcoes": [
       {
         "letra": "a",
@@ -117,7 +149,7 @@
         "correta": true
       }
     ],
-    "explicacao_geral": "**Passo a Passo da Busca Binária (Chave = 13):**\nVetor: `[2, 4, 6, 8, 10, 12, 14, 16, 18]` (índices de 0 a 8)\n\n1.  **Intervalo `[0, 8]`:**\n    -   `meio = floor((0 + 8) / 2) = 4`\n    -   Compara `vetor[4]` (valor **10**) com 13.\n    -   `10 < 13`, então a busca continua na metade direita: `inicio = meio + 1 = 5`.\n\n2.  **Intervalo `[5, 8]`:**\n    -   `meio = floor((5 + 8) / 2) = 6`\n    -   Compara `vetor[6]` (valor **14**) com 13.\n    -   `14 > 13`, então a busca continua na metade esquerda: `fim = meio - 1 = 5`.\n\n3.  **Intervalo `[5, 5]`:**\n    -   `meio = floor((5 + 5) / 2) = 5`\n    -   Compara `vetor[5]` (valor **12**) com 13.\n    -   `12 < 13`, então `inicio = meio + 1 = 6`.\n\n4.  **Intervalo `[6, 5]`:**\n    -   `inicio > fim`, a busca termina. A chave não foi encontrada.\n\nOs valores comparados foram, nesta ordem: 10, 14 e 12."
+    "explicacao_geral": "**Raciocínio:** A busca binária funciona em um vetor ordenado, repetidamente dividindo o intervalo de busca pela metade.\n\n**Passo a passo da busca por `chave = 13`:**\n-   **Vetor:** `[2, 4, 6, 8, 10, 12, 14, 16, 18]` (índices de 0 a 8)\n-   **Intervalo Inicial:** `inicio = 0`, `fim = 8`\n\n1.  **Comparação 1:**\n    -   `meio = (0 + 8) / 2 = 4`\n    -   Compara `chave=13` com `vetor[4]=10`.\n    -   Como `13 > 10`, a busca continua na metade direita do vetor.\n    -   Novo intervalo: `inicio = meio + 1 = 5`, `fim = 8`.\n\n2.  **Comparação 2:**\n    -   `meio = (5 + 8) / 2 = 6` (divisão inteira).\n    -   Compara `chave=13` com `vetor[6]=14`.\n    -   Como `13 < 14`, a busca continua na metade esquerda do novo intervalo.\n    -   Novo intervalo: `inicio = 5`, `fim = meio - 1 = 5`.\n\n3.  **Comparação 3:**\n    -   `meio = (5 + 5) / 2 = 5`.\n    -   Compara `chave=13` com `vetor[5]=12`.\n    -   Como `13 > 12`, a busca continua na metade direita.\n    -   Novo intervalo: `inicio = meio + 1 = 6`, `fim = 5`.\n\n-   O laço da busca termina pois `inicio > fim`. A chave 13 não foi encontrada. Os valores comparados foram, nesta ordem: **10, 14 e 12**.\n\n- **(d) Correto:** A sequência de comparações é exatamente 10, 14 e 12.\n- **(c) Incorreto:** Embora a chave não exista, a busca realiza comparações antes de concluir isso."
   },
   {
     "id_questao": "2024_1_q5",
@@ -157,7 +189,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Raciocínio (Percurso Em-Ordem):**\nO percurso em-ordem (in-order) segue a sequência: **Esquerda, Raiz, Direita**.\n\n1.  Começa na raiz (42). Vai para a subárvore esquerda (15).\n2.  Do nó 15, vai para a sua subárvore esquerda (4). O nó 4 não tem filhos. Visita **4**.\n3.  Volta para o pai (15). Visita **15**.\n4.  Do nó 15, vai para a sua subárvore direita (8). O nó 8 não tem filhos. Visita **8**.\n5.  Volta para a raiz principal (42). Visita **42**.\n6.  Da raiz (42), vai para a subárvore direita (23).\n7.  Do nó 23, tenta ir para a esquerda (nulo). \n8.  Visita **23**.\n9.  Do nó 23, vai para a sua subárvore direita (16). O nó 16 não tem filhos. Visita **16**.\n\n**Sequência final:** 4, 15, 8, 42, 23, 16."
+    "explicacao_geral": "**Análise da Questão (Corrigida):** A árvore mostrada **não é uma árvore binária de busca** (BST), pois o nó `23` está na subárvore direita de `42`, mas o nó `16` está na subárvore esquerda de `23`, o que seria uma violação se fosse uma BST (`16 < 23`). No entanto, a questão pede o percurso em uma **árvore binária** genérica, o que é perfeitamente válido.\n\n**Raciocínio - Percurso Em-Ordem (Inorder):**\nA regra do percurso em-ordem é: **Esquerda -> Raiz -> Direita**.\n\n1.  Começa na raiz (`42`). Vai para a subárvore **esquerda** (raiz `15`).\n2.  Na raiz `15`, vai para sua subárvore **esquerda** (raiz `4`).\n3.  O nó `4` não tem filhos. Visita `4`. **Sequência: 4**\n4.  Volta para `15`. Já visitou a esquerda, agora visita a **raiz**. Visita `15`. **Sequência: 4, 15**\n5.  Na raiz `15`, vai para sua subárvore **direita** (raiz `8`).\n6.  O nó `8` não tem filhos. Visita `8`. **Sequência: 4, 15, 8**\n7.  Volta para `42`. Já visitou a esquerda, agora visita a **raiz**. Visita `42`. **Sequência: 4, 15, 8, 42**\n8.  Na raiz `42`, vai para sua subárvore **direita** (raiz `23`).\n9.  Na raiz `23`, vai para sua subárvore **esquerda** (raiz `16`).\n10. O nó `16` não tem filhos. Visita `16`. **Sequência: 4, 15, 8, 42, 16**\n11. Volta para `23`. Já visitou a esquerda, agora visita a **raiz**. Visita `23`. **Sequência: 4, 15, 8, 42, 16, 23**\n\n**Observação:** A sequência correta é `4, 15, 8, 42, 16, 23`. Nenhuma das opções corresponde a esta sequência. A opção (a) `4 15 8 42 23 16` difere na ordem dos dois últimos nós. Isso indica um **erro na questão ou nas alternativas**. A alternativa (a) seria correta se o percurso na subárvore de `23` fosse Raiz-Esquerda (`23, 16`), o que não corresponde a nenhum percurso padrão. Assumindo um erro de digitação na alternativa (a), ela é a mais próxima da resposta correta."
   },
   {
     "id_questao": "2024_1_q6",
@@ -174,7 +206,7 @@
         "subarea": "Rubro-Negra"
       }
     ],
-    "enunciado": "Sobre árvores vermelho e preto contento pelo menos 128 elementos, sabe-se que:\nI) Uma árvore vermelho e preto tem altura máxima inferior a $3 \\cdot log_{2}(n)$, onde n é o número de chaves, pois ela é balanceada\nII) No pior caso, uma árvore vermelho e preto tem altura pior do que o pior caso de uma árvore binária de pesquisa\nIII) O balanceamento na árvore falha apenas para os casos de inserção em ordem crescente, situação em que a altura esperada da árvore pode chegar a passar da raiz quadrada do número de elementos quando o número de elementos for muito grande.",
+    "enunciado": "Sobre árvores vermelho e preto contento pelo menos 128 elementos, sabe-se que:\n\nI) Uma árvore vermelho e preto tem altura máxima inferior a $3 \\log_{2}(n)$, onde n é o número de chaves, pois ela é balanceada\n\nII) No pior caso, uma árvore vermelho e preto tem altura pior do que o pior caso de uma árvore binária de pesquisa\n\nIII) O balanceamento na árvore falha apenas para os casos de inserção em ordem crescente, situação em que a altura esperada da árvore pode chegar a passar da raiz quadrada do número de elementos quando o número de elementos for muito grande.",
     "opcoes": [
       {
         "letra": "a",
@@ -197,7 +229,47 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmativas:**\n\n- **I) Verdadeira:** A altura `h` de uma árvore rubro-negra com `n` nós é garantida como sendo $h \\le 2 \\cdot log_{2}(n+1)$. Como $2 \\cdot log_{2}(n+1)$ é uma função logarítmica, ela é limitada superiormente por $3 \\cdot log_{2}(n)$ para `n` suficientemente grande. A afirmação captura a essência de que a altura é logarítmica e balanceada.\n- **II) Falsa:** O pior caso para uma árvore rubro-negra é uma altura de $O(log n)$. O pior caso para uma árvore binária de pesquisa comum é uma altura de $O(n)$ (quando se torna uma lista encadeada). Portanto, a altura da árvore rubro-negra é significativamente melhor (menor), não pior.\n- **III) Falsa:** O balanceamento em uma árvore rubro-negra **nunca** falha. É uma estrutura de dados autobalanceada. Casos como inserção ordenada apenas exigem mais operações de balanceamento (rotações e recolorações) para manter as propriedades da árvore, mas ela permanece com altura logarítmica."
+    "explicacao_geral": "**Análise das Afirmativas:**\n\n-   **I) Verdadeira:** Uma árvore rubro-negra (vermelho e preto) é uma árvore binária de busca auto-balanceada. Uma de suas propriedades garante que a altura `h` da árvore é sempre limitada superiormente por $2 \\cdot \\log_{2}(n+1)$. A afirmação de que a altura é inferior a $3 \\cdot \\log_{2}(n)$ é uma consequência desse limite mais estrito (é um limite superior mais frouxo, mas ainda válido), e a razão é, de fato, o balanceamento da árvore.\n\n-   **II) Falsa:** O pior caso para uma árvore rubro-negra é ter uma altura de $O(\\log n)$. O pior caso para uma árvore binária de pesquisa genérica (sem balanceamento) é ela degenerar em uma lista encadeada, com altura $O(n)$. Como $O(\\log n)$ é assintoticamente muito melhor (menor) que $O(n)$, a afirmação é falsa.\n\n-   **III) Falsa:** A principal característica de árvores auto-balanceadas como a rubro-negra é que o balanceamento **não falha**. As operações de inserção e remoção incluem rotações e recolorações que garantem que as propriedades de balanceamento sejam mantidas para qualquer sequência de operações, incluindo a inserção em ordem crescente.\n\n**Conclusão:** Apenas a afirmativa I está correta."
+  },
+  {
+    "id_questao": "2024_1_q7",
+    "prova_referencia": "2024-1.pdf",
+    "numero_questao": 7,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Operações Fundamentais",
+        "subarea": "Busca"
+      },
+      {
+        "nome": "Estruturas de Dados",
+        "subarea": "Arrays"
+      }
+    ],
+    "enunciado": "Considere as seguintes afirmações sobre a tarefa de pesquisa por chaves em uma coleção de elementos.\n\nI) A busca binária permite encontrar chaves eficientemente, mas não funciona se houver chaves repetidas na coleção\n\nII) Uma estrutura de dados pode ser usada para organizar os elementos, sacrificando custo espacial (memória) e ao mesmo tempo favorecendo o custo temporal\n\nIII) Se for necessário fazer muitas alterações na coleção (inserção, remoção e alteração de chaves), então a busca sequencial poderá ser melhor do que a busca binária no caso médio.",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Todas as afirmações são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Apenas I e II são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Apenas I e III são verdadeiras",
+        "correta": false
+      },
+      {
+        "letra": "d",
+        "texto": "Apenas II e III são verdadeiras",
+        "correta": true
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial, muito provavelmente devido à ambiguidade da afirmativa I. A análise a seguir esclarece cada ponto.\n\n-   **I) Falsa:** A busca binária **funciona** com chaves repetidas. Uma implementação padrão encontrará *uma* das ocorrências da chave, confirmando sua presença. A afirmação de que \"não funciona\" é muito forte. É possível adaptar o algoritmo para encontrar a primeira ou a última ocorrência, mas a versão básica ainda é funcional para determinar se o elemento existe na coleção.\n\n-   **II) Verdadeira:** Esta afirmativa descreve o clássico **trade-off (troca) espaço-tempo** em ciência da computação. Por exemplo, criar uma tabela hash (que consome mais memória, ou seja, sacrifica espaço) para uma coleção de elementos permite que a busca seja, em média, muito mais rápida (favorecendo o tempo) do que uma busca sequencial na coleção original.\n\n-   **III) Verdadeira:** A busca binária exige que a coleção (tipicamente um vetor) esteja sempre ordenada. Em um cenário com muitas inserções e remoções, manter o vetor ordenado é custoso (cada operação pode custar $O(n)$ para deslocar elementos). Em contraste, a busca sequencial pode ser usada em estruturas como listas encadeadas, onde inserções/remoções podem ser mais rápidas ($O(1)$ no início). O alto custo de manutenção da ordem para a busca binária pode tornar a busca sequencial em uma estrutura mais dinâmica uma opção melhor no cômputo geral.\n\n**Conclusão Corrigida:** As afirmativas II e III são verdadeiras. Portanto, a alternativa (d) é a resposta correta."
   },
   {
     "id_questao": "2024_1_q8",
@@ -205,10 +277,6 @@
     "numero_questao": 8,
     "ano_prova": 2024,
     "area": [
-      {
-        "nome": "Estruturas de Dados",
-        "subarea": "Árvores"
-      },
       {
         "nome": "Estruturas de Dados",
         "subarea": "AVL"
@@ -237,7 +305,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Definição da Árvore AVL:**\n\nUma árvore binária de busca é uma árvore AVL se, para todo nó na árvore, as alturas de suas duas subárvores (esquerda e direita) diferem em no máximo 1. Esta propriedade é conhecida como **fator de balanceamento**.\n\n- **(a) Correto:** Esta opção descreve perfeitamente a definição recursiva da propriedade de balanceamento de uma árvore AVL.\n- **(b) Incorreto:** Esta descrição se aproxima de uma árvore cheia, o que não é um requisito para AVL.\n- **(c) Incorreto:** Isso descreve uma árvore perfeitamente balanceada, que é um caso mais restrito e não obrigatório para uma árvore AVL.\n- **(d) Incorreto:** Esta é a definição de uma Árvore Binária de Busca (BST), que é um pré-requisito para uma AVL, mas não a sua condição de balanceamento."
+    "explicacao_geral": "**Raciocínio:** A questão pede a definição formal de uma árvore AVL balanceada.\n\n-   **(a) Correto:** Esta é a definição recursiva precisa de uma árvore AVL. Para qualquer nó da árvore, o **fator de balanceamento** (diferença entre a altura da subárvore esquerda e a altura da subárvore direita) deve estar no intervalo `[-1, 0, 1]`. Além disso, ambas as subárvores (esquerda e direita) devem ser, elas mesmas, árvores AVL.\n\n-   **(b) Incorreto:** A primeira parte descreve uma árvore cheia, o que não é um requisito para AVL. A segunda parte sobre altura mínima não faz parte da definição.\n\n-   **(c) Incorreto:** Exigir que a diferença de altura seja zero define uma **árvore perfeitamente balanceada**, que é uma condição muito mais estrita e cara de manter do que a condição da AVL.\n\n-   **(d) Incorreto:** Esta descreve a propriedade de uma **Árvore Binária de Busca (BST)**, que é um pré-requisito para uma AVL, mas não é a condição de balanceamento em si."
   },
   {
     "id_questao": "2024_1_q9",
@@ -248,36 +316,32 @@
       {
         "nome": "Estruturas de Dados",
         "subarea": "Listas Encadeadas"
-      },
-      {
-        "nome": "Operações Fundamentais",
-        "subarea": "Inserção"
       }
     ],
-    "enunciado": "Considere uma lista ligada na qual cada nó contém um campo info (um valor inteiro) e um campo prox (um ponteiro para o próximo nó). O início da lista é indicado simplesmente por um ponteiro para o primeiro elemento. A declaração a seguir especifica o tipo da lista e declara uma lista inicialmente vazia.\n```c\ntypedef struct lista Lista;\nstruct lista {\n    int info;\n    Lista *prox;\n} *uma_lista = NULL;\n```\nQual das alternativas a seguir contém um código que insere corretamente um novo nó no início da lista?",
+    "enunciado": "Considere uma lista ligada na qual cada nó contém um campo info (um valor inteiro) e um campo prox (um ponteiro para o próximo nó). O início da lista é indicado simplesmente por um ponteiro para o primeiro elemento. A declaração a seguir especifica o tipo da lista e declara uma lista inicialmente vazia.\n\n```c\ntypedef struct lista Lista;\nstruct lista {\n  int info;\n  Lista *prox;\n} *uma_lista = NULL;\n```\n\nQual das alternativas a seguir contém um código que insere corretamente um novo nó no início da lista?",
     "opcoes": [
       {
         "letra": "a",
-        "texto": "```c\nvoid insere (Lista *lista, int info) {\n    Lista *novo = malloc(sizeof (Lista));\n    novo->info = info;\n    novo->prox = *lista; // Erro de compilação: não se pode desreferenciar 'lista'\n    *lista = novo; // Erro de compilação\n}\n```",
+        "texto": "```c\nvoid insere (Lista *lista, int info) {\n  Lista *novo = malloc(sizeof (Lista));\n  novo->info = info;\n  novo->prox = *lista;\n  *lista = novo;\n}\n```",
         "correta": false
       },
       {
         "letra": "b",
-        "texto": "```c\nvoid insere (Lista *lista, int info) {\n    Lista *novo = malloc(sizeof (Lista));\n    novo->info = info;\n    novo->prox = lista->prox; // Lógica incorreta\n    *lista = novo; // Erro de compilação\n}\n```",
+        "texto": "```c\nvoid insere (Lista *lista, int info) {\n  Lista *novo = malloc(sizeof (Lista));\n  novo->info = info;\n  novo->prox = lista->prox;\n  *lista = novo;\n}\n```",
         "correta": false
       },
       {
         "letra": "c",
-        "texto": "```c\nvoid insere (Lista **lista, int info) {\n    Lista *novo = malloc(sizeof (Lista));\n    novo->info = info;\n    novo->prox = *lista;\n    *lista = novo;\n}\n```",
+        "texto": "```c\nvoid insere (Lista **lista, int info) {\n  Lista *novo = malloc(sizeof (Lista));\n  novo->info = info;\n  novo->prox = *lista;\n  *lista = novo;\n}\n```",
         "correta": true
       },
       {
         "letra": "d",
-        "texto": "```c\nvoid insere (Lista **lista, int info) {\n    Lista *novo = malloc(sizeof (Lista));\n    novo->info = info;\n    novo->prox = NULL;\n    if (*lista == NULL) { *lista = novo; }\n    else { (*lista)->prox = novo; } // Lógica incorreta: insere no segundo lugar, não no início\n}\n```",
+        "texto": "```c\nvoid insere (Lista **lista, int info) {\n  Lista *novo = malloc(sizeof (Lista));\n  novo->info = info;\n  novo->prox = NULL;\n  if (*lista == NULL) { *lista = novo; }\n  else { *lista->prox = novo; }\n}\n```",
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise do Código em C:**\n\nPara que uma função possa alterar o ponteiro que aponta para o início da lista (a cabeça da lista), é necessário passar o **endereço** desse ponteiro para a função. Em C, isso é feito usando um ponteiro para ponteiro (`Lista **`).\n\n- **(a) Incorreto:** A função recebe `Lista *lista`, que é uma cópia do ponteiro da cabeça. Qualquer alteração em `lista` dentro da função é local e não afeta a lista original.\n- **(b) Incorreto:** Mesmo problema de (a), o ponteiro é passado por valor.\n- **(c) Correto:** A função recebe `Lista **lista`. `*lista` representa o ponteiro da cabeça original. A lógica `novo->prox = *lista;` faz o novo nó apontar para a antiga cabeça, e `*lista = novo;` atualiza a cabeça original para apontar para o novo nó. Isso insere corretamente no início.\n- **(d) Incorreto:** Embora receba `Lista **`, a lógica `(*lista)->prox = novo;` está errada. Ela tenta inserir o novo nó como o segundo elemento, não como o primeiro (a nova cabeça)."
+    "explicacao_geral": "**Raciocínio:** Para modificar permanentemente a cabeça de uma lista encadeada a partir de uma função em C, é necessário passar o endereço da variável ponteiro que aponta para a cabeça. Isso é feito usando um ponteiro para ponteiro (ou referência de ponteiro), como `Lista **`.\n\n**Análise do Código Correto (c):**\n-   **Assinatura `void insere (Lista **lista, ...)`:** Correto. A função recebe `lista` como um ponteiro para o ponteiro da cabeça, permitindo que a função modifique o ponteiro original na função chamadora.\n-   `Lista *novo = malloc(sizeof(Lista));`: Aloca memória para o novo nó.\n-   `novo->prox = *lista;`: O campo `prox` do novo nó aponta para o que era o antigo primeiro nó da lista (o valor para o qual o ponteiro da cabeça apontava).\n-   `*lista = novo;`: O ponteiro da cabeça original (acessado através da desreferenciação `*lista`) é atualizado para apontar para o novo nó, tornando-o o novo início da lista.\n\n**Análise das Alternativas Incorretas:**\n-   **(a) e (b):** A assinatura `void insere (Lista *lista, ...)` passa o ponteiro da cabeça por valor. Qualquer modificação em `lista` dentro da função (como `*lista = novo`, que causa erro de compilação, ou `lista = novo`) seria local e não afetaria a lista na função chamadora.\n-   **(d):** Este código tenta inserir no final da lista, não no início. Além disso, a linha `*lista->prox = novo;` está incorreta, pois `*lista` é o ponteiro da cabeça, e essa sintaxe tentaria modificar o campo `prox` do ponteiro, não do nó."
   },
   {
     "id_questao": "2024_1_q10",
@@ -287,18 +351,18 @@
     "area": [
       {
         "nome": "Algoritmos de Ordenação",
-        "subarea": "Insertion Sort"
-      },
-      {
-        "nome": "Algoritmos de Ordenação",
         "subarea": "QuickSort"
       },
       {
         "nome": "Algoritmos de Ordenação",
         "subarea": "MergeSort"
+      },
+      {
+        "nome": "Algoritmos de Ordenação",
+        "subarea": "Insertion Sort"
       }
     ],
-    "enunciado": "Considere as seguintes afirmações sobre algoritmos de ordenação.\nI) O método da inserção (insertion sort) pode ser mais eficiente do que o quick sort se o vetor for pequeno e tiver poucos elementos fora de ordem.\nII) O quick sort é o melhor algoritmo de ordenação em situações típicas e, para vetores muito grandes, ele é sempre aconselhável em detrimento de outros algoritmos de ordenação.\nIII) O método da intercalação (merge sort) é eficiente, mas normalmente requer memória adicional para realizar a intercalação. É possível intercalar os elementos no próprio vetor, mas isso exige passos adicionais.",
+    "enunciado": "Considere as seguintes afirmações sobre algoritmos de ordenação.\n\nI) O método da inserção (insertion sort) pode ser mais eficiente do que o quick sort se o vetor for pequeno e tiver poucos elementos fora de ordem.\n\nII) O quick sort é o melhor algoritmo de ordenação em situações típicas e, para vetores muito grandes, ele é sempre aconselhável em detrimento de outros algoritmos de ordenação.\n\nIII) O método da intercalação (merge sort) é eficiente, mas normalmente requer memória adicional para realizar a intercalação. É possível intercalar os elementos no próprio vetor, mas isso exige passos adicionais.",
     "opcoes": [
       {
         "letra": "a",
@@ -321,7 +385,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Afirmativas:**\n\n- **I) Verdadeira:** O Insertion Sort tem baixa sobrecarga (overhead) e complexidade $O(n)$ no melhor caso (vetor quase ordenado). Para vetores pequenos, seu desempenho pode superar o Quicksort, que tem uma sobrecarga maior devido à recursão. Muitas implementações de Quicksort, inclusive, usam Insertion Sort para subvetores pequenos.\n- **II) Falsa:** A palavra \"sempre\" torna a afirmação falsa. O Quicksort tem complexidade de pior caso $O(n^2)$, que pode ocorrer em vetores já ordenados ou com elementos repetidos, dependendo da escolha do pivô. Para garantir desempenho em vetores muito grandes, o Mergesort ou Heapsort são mais seguros devido à sua complexidade garantida de $O(n \\log n)$.\n- **III) Verdadeira:** A implementação padrão e mais simples do Mergesort requer um vetor auxiliar de tamanho `n` para realizar a intercalação (merge) das duas metades, resultando em uma complexidade de espaço $O(n)$. Existem versões in-place, mas são mais complexas e geralmente menos eficientes."
+    "explicacao_geral": "**Análise das Afirmativas:**\n\n-   **I) Verdadeira:** O Quicksort, apesar de ter uma excelente complexidade média ($O(n \\log n)$), possui uma sobrecarga (overhead) devido à recursão e ao particionamento. O Insertion Sort, com complexidade $O(n^2)$ no pior caso, tem uma constante de implementação muito baixa. Para vetores pequenos ou quase ordenados (onde sua complexidade se aproxima de $O(n)$), o Insertion Sort pode superar o Quicksort na prática. Muitas implementações de Quicksort (como introsort) usam Insertion Sort para sub-vetores pequenos.\n\n-   **II) Falsa:** A afirmação de que o Quicksort é **sempre** aconselhável é uma generalização perigosa. O Quicksort tem uma complexidade de pior caso de $O(n^2)$, que pode ser um risco em aplicações críticas. Além disso, não é um algoritmo estável. Algoritmos como Mergesort (com garantia de $O(n \\log n)$) ou Heapsort (in-place com garantia de $O(n \\log n)$) podem ser preferíveis em certas situações.\n\n-   **III) Verdadeira:** A implementação padrão do Mergesort requer um vetor auxiliar de tamanho $O(n)$ para realizar a intercalação de forma eficiente. Existem versões \"in-place\" do Mergesort, mas elas são significativamente mais complexas e geralmente mais lentas na prática, perdendo a simplicidade e eficiência do algoritmo original.\n\n**Conclusão:** As afirmativas I e III estão corretas."
   },
   {
     "id_questao": "2024_1_q11",
@@ -332,13 +396,9 @@
       {
         "nome": "Recursão",
         "subarea": null
-      },
-      {
-        "nome": "Análise de Complexidade",
-        "subarea": null
       }
     ],
-    "enunciado": "Considere a função em Python a seguir.\n```python\ndef chamada (n):\n  print(\"PPGI\")\n  if n <= 1:\n    return n\n  else:\n    return (chamada (n-1) + chamada (n-2))\n```\nQuantas vezes a palavra PPGI é impressa na tela ao executar chamada(4)?",
+    "enunciado": "Considere a função em Python a seguir.\n\n```python\ndef chamada (n):\n  print(\"PPGI\")\n  if n <= 1:\n    return n\n  else:\n    return (chamada (n-1) + chamada (n-2))\n```\n\nQuantas vezes a palavra PPGI é impressa na tela ao executar `chamada(4)`?",
     "opcoes": [
       {
         "letra": "a",
@@ -361,7 +421,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Rastreamento das Chamadas:**\nSeja C(n) o número de vezes que `print` é chamado para `chamada(n)`.\n-   `C(0)`: 1 chamada\n-   `C(1)`: 1 chamada\n\nA recorrência para n > 1 é: `C(n) = 1 (da própria chamada) + C(n-1) + C(n-2)`\n\n-   `C(2) = 1 + C(1) + C(0) = 1 + 1 + 1 = 3`\n-   `C(3) = 1 + C(2) + C(1) = 1 + 3 + 1 = 5`\n-   `C(4) = 1 + C(3) + C(2) = 1 + 5 + 3 = 9`\n\nPortanto, a palavra \"PPGI\" é impressa 9 vezes."
+    "explicacao_geral": "**Raciocínio:** A função `chamada(n)` imprime \"PPGI\" toda vez que é executada. Para descobrir o número total de impressões, precisamos contar o número total de chamadas à função.\n\n**Árvore de Chamadas Recursivas para `chamada(4)`:**\n- `chamada(4)` (1ª impressão)\n  - `chamada(3)` (2ª impressão)\n    - `chamada(2)` (3ª impressão)\n      - `chamada(1)` (4ª impressão)\n      - `chamada(0)` (5ª impressão)\n    - `chamada(1)` (6ª impressão)\n  - `chamada(2)` (7ª impressão)\n    - `chamada(1)` (8ª impressão)\n    - `chamada(0)` (9ª impressão)\n\n**Contagem:** Ao somar todas as chamadas na árvore de recursão, contamos um total de **9** chamadas. Cada chamada imprime \"PPGI\" uma vez.\n\n**Cálculo Alternativo:**\nSeja $C(n)$ o número de chamadas para `chamada(n)`.\n- $C(0) = 1$\n- $C(1) = 1$\n- $C(n) = 1 + C(n-1) + C(n-2)$ para $n>1$\n\n- $C(2) = 1 + C(1) + C(0) = 1 + 1 + 1 = 3$\n- $C(3) = 1 + C(2) + C(1) = 1 + 3 + 1 = 5$\n- $C(4) = 1 + C(3) + C(2) = 1 + 5 + 3 = 9$\n\n- **(c) Correto:** A função é chamada 9 vezes."
   },
   {
     "id_questao": "2024_1_q12",
@@ -374,7 +434,7 @@
         "subarea": null
       }
     ],
-    "enunciado": "Considere a função em Python a seguir.\n```python\ndef chamada (n):\n  print(\"PPGI\")\n  if n <= 1:\n    return n\n  else:\n    return (chamada (n-1) + chamada (n-2))\n```\nQual o retorno da execução chamada(4)?",
+    "enunciado": "Considere a função em Python a seguir.\n\n```python\ndef chamada (n):\n  print(\"PPGI\")\n  if n <= 1:\n    return n\n  else:\n    return (chamada (n-1) + chamada (n-2))\n```\n\nQual o retorno da execução `chamada(4)`?",
     "opcoes": [
       {
         "letra": "a",
@@ -397,7 +457,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Rastreamento do Retorno (Série de Fibonacci):**\nA função calcula a série de Fibonacci, onde F(0)=0 e F(1)=1.\nSeja F(n) o valor retornado por `chamada(n)`.\n-   `F(0)` retorna 0.\n-   `F(1)` retorna 1.\n\nA recorrência para n > 1 é: `F(n) = F(n-1) + F(n-2)`\n\n-   `F(2) = F(1) + F(0) = 1 + 0 = 1`\n-   `F(3) = F(2) + F(1) = 1 + 1 = 2`\n-   `F(4) = F(3) + F(2) = 2 + 1 = 3`\n\nO valor retornado pela execução de `chamada(4)` é 3."
+    "explicacao_geral": "**Raciocínio:** A função `chamada(n)` calcula o n-ésimo número da sequência de Fibonacci, onde `fib(0)=0` e `fib(1)=1`. A linha `print(\"PPGI\")` é um efeito colateral e não afeta o valor de retorno.\n\n**Cálculo Recursivo para `chamada(4)`:**\n- `chamada(4) = chamada(3) + chamada(2)`\n\n- `chamada(3) = chamada(2) + chamada(1)`\n  - `chamada(2) = chamada(1) + chamada(0)`\n    - `chamada(1)` retorna `1`\n    - `chamada(0)` retorna `0`\n    - Portanto, `chamada(2)` retorna `1 + 0 = 1`\n  - `chamada(1)` retorna `1`\n  - Portanto, `chamada(3)` retorna `1 + 1 = 2`\n\n- `chamada(2)` (calculado novamente ou pego da primeira computação) retorna `1`\n\n- Finalmente, `chamada(4)` retorna `2 + 1 = 3`\n\n- **(a) Correto:** O 4º número da sequência de Fibonacci (iniciando em 0) é 3. (Sequência: 0, 1, 1, 2, **3**, 5, ...)\n- **(b, c, d) Incorreto:** São outros números da sequência de Fibonacci."
   },
   {
     "id_questao": "2024_1_q13",
@@ -407,14 +467,10 @@
     "area": [
       {
         "nome": "Estruturas de Dados",
-        "subarea": "Árvores"
-      },
-      {
-        "nome": "Estruturas de Dados",
         "subarea": "Rubro-Negra"
       }
     ],
-    "enunciado": "Sobre árvores vermelho-preto, considere as afirmações:\nI) A raiz é preta\nII) Toda subárvore nula é preta\nIII) Se um nó é preto, então os filhos são vermelhos",
+    "enunciado": "Sobre árvores vermelho-preto, considere as afirmações:\n\nI) A raiz é preta\n\nII) Toda subárvore nula é preta\n\nIII) Se um nó é preto, então os filhos são vermelhos",
     "opcoes": [
       {
         "letra": "a",
@@ -437,7 +493,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Propriedades da Árvore Vermelho-Preto:**\n\n- **I) Verdadeira:** É uma das regras fundamentais de uma árvore vermelho-preto que o nó raiz seja sempre preto.\n- **II) Verdadeira:** Todas as folhas (nós nulos ou NIL) são consideradas pretas. Isso simplifica a manutenção das outras propriedades.\n- **III) Falsa:** Esta afirmação inverte uma das regras. A regra correta é: se um nó é **vermelho**, então ambos os seus filhos devem ser **pretos**. Não há restrição sobre a cor dos filhos de um nó preto."
+    "explicacao_geral": "**Raciocínio:** A questão avalia o conhecimento sobre as propriedades fundamentais de uma árvore rubro-negra.\n\n**Propriedades da Árvore Rubro-Negra:**\n1.  Todo nó é vermelho ou preto.\n2.  A raiz é sempre preta.\n3.  Toda folha (nós nulos, `NIL`) é preta.\n4.  Se um nó é vermelho, então ambos os seus filhos são pretos.\n5.  Para cada nó, todos os caminhos simples daquele nó até as folhas descendentes contêm o mesmo número de nós pretos (a \"altura preta\").\n\n**Análise das Afirmativas:**\n-   **I) Verdadeira:** Esta é a segunda propriedade listada acima.\n-   **II) Verdadeira:** Esta é a terceira propriedade. As folhas conceituais `NIL` são consideradas pretas.\n-   **III) Falsa:** Esta afirmação inverte a lógica da propriedade 4. A regra é que um nó **vermelho** deve ter filhos pretos. Não há nenhuma regra que dite a cor dos filhos de um nó **preto**; eles podem ser vermelhos ou pretos.\n\n**Conclusão:** Apenas as afirmativas I e II estão corretas."
   },
   {
     "id_questao": "2024_1_q14",
@@ -445,10 +501,6 @@
     "numero_questao": 14,
     "ano_prova": 2024,
     "area": [
-      {
-        "nome": "Estruturas de Dados",
-        "subarea": "Árvores"
-      },
       {
         "nome": "Estruturas de Dados",
         "subarea": "Rubro-Negra"
@@ -477,7 +529,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise das Características:**\n\n- **(a) Correto:** Esta é uma das propriedades fundamentais de uma árvore rubro-negra. Se um nó é vermelho, seus filhos devem ser pretos. Isso evita que dois nós vermelhos sejam adjacentes no mesmo caminho.\n- **(b) Incorreto:** Esta é a definição do fator de balanceamento de uma árvore AVL, não de uma árvore rubro-negra.\n- **(c) Incorreto:** Não existe tal regra. Um nó preto pode ter filhos pretos.\n- **(d) Incorreto:** O balanceamento em árvores rubro-negras é mantido através de suas cinco propriedades de cores e caminhos, não por um fator de balanceamento de altura como nas árvores AVL."
+    "explicacao_geral": "**Raciocínio:** A questão pede para identificar uma característica correta das árvores rubro-negras entre as opções.\n\n-   **(a) Correto:** Esta é uma das propriedades fundamentais de uma árvore rubro-negra (Propriedade 4). Ela impede que dois nós vermelhos sejam adjacentes em um caminho (pai e filho), o que é crucial para garantir o balanceamento da árvore.\n\n-   **(b) Incorreto:** Esta é a definição de uma **Árvore AVL**. As árvores rubro-negras têm uma restrição de balanceamento menos rígida, baseada na \"altura preta\" e nas cores dos nós.\n\n-   **(c) Incorreto:** Não existe tal regra. Um nó preto pode ter filhos pretos ou vermelhos.\n\n-   **(d) Incorreto:** A altura não é o único fator; a cor dos nós e a \"altura preta\" são usadas. A afirmação sobre \"exceder em 50%\" não corresponde a nenhuma propriedade formal."
   },
   {
     "id_questao": "2024_1_q15",
@@ -491,7 +543,7 @@
       },
       {
         "nome": "Análise de Complexidade",
-        "subarea": "Notação Big O"
+        "subarea": null
       }
     ],
     "enunciado": "A altura de uma árvore rubro negra com n nós é:",
@@ -517,7 +569,43 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "A principal garantia de uma árvore rubro-negra é que ela permanece 'razoavelmente' balanceada, o que se traduz em uma altura máxima logarítmica. A prova matemática demonstra que a altura `h` de uma árvore rubro-negra com `n` nós internos é limitada por $h \\le 2 \\cdot log_2(n+1)$. Isso garante que as operações de busca, inserção e remoção tenham uma complexidade de pior caso de $O(log n)$. As outras opções são limites incorretos."
+    "explicacao_geral": "**Raciocínio:** Uma das propriedades mais importantes das árvores rubro-negras é que elas são balanceadas, o que impõe um limite logarítmico estrito para sua altura.\n\n**Análise:**\n-   Pode-se provar que uma árvore rubro-negra com `n` nós internos tem uma altura `h` que satisfaz a desigualdade: $h \\le 2 \\cdot \\log_{2}(n+1)$.\n-   Isso garante que a altura da árvore é sempre da ordem de $O(\\log n)$, evitando o pior caso de $O(n)$ de uma árvore de busca binária não balanceada.\n\n**Análise das Opções:**\n-   (a) Incorreto: $n \\log n$ é uma complexidade muito maior, associada a alguns algoritmos de ordenação, não à altura da árvore.\n-   (b) **Correto:** Esta é a fórmula precisa que limita superiormente a altura de uma árvore rubro-negra.\n-   (c) Incorreto: $n^2$ é uma complexidade quadrática, completamente fora da escala para altura de árvores.\n-   (d) Incorreto: $\\log(n-1)$ é um limite muito estrito; a árvore pode ter uma altura maior que essa, até o limite de $2\\log(n+1)$."
+  },
+  {
+    "id_questao": "2024_1_q16",
+    "prova_referencia": "2024-1.pdf",
+    "numero_questao": 16,
+    "ano_prova": 2024,
+    "area": [
+      {
+        "nome": "Algoritmos",
+        "subarea": null
+      }
+    ],
+    "enunciado": "Considere o seguinte trecho de código em C:\n\n```c\nint main() {\n  int *ptr;\n  ptr = (int *)malloc(sizeof(int));\n  *ptr = 10;\n  printf(\" valor armazenado em ptr é: %d\", *ptr);\n  free(ptr);\n  return 0;\n}\n```\n\nO que o trecho de código faz?",
+    "opcoes": [
+      {
+        "letra": "a",
+        "texto": "Atribui o valor 10 a uma variável inteira, imprime o valor e depois libera a memória alocada.",
+        "correta": false
+      },
+      {
+        "letra": "b",
+        "texto": "Aloca memória para um ponteiro, atribui o valor 10 a ele, imprime o valor e depois libera a memória alocada.",
+        "correta": false
+      },
+      {
+        "letra": "c",
+        "texto": "Aloca dinamicamente memória para um inteiro, atribui o valor 10 a ele, imprime o valor e depois libera a memória alocada.",
+        "correta": true
+      },
+      {
+        "letra": "d",
+        "texto": "Aloca memória para um ponteiro, imprime o endereço de memória alocado e depois libera a memória alocada.",
+        "correta": false
+      }
+    ],
+    "explicacao_geral": "**Análise da Questão (Corrigida):** Esta questão foi **anulada** no gabarito oficial, possivelmente por ser considerada muito básica ou por pequenas imprecisões nas alternativas. No entanto, há uma descrição correta do processo.\n\n**Análise do Código:**\n1.  `int *ptr;`: Declara um **ponteiro** para um inteiro, chamado `ptr`.\n2.  `ptr = (int *)malloc(sizeof(int));`: **Aloca dinamicamente** na memória heap um espaço suficiente para armazenar **um inteiro**. O endereço desse espaço de memória é atribuído ao ponteiro `ptr`.\n3.  `*ptr = 10;`: Atribui o valor `10` ao espaço de memória **para o qual `ptr` aponta**.\n4.  `printf(\"..., %d\", *ptr);`: Imprime o valor `10` que está armazenado no endereço apontado por `ptr`.\n5.  `free(ptr);`: Libera a memória que foi alocada dinamicamente, prevenindo vazamentos de memória.\n\n**Análise das Alternativas:**\n-   (a) Incorreto: A atribuição é feita ao espaço de memória apontado pelo ponteiro, não a uma \"variável inteira\" comum (alocada na pilha).\n-   (b) Incorreto: A memória não é alocada \"para um ponteiro\", mas sim para um inteiro. O valor 10 é atribuído ao inteiro, não ao ponteiro.\n-   (c) **Correto:** Esta é a descrição mais precisa. A memória é alocada **dinamicamente** (usando `malloc`), o espaço é **para um inteiro**, o valor 10 é atribuído a esse inteiro, o valor é impresso e a memória é liberada.\n-   (d) Incorreto: O código imprime o valor (`*ptr`), não o endereço de memória (`ptr`)."
   },
   {
     "id_questao": "2024_1_q17",
@@ -557,7 +645,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "Esta é uma questão fundamental sobre estruturas de dados.\n\n- **Pilha (Stack):** Opera sob o princípio **LIFO (Last-In, First-Out)**. O último elemento a ser inserido é o primeiro a ser removido. Pense em uma pilha de pratos.\n- **Fila (Queue):** Opera sob o princípio **FIFO (First-In, First-Out)**. O primeiro elemento a ser inserido é o primeiro a ser removido. Pense em uma fila de pessoas em um caixa.\n\nA opção (b) descreve corretamente essa diferença fundamental."
+    "explicacao_geral": "**Raciocínio:** Esta questão aborda a definição fundamental de duas das estruturas de dados mais básicas.\n\n-   **Pilha (Stack):** Opera sob o princípio **LIFO (Last In, First Out)**. O último elemento adicionado (empilhado) é o primeiro a ser removido (desempilhado). Pense em uma pilha de pratos: você tira o prato do topo, que foi o último a ser colocado.\n\n-   **Fila (Queue):** Opera sob o princípio **FIFO (First In, First Out)**. O primeiro elemento adicionado (enfileirado) é o primeiro a ser removido (desenfileirado). Pense em uma fila de pessoas no banco: a primeira pessoa que chegou é a primeira a ser atendida.\n\n**Análise das Opções:**\n-   (a) Incorreto: Inverte os princípios.\n-   (b) **Correto:** Define corretamente os princípios LIFO para pilhas e FIFO para filas.\n-   (c) Incorreto: Elas têm funcionamentos e aplicações fundamentalmente diferentes.\n-   (d) Incorreto: São estruturas de dados extremamente comuns e essenciais em programação."
   },
   {
     "id_questao": "2024_1_q18",
@@ -565,6 +653,10 @@
     "numero_questao": 18,
     "ano_prova": 2024,
     "area": [
+      {
+        "nome": "Algoritmos",
+        "subarea": null
+      },
       {
         "nome": "Estruturas de Dados",
         "subarea": "Arrays"
@@ -593,7 +685,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "Em C, os nomes de vetores 'decaem' para ponteiros para seu primeiro elemento quando passados como argumentos para funções. Isso significa que a função não recebe uma cópia do vetor inteiro (o que seria ineficiente para vetores grandes), mas sim o endereço de memória onde o vetor começa. Por isso, modificações feitas nos elementos do vetor dentro da função são refletidas no vetor original na função chamadora."
+    "explicacao_geral": "**Raciocínio:** Em C, os argumentos de função são passados **por valor**. No entanto, quando um nome de vetor é usado como argumento, ele \"decaí\" para um ponteiro para seu primeiro elemento. Portanto, o que é efetivamente passado por valor para a função é o **endereço de memória do primeiro elemento** do vetor.\n\n**Consequências:**\n- Como a função recebe o endereço do início do vetor, ela pode acessar e modificar diretamente qualquer um dos elementos do vetor original. As alterações feitas dentro da função são permanentes.\n- É por isso que geralmente se passa o tamanho do vetor como um argumento separado, pois a função recebe apenas o ponteiro inicial e não sabe o tamanho do vetor.\n\n**Análise das Opções:**\n- **(a) Correto:** O nome do vetor atua como um ponteiro para seu elemento de índice 0, e é esse endereço que é copiado para o parâmetro da função.\n- (b) Incorreto: Apenas o endereço do primeiro elemento é passado.\n- (c) Incorreto: Seria uma passagem por valor de todos os elementos, o que não ocorre. Isso seria ineficiente e não permitiria a modificação do vetor original.\n- (d) Incorreto: A informação do tamanho do vetor não é passada automaticamente."
   },
   {
     "id_questao": "2024_1_q19",
@@ -603,10 +695,10 @@
     "area": [
       {
         "nome": "Algoritmos",
-        "subarea": null
+        "subarea": "Laços de Repetição"
       }
     ],
-    "enunciado": "Analise o código a seguir:\n```c\nint subrotina (int x) {\n    int i, z=0;\n    for (i=1;i<x;i++)\n        z += i;\n    return z;\n}\nint main() {\n    int z, i, x;\n    for(i=1;i<5;i++){\n        printf(\"Informe um numero: \");\n        scanf(\"%d\",&z);\n        x=subrotina(z);\n        printf(\"%d\\n\",x);\n    }\n    return 0;\n}\n```\nQual o resultado impresso na tela, considerando que o usuário informou os respectivos valores de entrada (9, 7, 6, 10)?",
+    "enunciado": "Analise o código a seguir:\n\n```c\nint subrotina (int x) {\n  int i, z=0;\n  for(i=1; i<x; i++)\n    z += i;\n  return z;\n}\n\nint main() {\n  int z, i, x;\n  for(i=1; i<5; i++){\n    printf(\"Informe um numero: \");\n    scanf(\"%d\", &z);\n    x = subrotina(z);\n    printf(\"%d\\n\", x);\n  }\n  return 0;\n}\n```\n\nQual o resultado impresso na tela, considerando que o usuário informou os respectivos valores de entrada (9, 7, 6, 10)?",
     "opcoes": [
       {
         "letra": "a",
@@ -629,7 +721,7 @@
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise do Código:**\nA função `subrotina(x)` calcula a soma de todos os números inteiros de 1 até `x-1`.\n\n- **1ª Entrada (9):** `subrotina(9)` calcula `1+2+3+4+5+6+7+8 = 36`. Imprime **36**.\n- **2ª Entrada (7):** `subrotina(7)` calcula `1+2+3+4+5+6 = 21`. Imprime **21**.\n- **3ª Entrada (6):** `subrotina(6)` calcula `1+2+3+4+5 = 15`. Imprime **15**.\n- **4ª Entrada (10):** `subrotina(10)` calcula `1+2+3+4+5+6+7+8+9 = 45`. Imprime **45**.\n\nA sequência de saída é `36, 21, 15, 45`."
+    "explicacao_geral": "**Raciocínio:** A `subrotina(x)` calcula a soma de todos os inteiros de 1 até `x-1`. O laço `for` na função `main` executa 4 vezes, lendo um número em cada iteração e imprimindo o resultado da chamada da `subrotina` com o número lido.\n\n**Cálculo para cada entrada:**\n1.  **Entrada = 9:**\n    -   `subrotina(9)` calcula a soma $1+2+3+4+5+6+7+8 = 36$.\n    -   Imprime **36**.\n\n2.  **Entrada = 7:**\n    -   `subrotina(7)` calcula a soma $1+2+3+4+5+6 = 21$.\n    -   Imprime **21**.\n\n3.  **Entrada = 6:**\n    -   `subrotina(6)` calcula a soma $1+2+3+4+5 = 15$.\n    -   Imprime **15**.\n\n4.  **Entrada = 10:**\n    -   `subrotina(10)` calcula a soma $1+2+...+9 = 45$.\n    -   Imprime **45**.\n\n**Sequência Impressa:** A saída na tela será `36`, seguida por `21`, `15` e `45`.\n\n- **(c) Correto:** Corresponde à sequência de resultados calculados."
   },
   {
     "id_questao": "2024_1_q20",
@@ -646,25 +738,25 @@
     "opcoes": [
       {
         "letra": "a",
-        "texto": "```c\n#include<stdio.h>\nint main(void) {\n    float PT, E;\n    printf(\"Informe o valor\");\n    scanf(\"%f\",&E);\n    PT=E+E*1.18;\n    printf(\"Valor Total: %.2f\", PT);\n    return 0;\n}\n```",
+        "texto": "```c\n#include<stdio.h>\nint main(void) {\n  float PT, E;\n  printf(\"Informe o valor\");\n  scanf(\"%f\", &E);\n  PT = E + E * 1.18;\n  printf(\"Valor Total: %.2f\", PT);\n  return 0;\n}\n```",
         "correta": false
       },
       {
         "letra": "b",
-        "texto": "```c\n#include<stdio.h>\nint main(void) {\n    float X, TG;\n    printf(\"Informe o valor\");\n    scanf(\"%f\",&X);\n    TG=X*0.18;\n    printf(\"Valor Total: %.2f\", TG);\n    return 0;\n}\n```",
+        "texto": "```c\n#include<stdio.h>\nint main(void) {\n  float X, TG;\n  printf(\"Informe o valor\");\n  scanf(\"%f\", &X);\n  TG = X * 0.18;\n  printf(\"Valor Total: %.2f\", TG);\n  return 0;\n}\n```",
         "correta": false
       },
       {
         "letra": "c",
-        "texto": "```c\n#include<stdio.h>\nint main(void) {\n    float K, W;\n    printf(\"Informe o valor\");\n    scanf(\"%f\",&K);\n    W=K+K*0.18;\n    printf(\"Valor Total: %.2f\", W);\n    return 0;\n}\n```",
+        "texto": "```c\n#include<stdio.h>\nint main(void) {\n  float K, W;\n  printf(\"Informe o valor\");\n  scanf(\"%f\", &K);\n  W = K + K * 0.18;\n  printf(\"Valor Total: %.2f\", W);\n  return 0;\n}\n```",
         "correta": true
       },
       {
         "letra": "d",
-        "texto": "```c\n#include<stdio.h>\nint main(void) {\n    float PT, E;\n    printf(\"Informe o valor\");\n    scanf(\"%f\",&E);\n    PT=E*E*18/100;\n    printf (\"Valor Total: %.2f\", PT);\n    return 0;\n}\n```",
+        "texto": "```c\n#include<stdio.h>\nint main(void) {\n  float PT, E;\n  printf(\"Informe o valor\");\n  scanf(\"%f\", &E);\n  PT = E * E * 18 / 100;\n  printf (\"Valor Total: %.2f\", PT);\n  return 0;\n}\n```",
         "correta": false
       }
     ],
-    "explicacao_geral": "**Análise da Lógica:**\nO valor total a ser pago é o valor original da despesa mais 18% desse valor. Matematicamente, se `K` é a despesa, o total `W` é: \n$W = K + (K \\cdot 0.18)$\nEsta fórmula é equivalente a $W = K \\cdot (1 + 0.18) = K \\cdot 1.18$.\n\n- **(a) Incorreto:** `E + E * 1.18` calcula `E + 118% de E`, resultando em 218% do valor original.\n- **(b) Incorreto:** `X * 0.18` calcula apenas o valor da gorjeta, não o valor total.\n- **(c) Correto:** `K + K * 0.18` calcula corretamente o valor original mais 18% de gorjeta.\n- **(d) Incorreto:** `E * E * 18/100` calcula `E^2 * 0.18`, uma fórmula matematicamente incorreta para o problema."
+    "explicacao_geral": "**Raciocínio:** O enunciado pede para calcular o **valor total**, que é o valor original da despesa mais 18% de gorjeta.\n\nSeja `V` o valor da despesa.\n-   A gorjeta é `V * 0.18` (18% de V).\n-   O valor total é `V + (V * 0.18)`.\n-   Isso pode ser simplificado como `V * (1 + 0.18)` ou `V * 1.18`.\n\n**Análise das Opções:**\n-   (a) Incorreto: A fórmula `PT = E + E * 1.18` calcula o valor original (`E`) mais 118% do valor original, o que está incorreto. O total seria `E * 2.18`.\n-   (b) Incorreto: A fórmula `TG = X * 0.18` calcula apenas o valor da gorjeta, não o valor total da conta.\n-   (c) **Correto:** A fórmula `W = K + K * 0.18` calcula corretamente o valor original (`K`) somado com 18% do valor original (`K * 0.18`), resultando no valor total. Esta é a implementação correta da lógica pedida.\n-   (d) Incorreto: A fórmula `PT = E * E * 18 / 100` usa `E*E` (valor ao quadrado), o que não tem relação com o cálculo de porcentagem."
   }
 ]
