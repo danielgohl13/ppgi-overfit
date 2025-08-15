@@ -15,7 +15,7 @@
       { "letra": "c", "texto": "Apenas as afirmações I e III são verdadeiras.", "correta": true },
       { "letra": "d", "texto": "Todas as afirmações são verdadeiras.", "correta": false }
     ],
-    [cite_start]"explicacao_geral": "**Raciocínio:**\n- **I (Verdadeira):** Se o vetor já está ordenado, o laço interno do Insertion Sort nunca é executado, resultando em uma complexidade linear $O(n)$[cite: 419].\n- **II (Falsa):** No pior caso (vetor em ordem inversa), o número de comparações é da ordem de $O(n^2)$, assim como o número de trocas (deslocamentos). No entanto, eles não são necessariamente iguais. Por exemplo, para inserir o k-ésimo elemento, pode-se fazer k comparações e k deslocamentos.\n- **III (Verdadeira):** O Insertion Sort é estável porque ele insere um elemento em uma parte já ordenada do vetor sem alterar a ordem relativa dos elementos iguais."
+    "explicacao_geral": "**Raciocínio:**\n- **I (Verdadeira):** Se o vetor já está ordenado, o laço interno do Insertion Sort nunca é executado, resultando em uma complexidade linear $O(n)$[cite: 419].\n- **II (Falsa):** No pior caso (vetor em ordem inversa), o número de comparações é da ordem de $O(n^2)$, assim como o número de trocas (deslocamentos). No entanto, eles não são necessariamente iguais. Por exemplo, para inserir o k-ésimo elemento, pode-se fazer k comparações e k deslocamentos.\n- **III (Verdadeira):** O Insertion Sort é estável porque ele insere um elemento em uma parte já ordenada do vetor sem alterar a ordem relativa dos elementos iguais."
   },
   {
     "id_questao": "2025_1_q2",
