@@ -20,7 +20,8 @@ const questionFiles = [
     'data/questions/20230.json',
     'data/questions/20241.json',
     'data/questions/20242.json',
-    'data/questions/20250.json'
+    'data/questions/20250.json',
+    'data/questions/simulado.json'
 ];
 
 /**
@@ -456,3 +457,4 @@ function showShuffleFeedback(count) {
     }, 1500);
 
 }
+
